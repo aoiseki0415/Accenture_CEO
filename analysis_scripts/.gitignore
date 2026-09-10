@@ -1,0 +1,8 @@
+# Inputには参照用Pythonコードだけを保存する
+**/Input/*
+!**/Input/*.py
+
+# 元データ・中間生成物・分析結果は保存しない
+**/Output/
+__pycache__/
+*.pyc
