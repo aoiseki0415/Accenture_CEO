@@ -1,6 +1,6 @@
 # 解析スクリプト（現時点の最新版）
 
-SSDから復元したPythonコードのうち、最終的に実施した本分析の流れに対応する No4〜No13 のみを保管しています。
+SSDから復元したPythonコードのうち、最終的に実施した本分析の流れに対応する No4〜No13と、その後の原因分析用No14を保管しています。
 
 ## 対応関係
 
@@ -16,6 +16,7 @@ SSDから復元したPythonコードのうち、最終的に実施した本分�
 | No11 | ローソン | 個別商品購買指数を平均し、対応商品群購買指数を算出 | `No11_group_purchase_index_lawson/Input/calculate_group_purchase_index_lawson.py` |
 | No12 | ファミリーマート | 個別商品購買指数を平均し、対応商品群購買指数を算出 | `No12_group_purchase_index_familymart/Input/calculate_group_purchase_index_familymart.py` |
 | No13 | 3社統合 | 全セルの指数から閾値を算出し、適切さを3段階で評価 | `No13_classify_group_purchase_index/Input/classify_group_purchase_index.py` |
+| No14 | セブンイレブン・栄養バランス | 若年4属性について、個別商品購買指数を購入者率と購入頻度へ分解 | `No14_cause_analysis_seven_nutrition_balance/Input/calculate_purchaser_rate_and_frequency_seven_nutrition.py` |
 
 ## 実行順
 
@@ -23,6 +24,7 @@ SSDから復元したPythonコードのうち、最終的に実施した本分�
 2. No7〜No9：個別商品購買指数の算出
 3. No10〜No12：対応商品群購買指数の算出
 4. No13：全社共通の閾値による適切さの評価
+5. No14：セブンイレブンの栄養バランス対応商品について、購入者率・購入頻度を算出
 
 各スクリプトは、従来のCode Editor上の構成に合わせ、各Noフォルダの `Input` 内に置いてあります。スクリプトが参照する前段階のNoフォルダも、同じ親フォルダ配下に配置する想定です。
 
