@@ -16,7 +16,7 @@ SSDから復元したPythonコードのうち、最終的に実施した本分�
 | No11 | ローソン | 個別商品購買指数を平均し、対応商品群購買指数を算出 | `No11_group_purchase_index_lawson/Input/calculate_group_purchase_index_lawson.py` |
 | No12 | ファミリーマート | 個別商品購買指数を平均し、対応商品群購買指数を算出 | `No12_group_purchase_index_familymart/Input/calculate_group_purchase_index_familymart.py` |
 | No13 | 3社統合 | 全セルの指数から閾値を算出し、適切さを3段階で評価 | `No13_classify_group_purchase_index/Input/classify_group_purchase_index.py` |
-| No14 | セブンイレブン・栄養バランス | 若年4属性について、個別商品購買指数を購入者率と購入頻度へ分解 | `No14_cause_analysis_seven_nutrition_balance/Input/calculate_purchaser_rate_and_frequency_seven_nutrition.py` |
+| No14 | セブンイレブン・栄養バランス | 男女20〜70代について個別商品購買指数を購入者率と購入頻度へ分解し、属性内商品比較・商品内属性比較の2方向で保存 | `No14_cause_analysis_seven_nutrition_balance/Input/calculate_purchaser_rate_and_frequency_seven_nutrition.py` |
 
 ## 実行順
 

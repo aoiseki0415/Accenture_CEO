@@ -2,10 +2,8 @@
 
 分析対象
 --------
-* 男性20代
-* 男性30代
-* 女性20代
-* 女性30代
+* 男性20代～70代
+* 女性20代～70代
 
 入力
 ----
@@ -15,12 +13,10 @@
 
 出力
 ----
-No14の ``Output`` 直下へ、4属性それぞれのCSVを保存する。
+No14の ``Output`` 配下へ、同じ計算結果を2方向に並べて保存する。
 
-* 男性20代.csv
-* 男性30代.csv
-* 女性20代.csv
-* 女性30代.csv
+* ``01_属性内の商品間比較``: 男女20代～70代の12属性別CSV
+* ``02_商品内の属性間比較``: 商品番号別CSV
 
 実データや認証情報はこのファイルへ直接記入しないこと。
 """
@@ -49,17 +45,41 @@ PURCHASE_AGE_LAYER_COLUMN = "user_age_att_layer"
 
 INDEX_SCALE = 1000
 
-# 原因分析の対象として特定した4属性だけを扱う。
-TARGET_SEGMENTS = (
-    ("男性", "20代", "男性20代.csv"),
-    ("男性", "30代", "男性30代.csv"),
-    ("女性", "20代", "女性20代.csv"),
-    ("女性", "30代", "女性30代.csv"),
+# 問題として特定した20～30代に加え、属性間比較の基準として
+# 40～70代も同じ方法で算出する。
+AGE_LABELS = (
+    "20代",
+    "30代",
+    "40代",
+    "50代",
+    "60代",
+    "70代",
+)
+
+TARGET_SEGMENTS = tuple(
+    (gender, age, f"{gender}{age}.csv")
+    for gender in ("男性", "女性")
+    for age in AGE_LABELS
 )
 
 OUTPUT_COLUMNS = (
     "商品番号",
     "商品名",
+    "最初の記録日",
+    "最後の記録日",
+    "購買記録数",
+    "購入者数",
+    "対象者数",
+    "購入者率（%）",
+    "購入頻度（回/購入者）",
+    "個別商品購買指数",
+)
+
+PRODUCT_OUTPUT_COLUMNS = (
+    "商品番号",
+    "商品名",
+    "性別",
+    "年代",
     "最初の記録日",
     "最後の記録日",
     "購買記録数",
@@ -99,7 +119,7 @@ def require_columns(
 
 
 def age_to_label(value: object) -> Optional[str]:
-    """購入時年代表記を20代・30代へ正規化し、それ以外は対象外にする。"""
+    """購入時年代表記を20代～70代へ正規化し、それ以外は対象外にする。"""
     if pd.isna(value):
         return None
 
@@ -112,10 +132,9 @@ def age_to_label(value: object) -> Optional[str]:
         return None
 
     numeric_value = int(match.group(1))
-    if 20 <= numeric_value < 30:
-        return "20代"
-    if 30 <= numeric_value < 40:
-        return "30代"
+    for lower_age, label in zip(range(20, 80, 10), AGE_LABELS):
+        if lower_age <= numeric_value < lower_age + 10:
+            return label
     return None
 
 
@@ -209,7 +228,7 @@ def calculate_target_users(
     first_date: pd.Timestamp,
     last_date: pd.Timestamp,
 ) -> pd.Series:
-    """商品観測期間内のセブン利用者を、4セグメント別に数える。"""
+    """商品観測期間内のセブン利用者を、12セグメント別に数える。"""
     period_mask = company_data[PURCHASE_DATE_COLUMN].between(
         first_date,
         last_date,
@@ -293,7 +312,7 @@ def calculate_all_products(
     company_data: pd.DataFrame,
     product_source_dir: Path,
 ) -> dict[str, list[dict[str, object]]]:
-    """No4の全商品について、4セグメントの結果行を作る。"""
+    """No4の全商品について、12セグメントの結果行を作る。"""
     mapping = read_product_mapping(
         product_source_dir / "product_file_mapping.csv"
     )
@@ -386,21 +405,25 @@ def calculate_all_products(
     return segment_rows
 
 
-def save_segment_outputs(
+def save_outputs(
     segment_rows: dict[str, list[dict[str, object]]],
     output_dir: Path,
 ) -> list[Path]:
-    """4セグメントを、それぞれ独立したCSVとして保存する。"""
-    output_dir.mkdir(parents=True, exist_ok=True)
+    """同じ計算結果を、属性別と商品別の2方向で保存する。"""
+    attribute_output_dir = output_dir / "01_属性内の商品間比較"
+    product_output_dir = output_dir / "02_商品内の属性間比較"
+    attribute_output_dir.mkdir(parents=True, exist_ok=True)
+    product_output_dir.mkdir(parents=True, exist_ok=True)
     output_paths: list[Path] = []
 
+    # 方向1：同じ属性の中で商品間を比較するため、12属性別に保存する。
     for gender, age, filename in TARGET_SEGMENTS:
         segment = f"{gender}・{age}"
         table = pd.DataFrame(
             segment_rows[segment],
             columns=OUTPUT_COLUMNS,
         )
-        output_path = output_dir / filename
+        output_path = attribute_output_dir / filename
         table.to_csv(
             output_path,
             index=False,
@@ -410,6 +433,45 @@ def save_segment_outputs(
         output_paths.append(output_path)
         print(f"{segment}の結果を保存しました: {output_path}")
 
+    # 方向2：同じ商品の中で属性間を比較するため、商品番号別に保存する。
+    product_rows: dict[str, list[dict[str, object]]] = {}
+    for gender, age, _ in TARGET_SEGMENTS:
+        segment = f"{gender}・{age}"
+        for row in segment_rows[segment]:
+            product_number = str(row["商品番号"])
+            product_rows.setdefault(product_number, []).append(
+                {
+                    "商品番号": product_number,
+                    "商品名": row["商品名"],
+                    "性別": gender,
+                    "年代": age,
+                    "最初の記録日": row["最初の記録日"],
+                    "最後の記録日": row["最後の記録日"],
+                    "購買記録数": row["購買記録数"],
+                    "購入者数": row["購入者数"],
+                    "対象者数": row["対象者数"],
+                    "購入者率（%）": row["購入者率（%）"],
+                    "購入頻度（回/購入者）": row["購入頻度（回/購入者）"],
+                    "個別商品購買指数": row["個別商品購買指数"],
+                }
+            )
+
+    for product_number, rows in product_rows.items():
+        if len(rows) != len(TARGET_SEGMENTS):
+            raise RuntimeError(
+                f"商品{product_number}の属性数が12件ではありません: {len(rows)}件"
+            )
+        table = pd.DataFrame(rows, columns=PRODUCT_OUTPUT_COLUMNS)
+        output_path = product_output_dir / f"product_{product_number}.csv"
+        table.to_csv(
+            output_path,
+            index=False,
+            encoding="utf-8-sig",
+            float_format="%.6f",
+        )
+        output_paths.append(output_path)
+        print(f"商品{product_number}の属性比較結果を保存しました: {output_path}")
+
     return output_paths
 
 
@@ -418,7 +480,7 @@ def run(
     product_source_dir: Optional[Path] = None,
     output_dir: Optional[Path] = None,
 ) -> list[Path]:
-    """セブン・栄養バランスの4セグメントについて分析する。"""
+    """セブン・栄養バランスの商品×12属性について分析する。"""
     project_dir = Path(__file__).resolve().parents[1]
     workspace_dir = project_dir.parent
 
@@ -450,7 +512,7 @@ def run(
         company_data=company_data,
         product_source_dir=product_source_dir,
     )
-    output_paths = save_segment_outputs(segment_rows, output_dir)
+    output_paths = save_outputs(segment_rows, output_dir)
     print("\nセブン・栄養バランスの原因分析用集計が完了しました。")
     return output_paths
 
