@@ -373,7 +373,7 @@ def save_bar_chart(
         )
         ax.bar_label(
             bars,
-            fmt="%.2f",
+            fmt="%.3f",
             padding=5,
             fontsize=13,
             fontweight="bold",
