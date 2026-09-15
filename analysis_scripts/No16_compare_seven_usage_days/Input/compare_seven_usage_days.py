@@ -68,6 +68,17 @@ REQUIRED_COLUMNS = {
     AGE_COLUMN,
 }
 
+JAPANESE_FONT_CANDIDATES = (
+    "Noto Sans CJK JP",
+    "Noto Sans JP",
+    "IPAexGothic",
+    "IPAGothic",
+    "TakaoGothic",
+    "VL Gothic",
+    "Yu Gothic",
+    "Hiragino Sans",
+)
+
 
 # =====================================================================
 # 【ユーザー記入欄】S3読込テンプレートで data1～data5 を作成する
@@ -389,18 +400,31 @@ def summarize_usage_days(user_day: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def configure_japanese_font() -> None:
-    """利用できる日本語フォントを優先順で設定する。"""
-    import matplotlib.pyplot as plt
+def configure_plot_font() -> bool:
+    """利用可能な日本語フォントを検出し、なければ英語表示へ切り替える。"""
+    import matplotlib as mpl
+    from matplotlib import font_manager
 
-    plt.rcParams["font.family"] = "sans-serif"
-    plt.rcParams["font.sans-serif"] = [
-        "Noto Sans CJK JP",
-        "IPAexGothic",
-        "Yu Gothic",
-        "Hiragino Sans",
-        "DejaVu Sans",
-    ]
+    for font_name in JAPANESE_FONT_CANDIDATES:
+        try:
+            font_manager.findfont(
+                font_manager.FontProperties(family=font_name),
+                fallback_to_default=False,
+            )
+        except ValueError:
+            continue
+
+        mpl.rcParams["font.family"] = font_name
+        mpl.rcParams["axes.unicode_minus"] = False
+        print(f"グラフ用日本語フォント: {font_name}")
+        return True
+
+    mpl.rcParams["font.family"] = "DejaVu Sans"
+    mpl.rcParams["axes.unicode_minus"] = False
+    print(
+        "日本語フォントが見つからないため、グラフ内のラベルを英語で保存します。"
+    )
+    return False
 
 
 def save_boxplot(user_day: pd.DataFrame, output_path: Path) -> bool:
@@ -411,7 +435,12 @@ def save_boxplot(user_day: pd.DataFrame, output_path: Path) -> bool:
         print("matplotlibがないためグラフ出力をスキップします。")
         return False
 
-    configure_japanese_font()
+    use_japanese = configure_plot_font()
+    group_labels = (
+        GROUP_ORDER
+        if use_japanese
+        else ("Purchase-experienced", "No purchase experience")
+    )
     values = [
         user_day.loc[user_day["群"].eq(group), "利用日数"].astype(float).to_numpy()
         for group in GROUP_ORDER
@@ -419,7 +448,7 @@ def save_boxplot(user_day: pd.DataFrame, output_path: Path) -> bool:
     fig, ax = plt.subplots(figsize=(8.0, 5.8))
     boxplot = ax.boxplot(
         values,
-        labels=GROUP_ORDER,
+        labels=group_labels,
         patch_artist=True,
         showfliers=False,
         widths=0.48,
@@ -431,7 +460,11 @@ def save_boxplot(user_day: pd.DataFrame, output_path: Path) -> bool:
     for patch, color in zip(boxplot["boxes"], ("#4B4B4B", "#8A8A8A")):
         patch.set_facecolor(color)
 
-    ax.set_ylabel("利用日数（日）", fontsize=16, fontweight="bold")
+    ax.set_ylabel(
+        "利用日数（日）" if use_japanese else "Seven usage days (days)",
+        fontsize=16,
+        fontweight="bold",
+    )
     ax.tick_params(axis="x", labelsize=14, width=1.4)
     ax.tick_params(axis="y", labelsize=13, width=1.4)
     ax.spines[["top", "right"]].set_visible(False)
@@ -452,9 +485,13 @@ def save_distribution_chart(user_day: pd.DataFrame, output_path: Path) -> bool:
     except ImportError:
         return False
 
-    configure_japanese_font()
+    use_japanese = configure_plot_font()
     fig, ax = plt.subplots(figsize=(9.0, 5.8))
     colors = ("#3F3F3F", "#8A8A8A")
+    english_group_labels = {
+        EXPERIENCED_GROUP: "Purchase-experienced",
+        UNEXPERIENCED_GROUP: "No purchase experience",
+    }
     for group, color in zip(GROUP_ORDER, colors):
         values = user_day.loc[user_day["群"].eq(group), "利用日数"].astype(float)
         sorted_values = np.sort(values.to_numpy())
@@ -465,11 +502,21 @@ def save_distribution_chart(user_day: pd.DataFrame, output_path: Path) -> bool:
             where="post",
             linewidth=2.2,
             color=color,
-            label=group,
+            label=group if use_japanese else english_group_labels[group],
         )
 
-    ax.set_xlabel("利用日数（日）", fontsize=16, fontweight="bold")
-    ax.set_ylabel("累積ユーザー割合（%）", fontsize=16, fontweight="bold")
+    ax.set_xlabel(
+        "利用日数（日）" if use_japanese else "Seven usage days (days)",
+        fontsize=16,
+        fontweight="bold",
+    )
+    ax.set_ylabel(
+        "累積ユーザー割合（%）"
+        if use_japanese
+        else "Cumulative users (%)",
+        fontsize=16,
+        fontweight="bold",
+    )
     ax.tick_params(axis="both", labelsize=13, width=1.4)
     ax.legend(frameon=False, fontsize=13)
     ax.spines[["top", "right"]].set_visible(False)
