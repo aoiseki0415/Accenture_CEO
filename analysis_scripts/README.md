@@ -17,7 +17,7 @@ SSDから復元したPythonコードのうち、最終的に実施した本分�
 | No12 | ファミリーマート | 個別商品購買指数を平均し、対応商品群購買指数を算出 | `No12_group_purchase_index_familymart/Input/calculate_group_purchase_index_familymart.py` |
 | No13 | 3社統合 | 全セルの指数から閾値を算出し、適切さを3段階で評価 | `No13_classify_group_purchase_index/Input/classify_group_purchase_index.py` |
 | No14 | セブンイレブン・栄養バランス | 男女20〜70代について個別商品購買指数を購入者率と購入頻度へ分解し、属性内商品比較・商品内属性比較の2方向で保存 | `No14_cause_analysis_seven_nutrition_balance/Input/calculate_purchaser_rate_and_frequency_seven_nutrition.py` |
-| No15 | セブンイレブン・栄養バランス | No14の商品×属性集計を用い、若年群とコントロール群のプール集計、二群比較、シャープレイ分解を全体・男女別に実施 | `No15_pooled_metrics_and_shapley/Input/calculate_pooled_metrics_and_shapley.py` |
+| No15 | セブンイレブン・栄養バランス | No14の商品×属性集計を用い、若年群（20・30代）と比較群（40・50代）のプール集計、二群比較、シャープレイ分解を全体・男女別に実施 | `No15_pooled_metrics_and_shapley/Input/calculate_pooled_metrics_and_shapley.py` |
 | No16 | セブンイレブン・栄養バランス | 男女20〜30代を対象商品の購買経験の有無で二群に分け、ユニークユーザー数とユーザー別のセブン利用日数を比較 | `No16_compare_seven_usage_days/Input/compare_seven_usage_days.py` |
 
 ## 実行順
@@ -27,7 +27,7 @@ SSDから復元したPythonコードのうち、最終的に実施した本分�
 3. No10〜No12：対応商品群購買指数の算出
 4. No13：全社共通の閾値による適切さの評価
 5. No14：セブンイレブンの栄養バランス対応商品について、購入者率・購入頻度を算出
-6. No15：若年群とコントロール群のプール集計およびシャープレイ分解
+6. No15：若年群（20・30代）と比較群（40・50代）のプール集計およびシャープレイ分解
 7. No16：若年層を購買経験群・購買未経験群に分け、セブン利用日数を比較
 
 各スクリプトは、従来のCode Editor上の構成に合わせ、各Noフォルダの `Input` 内に置いてあります。スクリプトが参照する前段階のNoフォルダも、同じ親フォルダ配下に配置する想定です。

@@ -1,4 +1,4 @@
-"""若年群とコントロール群のプール集計とシャープレイ分解を再現する。
+"""若年群と比較群のプール集計とシャープレイ分解を再現する。
 
 入力
 ----
@@ -8,7 +8,7 @@ No14の ``Output/02_商品内の属性間比較`` に保存された商品別CSV
 分析条件
 --------
 * 若年群: 男女20代・30代
-* コントロール群: 男女40代・50代
+* 比較群: 男女40代・50代
 * 商品001～011を使用し、商品012は算出不能のため除外する
 * 商品009・男性40代は、事前に確認した外れ値のため除外する
 * 全体、男性、女性の3通りで集計する
@@ -21,15 +21,18 @@ No15の ``Output`` に次のCSVを保存する。
 * ``02_シャープレイ分解結果.csv``
 * ``03_使用データ確認.csv``
 * ``04_除外データ確認.csv``
+* ``05_二群比較グラフ/``：3指標 × 全体・男性・女性の9枚
+* ``06_シャープレイ分解グラフ/``：全体・男性・女性の3枚
 
-matplotlibが利用できる場合は、二群比較とシャープレイ分解の図も保存する。
+matplotlibが利用できる場合は、全体・男性・女性を別々のFigureとして、
+二群比較とシャープレイ分解の図も保存する。
 実データや認証情報はこのファイルへ直接記入しないこと。
 """
 
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Iterable, Optional
+from typing import Optional
 
 import numpy as np
 import pandas as pd
@@ -49,6 +52,9 @@ EXCLUDED_PRODUCT_NUMBERS = ("012",)
 YOUNG_AGES = ("20代", "30代")
 CONTROL_AGES = ("40代", "50代")
 VALID_GENDERS = ("男性", "女性")
+YOUNG_GROUP_NAME = "若年群（20・30代）"
+COMPARISON_GROUP_NAME = "比較群（40・50代）"
+COMPARISON_GROUPS = (YOUNG_GROUP_NAME, COMPARISON_GROUP_NAME)
 
 # (商品番号, 性別, 年代)
 OUTLIER_KEYS = {
@@ -134,10 +140,10 @@ def read_product_tables(source_dir: Path) -> pd.DataFrame:
 
 
 def assign_comparison_group(data: pd.DataFrame) -> pd.Series:
-    """年代から若年群・コントロール群を付与する。"""
+    """年代から若年群・比較群を付与する。"""
     group = pd.Series(pd.NA, index=data.index, dtype="string")
-    group.loc[data["年代"].isin(YOUNG_AGES)] = "若年群"
-    group.loc[data["年代"].isin(CONTROL_AGES)] = "コントロール群"
+    group.loc[data["年代"].isin(YOUNG_AGES)] = YOUNG_GROUP_NAME
+    group.loc[data["年代"].isin(CONTROL_AGES)] = COMPARISON_GROUP_NAME
     return group
 
 
@@ -240,7 +246,7 @@ def calculate_pooled_metrics(data: pd.DataFrame) -> dict[str, float]:
 
 
 def aggregate_all_scopes(data: pd.DataFrame) -> pd.DataFrame:
-    """全体・男性・女性について、若年群とコントロール群を集計する。"""
+    """全体・男性・女性について、若年群と比較群を集計する。"""
     rows: list[dict[str, object]] = []
     scopes: tuple[tuple[str, Optional[str]], ...] = (
         ("全体", None),
@@ -250,7 +256,7 @@ def aggregate_all_scopes(data: pd.DataFrame) -> pd.DataFrame:
 
     for scope_name, gender in scopes:
         scope_data = data if gender is None else data.loc[data["性別"].eq(gender)]
-        for group_name in ("若年群", "コントロール群"):
+        for group_name in COMPARISON_GROUPS:
             group_data = scope_data.loc[scope_data["比較群"].eq(group_name)]
             if group_data.empty:
                 raise ValueError(f"{scope_name}・{group_name}の対象行がありません。")
@@ -309,8 +315,8 @@ def shapley_decomposition(
 
     return {
         "若年群_購買指数": index_young,
-        "コントロール群_購買指数": index_control,
-        "購買指数差（コントロール群－若年群）": index_gap,
+        "比較群_購買指数": index_control,
+        "購買指数差（比較群－若年群）": index_gap,
         "購入者率の寄与": rate_contribution,
         "購入頻度の寄与": frequency_contribution,
         "購入者率の寄与割合（%）": rate_share,
@@ -324,8 +330,8 @@ def calculate_all_shapley(pooled: pd.DataFrame) -> pd.DataFrame:
     rows: list[dict[str, object]] = []
     for scope_name in ("全体", "男性", "女性"):
         scope = pooled.loc[pooled["集計範囲"].eq(scope_name)].set_index("比較群")
-        young = scope.loc["若年群"]
-        control = scope.loc["コントロール群"]
+        young = scope.loc[YOUNG_GROUP_NAME]
+        control = scope.loc[COMPARISON_GROUP_NAME]
         result = shapley_decomposition(
             purchaser_rate_young=float(young["購入者率"]),
             frequency_young=float(young["購入頻度（回/購入者）"]),
@@ -366,12 +372,14 @@ def configure_plot_font() -> bool:
 
 def save_bar_chart(
     pooled: pd.DataFrame,
+    scope_name: str,
     metric: str,
     ylabel_japanese: str,
     ylabel_english: str,
+    y_upper: float,
     output_path: Path,
 ) -> None:
-    """全体・男女別の二群比較を1枚の棒グラフへ保存する。"""
+    """指定した1集計範囲について、若年群と比較群を描く。"""
     try:
         import matplotlib.pyplot as plt
     except ImportError:
@@ -381,46 +389,46 @@ def save_bar_chart(
     # 3つの二群比較グラフで、文字・色・余白を完全に共通化する。
     use_japanese = configure_plot_font()
 
-    scopes = ("全体", "男性", "女性")
-    groups = ("若年群", "コントロール群")
-    scope_labels = scopes if use_japanese else ("Overall", "Male", "Female")
+    groups = COMPARISON_GROUPS
     group_labels = {
-        "若年群": "若年群" if use_japanese else "Young group",
-        "コントロール群": (
-            "コントロール群" if use_japanese else "Control group"
+        YOUNG_GROUP_NAME: (
+            YOUNG_GROUP_NAME if use_japanese else "Young group (20s-30s)"
+        ),
+        COMPARISON_GROUP_NAME: (
+            COMPARISON_GROUP_NAME
+            if use_japanese
+            else "Comparison group (40s-50s)"
         ),
     }
     colors = ("#484848", "#747474")
-    x = np.arange(len(scopes))
-    width = 0.36
-
-    fig, ax = plt.subplots(figsize=(9.0, 5.8))
-    for offset, (group, color) in enumerate(zip(groups, colors)):
-        values = []
-        for scope_name in scopes:
-            value = pooled.loc[
-                pooled["集計範囲"].eq(scope_name)
-                & pooled["比較群"].eq(group),
-                metric,
-            ].iloc[0]
-            values.append(float(value))
-        bars = ax.bar(
-            x + (offset - 0.5) * width,
-            values,
-            width,
-            label=group_labels[group],
-            color=color,
-        )
-        ax.bar_label(
-            bars,
-            fmt="%.3f",
-            padding=5,
-            fontsize=13,
-            fontweight="bold",
-            color="#222222",
+    scope_data = pooled.loc[pooled["集計範囲"].eq(scope_name)].set_index(
+        "比較群"
+    )
+    missing_groups = [group for group in groups if group not in scope_data.index]
+    if missing_groups:
+        raise ValueError(
+            f"{scope_name}のグラフに必要な群がありません: {missing_groups}"
         )
 
-    ax.set_xticks(x, scope_labels, fontsize=15, fontweight="bold")
+    values = [float(scope_data.loc[group, metric]) for group in groups]
+    x = np.arange(len(groups))
+    fig, ax = plt.subplots(figsize=(6.8, 5.8))
+    bars = ax.bar(x, values, width=0.52, color=colors)
+    ax.bar_label(
+        bars,
+        fmt="%.3f",
+        padding=5,
+        fontsize=15,
+        fontweight="bold",
+        color="#222222",
+    )
+
+    ax.set_xticks(
+        x,
+        [group_labels[group] for group in groups],
+        fontsize=15,
+        fontweight="bold",
+    )
     ax.set_ylabel(
         ylabel_japanese if use_japanese else ylabel_english,
         fontsize=17,
@@ -429,20 +437,24 @@ def save_bar_chart(
     )
     ax.tick_params(axis="y", labelsize=13, width=1.4, length=5)
     ax.tick_params(axis="x", width=1.4, length=5)
-    ax.legend(frameon=False, fontsize=13)
     ax.spines[["top", "right"]].set_visible(False)
     ax.spines["left"].set_linewidth(1.4)
     ax.spines["bottom"].set_linewidth(1.4)
     ax.grid(axis="y", color="#CFCFCF", linewidth=0.8, alpha=0.75)
     ax.set_axisbelow(True)
-    ax.margins(y=0.16)
+    ax.set_ylim(0, y_upper)
     fig.tight_layout()
     fig.savefig(output_path, dpi=300, bbox_inches="tight")
     plt.close(fig)
 
 
-def save_shapley_chart(shapley: pd.DataFrame, output_path: Path) -> None:
-    """購入者率と購入頻度の寄与を積み上げ棒グラフへ保存する。"""
+def save_shapley_chart(
+    shapley: pd.DataFrame,
+    scope_name: str,
+    y_limits: tuple[float, float],
+    output_path: Path,
+) -> None:
+    """指定した1集計範囲の2つの寄与を積み上げ棒グラフへ保存する。"""
     try:
         import matplotlib.pyplot as plt
     except ImportError:
@@ -450,25 +462,42 @@ def save_shapley_chart(shapley: pd.DataFrame, output_path: Path) -> None:
 
     use_japanese = configure_plot_font()
 
-    x = np.arange(len(shapley))
-    rate = shapley["購入者率の寄与"].astype(float).to_numpy()
-    frequency = shapley["購入頻度の寄与"].astype(float).to_numpy()
+    scope = shapley.loc[shapley["集計範囲"].eq(scope_name)]
+    if len(scope) != 1:
+        raise ValueError(
+            f"{scope_name}のシャープレイ分解結果が1行ではありません: {len(scope)}行"
+        )
+    rate = float(scope["購入者率の寄与"].iloc[0])
+    frequency = float(scope["購入頻度の寄与"].iloc[0])
 
     fig, ax = plt.subplots(figsize=(7.2, 5.2))
     rate_label = (
-        "購入者率の寄与" if use_japanese else "Purchaser-share contribution"
+        "購買者割合の寄与" if use_japanese else "Purchaser-share contribution"
     )
     frequency_label = (
-        "購入頻度の寄与" if use_japanese else "Purchase-frequency contribution"
+        "購買頻度の寄与" if use_japanese else "Purchase-frequency contribution"
     )
-    scope_labels = (
-        shapley["集計範囲"].tolist()
-        if use_japanese
-        else ["Overall", "Male", "Female"]
+    scope_label_english = {
+        "全体": "Overall",
+        "男性": "Male",
+        "女性": "Female",
+    }
+    x = np.array([0.0])
+    ax.bar(x, [rate], width=0.48, color="#D55E00", label=rate_label)
+    ax.bar(
+        x,
+        [frequency],
+        width=0.48,
+        bottom=[rate],
+        color="#0072B2",
+        label=frequency_label,
     )
-    ax.bar(x, rate, color="#D55E00", label=rate_label)
-    ax.bar(x, frequency, bottom=rate, color="#0072B2", label=frequency_label)
-    ax.set_xticks(x, scope_labels)
+    ax.set_xticks(
+        x,
+        [scope_name if use_japanese else scope_label_english[scope_name]],
+        fontsize=14,
+        fontweight="bold",
+    )
     ax.set_ylabel(
         "購買指数差への寄与"
         if use_japanese
@@ -479,6 +508,7 @@ def save_shapley_chart(shapley: pd.DataFrame, output_path: Path) -> None:
     ax.spines[["top", "right"]].set_visible(False)
     ax.grid(axis="y", color="#D8D8D8", linewidth=0.7, alpha=0.7)
     ax.set_axisbelow(True)
+    ax.set_ylim(*y_limits)
     fig.tight_layout()
     fig.savefig(output_path, dpi=300, bbox_inches="tight")
     plt.close(fig)
@@ -514,50 +544,92 @@ def run(
     used.to_csv(output_paths[2], index=False, encoding="utf-8-sig")
     excluded.to_csv(output_paths[3], index=False, encoding="utf-8-sig")
 
-    chart_specs: Iterable[tuple[str, str, str, str]] = (
+    chart_specs: tuple[tuple[str, str, str, str], ...] = (
         (
             "購買指数",
             "購買指数",
             "Purchase index",
-            "05_購買指数_二群比較.png",
+            "購買指数",
         ),
         (
             "購入者率（%）",
-            "購入者率（%）",
+            "購買者割合（%）",
             "Purchaser share (%)",
-            "06_購入者率_二群比較.png",
+            "購買者割合",
         ),
         (
             "購入頻度（回/購入者）",
-            "購入頻度（回/購入者）",
+            "購買頻度（回 / 購入者）",
             "Purchase frequency (times/purchaser)",
-            "07_購入頻度_二群比較.png",
+            "購買頻度",
         ),
     )
-    for metric, ylabel_japanese, ylabel_english, filename in chart_specs:
-        chart_path = output_dir / filename
-        save_bar_chart(
-            pooled,
-            metric,
-            ylabel_japanese,
-            ylabel_english,
-            chart_path,
-        )
-        if chart_path.exists():
-            output_paths.append(chart_path)
+    comparison_chart_dir = output_dir / "05_二群比較グラフ"
+    comparison_chart_dir.mkdir(parents=True, exist_ok=True)
+    for metric, ylabel_japanese, ylabel_english, metric_filename in chart_specs:
+        metric_values = pooled[metric].astype(float)
+        metric_max = float(metric_values.max())
+        y_upper = metric_max * 1.22 if metric_max > 0 else 1.0
+        for scope_name in ("全体", "男性", "女性"):
+            chart_path = comparison_chart_dir / (
+                f"{scope_name}_{metric_filename}_二群比較.png"
+            )
+            save_bar_chart(
+                pooled,
+                scope_name,
+                metric,
+                ylabel_japanese,
+                ylabel_english,
+                y_upper,
+                chart_path,
+            )
+            if chart_path.exists():
+                output_paths.append(chart_path)
 
-    shapley_chart_path = output_dir / "08_シャープレイ分解.png"
-    save_shapley_chart(shapley, shapley_chart_path)
-    if shapley_chart_path.exists():
-        output_paths.append(shapley_chart_path)
+    shapley_chart_dir = output_dir / "06_シャープレイ分解グラフ"
+    shapley_chart_dir.mkdir(parents=True, exist_ok=True)
+    rate_values = shapley["購入者率の寄与"].astype(float).to_numpy()
+    frequency_values = shapley["購入頻度の寄与"].astype(float).to_numpy()
+    total_values = rate_values + frequency_values
+    shapley_min = float(min(0.0, rate_values.min(), frequency_values.min(), total_values.min()))
+    shapley_max = float(max(0.0, rate_values.max(), frequency_values.max(), total_values.max()))
+    shapley_span = shapley_max - shapley_min
+    shapley_padding = shapley_span * 0.15 if shapley_span > 0 else 1.0
+    shapley_limits = (
+        shapley_min - (shapley_padding if shapley_min < 0 else 0.0),
+        shapley_max + shapley_padding,
+    )
+    for scope_name in ("全体", "男性", "女性"):
+        shapley_chart_path = shapley_chart_dir / (
+            f"{scope_name}_シャープレイ分解.png"
+        )
+        save_shapley_chart(
+            shapley,
+            scope_name,
+            shapley_limits,
+            shapley_chart_path,
+        )
+        if shapley_chart_path.exists():
+            output_paths.append(shapley_chart_path)
+
+    # 分割前の単一Figureを残すと誤って参照しやすいため、再実行時にだけ除去する。
+    for legacy_filename in (
+        "05_購買指数_二群比較.png",
+        "06_購入者率_二群比較.png",
+        "07_購入頻度_二群比較.png",
+        "08_シャープレイ分解.png",
+    ):
+        legacy_path = output_dir / legacy_filename
+        if legacy_path.exists():
+            legacy_path.unlink()
 
     print("\nプール集計とシャープレイ分解が完了しました。")
     print(f"使用行数: {len(used):,} / 除外行数: {len(excluded):,}")
     for _, row in shapley.iterrows():
         print(
-            f"{row['集計範囲']}: 指数差={row['購買指数差（コントロール群－若年群）']:.6f}, "
-            f"購入者率寄与={row['購入者率の寄与割合（%）']:.2f}%, "
-            f"購入頻度寄与={row['購入頻度の寄与割合（%）']:.2f}%"
+            f"{row['集計範囲']}: 指数差={row['購買指数差（比較群－若年群）']:.6f}, "
+            f"購買者割合寄与={row['購入者率の寄与割合（%）']:.2f}%, "
+            f"購買頻度寄与={row['購入頻度の寄与割合（%）']:.2f}%"
         )
     return output_paths
 
