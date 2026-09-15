@@ -338,13 +338,23 @@ def save_bar_chart(
         print("matplotlibがないためグラフ出力をスキップします。")
         return
 
+    # 3つの二群比較グラフで、文字・色・余白を完全に共通化する。
+    plt.rcParams["font.family"] = "sans-serif"
+    plt.rcParams["font.sans-serif"] = [
+        "Noto Sans CJK JP",
+        "IPAexGothic",
+        "Yu Gothic",
+        "Hiragino Sans",
+        "DejaVu Sans",
+    ]
+
     scopes = ("全体", "男性", "女性")
     groups = ("若年群", "コントロール群")
-    colors = ("#8F8F8F", "#3E5C76")
+    colors = ("#484848", "#747474")
     x = np.arange(len(scopes))
-    width = 0.32
+    width = 0.36
 
-    fig, ax = plt.subplots(figsize=(8.2, 5.2))
+    fig, ax = plt.subplots(figsize=(9.0, 5.8))
     for offset, (group, color) in enumerate(zip(groups, colors)):
         values = []
         for scope_name in scopes:
@@ -361,14 +371,26 @@ def save_bar_chart(
             label=group,
             color=color,
         )
-        ax.bar_label(bars, fmt="%.3f", padding=3, fontsize=9)
+        ax.bar_label(
+            bars,
+            fmt="%.3f",
+            padding=5,
+            fontsize=13,
+            fontweight="bold",
+            color="#222222",
+        )
 
-    ax.set_xticks(x, scopes)
-    ax.set_ylabel(ylabel)
-    ax.legend(frameon=False)
+    ax.set_xticks(x, scopes, fontsize=15, fontweight="bold")
+    ax.set_ylabel(ylabel, fontsize=17, fontweight="bold", labelpad=12)
+    ax.tick_params(axis="y", labelsize=13, width=1.4, length=5)
+    ax.tick_params(axis="x", width=1.4, length=5)
+    ax.legend(frameon=False, fontsize=13)
     ax.spines[["top", "right"]].set_visible(False)
-    ax.grid(axis="y", color="#D8D8D8", linewidth=0.7, alpha=0.7)
+    ax.spines["left"].set_linewidth(1.4)
+    ax.spines["bottom"].set_linewidth(1.4)
+    ax.grid(axis="y", color="#CFCFCF", linewidth=0.8, alpha=0.75)
     ax.set_axisbelow(True)
+    ax.margins(y=0.16)
     fig.tight_layout()
     fig.savefig(output_path, dpi=300, bbox_inches="tight")
     plt.close(fig)
