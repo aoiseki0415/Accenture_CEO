@@ -67,6 +67,17 @@ REQUIRED_COLUMNS = {
 
 NUMERIC_COLUMNS = ("購買記録数", "購入者数", "対象者数")
 
+JAPANESE_FONT_CANDIDATES = (
+    "Noto Sans CJK JP",
+    "Noto Sans JP",
+    "IPAexGothic",
+    "IPAGothic",
+    "TakaoGothic",
+    "VL Gothic",
+    "Yu Gothic",
+    "Hiragino Sans",
+)
+
 
 def require_columns(
     data: pd.DataFrame,
@@ -325,10 +336,39 @@ def calculate_all_shapley(pooled: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def configure_plot_font() -> bool:
+    """利用可能な日本語フォントを検出し、なければ英語表示へ切り替える。"""
+    import matplotlib as mpl
+    from matplotlib import font_manager
+
+    for font_name in JAPANESE_FONT_CANDIDATES:
+        try:
+            font_manager.findfont(
+                font_manager.FontProperties(family=font_name),
+                fallback_to_default=False,
+            )
+        except ValueError:
+            continue
+
+        mpl.rcParams["font.family"] = font_name
+        mpl.rcParams["axes.unicode_minus"] = False
+        print(f"グラフ用日本語フォント: {font_name}")
+        return True
+
+    # 日本語を表示できない環境でも文字化けさせず、英語ラベルで保存する。
+    mpl.rcParams["font.family"] = "DejaVu Sans"
+    mpl.rcParams["axes.unicode_minus"] = False
+    print(
+        "日本語フォントが見つからないため、グラフ内のラベルを英語で保存します。"
+    )
+    return False
+
+
 def save_bar_chart(
     pooled: pd.DataFrame,
     metric: str,
-    ylabel: str,
+    ylabel_japanese: str,
+    ylabel_english: str,
     output_path: Path,
 ) -> None:
     """全体・男女別の二群比較を1枚の棒グラフへ保存する。"""
@@ -339,17 +379,17 @@ def save_bar_chart(
         return
 
     # 3つの二群比較グラフで、文字・色・余白を完全に共通化する。
-    plt.rcParams["font.family"] = "sans-serif"
-    plt.rcParams["font.sans-serif"] = [
-        "Noto Sans CJK JP",
-        "IPAexGothic",
-        "Yu Gothic",
-        "Hiragino Sans",
-        "DejaVu Sans",
-    ]
+    use_japanese = configure_plot_font()
 
     scopes = ("全体", "男性", "女性")
     groups = ("若年群", "コントロール群")
+    scope_labels = scopes if use_japanese else ("Overall", "Male", "Female")
+    group_labels = {
+        "若年群": "若年群" if use_japanese else "Young group",
+        "コントロール群": (
+            "コントロール群" if use_japanese else "Control group"
+        ),
+    }
     colors = ("#484848", "#747474")
     x = np.arange(len(scopes))
     width = 0.36
@@ -368,7 +408,7 @@ def save_bar_chart(
             x + (offset - 0.5) * width,
             values,
             width,
-            label=group,
+            label=group_labels[group],
             color=color,
         )
         ax.bar_label(
@@ -380,8 +420,13 @@ def save_bar_chart(
             color="#222222",
         )
 
-    ax.set_xticks(x, scopes, fontsize=15, fontweight="bold")
-    ax.set_ylabel(ylabel, fontsize=17, fontweight="bold", labelpad=12)
+    ax.set_xticks(x, scope_labels, fontsize=15, fontweight="bold")
+    ax.set_ylabel(
+        ylabel_japanese if use_japanese else ylabel_english,
+        fontsize=17,
+        fontweight="bold",
+        labelpad=12,
+    )
     ax.tick_params(axis="y", labelsize=13, width=1.4, length=5)
     ax.tick_params(axis="x", width=1.4, length=5)
     ax.legend(frameon=False, fontsize=13)
@@ -403,15 +448,32 @@ def save_shapley_chart(shapley: pd.DataFrame, output_path: Path) -> None:
     except ImportError:
         return
 
+    use_japanese = configure_plot_font()
+
     x = np.arange(len(shapley))
     rate = shapley["購入者率の寄与"].astype(float).to_numpy()
     frequency = shapley["購入頻度の寄与"].astype(float).to_numpy()
 
     fig, ax = plt.subplots(figsize=(7.2, 5.2))
-    ax.bar(x, rate, color="#D55E00", label="購入者率の寄与")
-    ax.bar(x, frequency, bottom=rate, color="#0072B2", label="購入頻度の寄与")
-    ax.set_xticks(x, shapley["集計範囲"].tolist())
-    ax.set_ylabel("購買指数差への寄与")
+    rate_label = (
+        "購入者率の寄与" if use_japanese else "Purchaser-share contribution"
+    )
+    frequency_label = (
+        "購入頻度の寄与" if use_japanese else "Purchase-frequency contribution"
+    )
+    scope_labels = (
+        shapley["集計範囲"].tolist()
+        if use_japanese
+        else ["Overall", "Male", "Female"]
+    )
+    ax.bar(x, rate, color="#D55E00", label=rate_label)
+    ax.bar(x, frequency, bottom=rate, color="#0072B2", label=frequency_label)
+    ax.set_xticks(x, scope_labels)
+    ax.set_ylabel(
+        "購買指数差への寄与"
+        if use_japanese
+        else "Contribution to purchase-index gap"
+    )
     ax.axhline(0, color="#333333", linewidth=1)
     ax.legend(frameon=False)
     ax.spines[["top", "right"]].set_visible(False)
@@ -452,14 +514,35 @@ def run(
     used.to_csv(output_paths[2], index=False, encoding="utf-8-sig")
     excluded.to_csv(output_paths[3], index=False, encoding="utf-8-sig")
 
-    chart_specs: Iterable[tuple[str, str, str]] = (
-        ("購買指数", "購買指数", "05_購買指数_二群比較.png"),
-        ("購入者率（%）", "購入者率（%）", "06_購入者率_二群比較.png"),
-        ("購入頻度（回/購入者）", "購入頻度（回/購入者）", "07_購入頻度_二群比較.png"),
+    chart_specs: Iterable[tuple[str, str, str, str]] = (
+        (
+            "購買指数",
+            "購買指数",
+            "Purchase index",
+            "05_購買指数_二群比較.png",
+        ),
+        (
+            "購入者率（%）",
+            "購入者率（%）",
+            "Purchaser share (%)",
+            "06_購入者率_二群比較.png",
+        ),
+        (
+            "購入頻度（回/購入者）",
+            "購入頻度（回/購入者）",
+            "Purchase frequency (times/purchaser)",
+            "07_購入頻度_二群比較.png",
+        ),
     )
-    for metric, ylabel, filename in chart_specs:
+    for metric, ylabel_japanese, ylabel_english, filename in chart_specs:
         chart_path = output_dir / filename
-        save_bar_chart(pooled, metric, ylabel, chart_path)
+        save_bar_chart(
+            pooled,
+            metric,
+            ylabel_japanese,
+            ylabel_english,
+            chart_path,
+        )
         if chart_path.exists():
             output_paths.append(chart_path)
 
