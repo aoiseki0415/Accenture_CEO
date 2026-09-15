@@ -411,9 +411,10 @@ def save_bar_chart(
         )
 
     values = [float(scope_data.loc[group, metric]) for group in groups]
-    x = np.arange(len(groups))
+    # 2本のバーを中央へ寄せ、外側には十分な余白を確保する。
+    x = np.array([-0.32, 0.32])
     fig, ax = plt.subplots(figsize=(6.8, 5.8))
-    bars = ax.bar(x, values, width=0.52, color=colors)
+    bars = ax.bar(x, values, width=0.46, color=colors)
     ax.bar_label(
         bars,
         fmt="%.3f",
@@ -426,7 +427,7 @@ def save_bar_chart(
     ax.set_xticks(
         x,
         [group_labels[group] for group in groups],
-        fontsize=15,
+        fontsize=12,
         fontweight="bold",
     )
     ax.set_ylabel(
@@ -442,6 +443,7 @@ def save_bar_chart(
     ax.spines["bottom"].set_linewidth(1.4)
     ax.grid(axis="y", color="#CFCFCF", linewidth=0.8, alpha=0.75)
     ax.set_axisbelow(True)
+    ax.set_xlim(-1.0, 1.0)
     ax.set_ylim(0, y_upper)
     fig.tight_layout()
     fig.savefig(output_path, dpi=300, bbox_inches="tight")
