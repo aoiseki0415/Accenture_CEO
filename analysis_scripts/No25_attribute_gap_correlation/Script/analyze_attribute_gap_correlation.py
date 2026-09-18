@@ -1,9 +1,9 @@
-"""12属性について食事補完型割合の群間差と購買指数の相関を確認する。
+"""10属性について食事補完型割合の群間差と購買指数の相関を確認する。
 
 分析対象
 --------
 セブンイレブンの「栄養バランスを調整したい」ニーズについて、
-男女×20代～70代の12属性を個別に分析する。
+男女×20代～60代の10属性を個別に分析する。
 
 各属性で行う処理
 ----------------
@@ -17,7 +17,7 @@
    群間差 = 購買未経験群の食事補完型割合
             - 購買経験群の食事補完型割合
 
-5. No10の属性別対応商品群購買指数と結合し、12属性間の相関を確認する。
+5. No10の属性別対応商品群購買指数と結合し、10属性間の相関を確認する。
 
 入力
 ----
@@ -25,9 +25,8 @@
 
 * ユーザー抽出用データ: date, user_id, user_gender,
   user_age_att_layer を含む5期間分DataFrame
-* JICFS分析用データ: date, user_id, user_gender,
-  user_age_att_layer, name, item_jicfs_lv4_code,
-  item_jicfs_lv4_name を含む5期間分DataFrame
+* JICFS分析用データ: date, user_id, name,
+  item_jicfs_lv4_code, item_jicfs_lv4_name を含む5期間分DataFrame
 
 また、同じ親フォルダ配下に次の既存結果が必要である。
 
@@ -78,7 +77,7 @@ JICFS_LV4_CODE_COLUMN = "item_jicfs_lv4_code"
 JICFS_LV4_NAME_COLUMN = "item_jicfs_lv4_name"
 
 GENDERS = ("男性", "女性")
-AGES = ("20代", "30代", "40代", "50代", "60代", "70代")
+AGES = ("20代", "30代", "40代", "50代", "60代")
 ATTRIBUTES = tuple((gender, age) for gender in GENDERS for age in AGES)
 
 EXPERIENCED_GROUP = "購買経験群"
@@ -110,8 +109,6 @@ USER_REQUIRED_COLUMNS = {
 JICFS_REQUIRED_COLUMNS = {
     DATE_COLUMN,
     USER_ID_COLUMN,
-    GENDER_COLUMN,
-    AGE_COLUMN,
     PRODUCT_NAME_COLUMN,
     JICFS_LV4_CODE_COLUMN,
     JICFS_LV4_NAME_COLUMN,
@@ -372,7 +369,7 @@ def prepare_user_source_chunk(
 
 def build_attribute_usage_days(
     dataframes: list[pd.DataFrame],
-) -> pd.DataFrame:
+) -> tuple[pd.DataFrame, pd.DataFrame]:
     if len(dataframes) != 5:
         raise ValueError("ユーザー抽出用データはdata1～data5の5つが必要です。")
 
@@ -392,18 +389,45 @@ def build_attribute_usage_days(
     dataframes.clear()
     gc.collect()
 
+    # JICFS側には性別・年代がないため、ユーザーIDと購買日の組合せから
+    # その日の属性を引ける対応表を残す。同じユーザー・同じ日に複数の
+    # 属性が記録されている不整合キーは、誤った属性付与を避けるため除外する。
+    attribute_counts = (
+        compact.groupby(["_user_id", "_day"], observed=True)
+        .size()
+        .reset_index(name="属性候補数")
+    )
+    valid_attribute_keys = attribute_counts.loc[
+        attribute_counts["属性候補数"].eq(1),
+        ["_user_id", "_day"],
+    ]
+    user_day_attributes = compact.merge(
+        valid_attribute_keys,
+        on=["_user_id", "_day"],
+        how="inner",
+        validate="one_to_one",
+    ).rename(columns={"_gender": "性別", "_age": "年代"})
+
+    ambiguous_keys = len(attribute_counts) - len(valid_attribute_keys)
+    if ambiguous_keys:
+        print(
+            "注意: 同一ユーザー・同一日に複数属性があるため除外したキー="
+            f"{ambiguous_keys:,}件"
+        )
+
     usage_days = (
-        compact.groupby(
-            ["_gender", "_age", "_user_id"],
+        user_day_attributes.groupby(
+            ["性別", "年代", "_user_id"],
             sort=False,
             observed=True,
         )["_day"]
         .nunique()
         .reset_index(name="利用日数")
+        .rename(columns={"性別": "_gender", "年代": "_age"})
     )
     del compact
     gc.collect()
-    return usage_days
+    return usage_days, user_day_attributes
 
 
 # =====================================================================
@@ -603,6 +627,29 @@ def build_all_attribute_cohorts(
     return result.loc[:, ["_user_id", "性別", "年代", "属性", "群", "利用日数"]]
 
 
+def build_cohort_day_lookup(
+    user_day_attributes: pd.DataFrame,
+    cohorts: pd.DataFrame,
+) -> pd.DataFrame:
+    """条件調整後ユーザーについて、利用日ごとの属性・群を対応づける。"""
+    cohort_keys = cohorts.loc[
+        :, ["_user_id", "性別", "年代", "属性", "群"]
+    ].copy()
+    lookup = user_day_attributes.merge(
+        cohort_keys,
+        on=["_user_id", "性別", "年代"],
+        how="inner",
+        validate="many_to_one",
+    )
+    duplicated = lookup.duplicated(["_user_id", "_day"], keep=False)
+    if duplicated.any():
+        raise RuntimeError(
+            "条件調整後ユーザーの日付別属性対応に重複があります: "
+            f"{int(duplicated.sum())}行"
+        )
+    return lookup.loc[:, ["_user_id", "_day", "性別", "年代", "属性", "群"]]
+
+
 # =====================================================================
 # 4. JICFSデータを属性・群・食事上の役割別に集計する
 # =====================================================================
@@ -610,14 +657,13 @@ def build_all_attribute_cohorts(
 def prepare_jicfs_chunk(
     data: pd.DataFrame,
     source_name: str,
-    cohort_lookup: pd.DataFrame,
+    cohort_day_lookup: pd.DataFrame,
 ) -> pd.DataFrame:
     require_columns(data, JICFS_REQUIRED_COLUMNS, source_name)
     selected = data.loc[:, sorted(JICFS_REQUIRED_COLUMNS)].copy()
     selected["_date"] = pd.to_datetime(selected[DATE_COLUMN], errors="coerce")
+    selected["_day"] = selected["_date"].dt.normalize()
     selected["_user_id"] = normalize_identifier(selected[USER_ID_COLUMN])
-    selected["性別"] = normalize_text(selected[GENDER_COLUMN])
-    selected["年代"] = normalize_text(selected[AGE_COLUMN])
     selected["_name"] = normalize_text(selected[PRODUCT_NAME_COLUMN])
     selected["_lv4_code"] = normalize_jicfs_code(
         selected[JICFS_LV4_CODE_COLUMN]
@@ -627,8 +673,6 @@ def prepare_jicfs_chunk(
     eligible = (
         in_analysis_period(selected["_date"])
         & selected["_user_id"].notna()
-        & selected["性別"].isin(GENDERS)
-        & selected["年代"].isin(AGES)
         & selected["_name"].ne("")
         & selected["_lv4_name"].str.contains(
             TARGET_LV4_NAME_KEYWORD,
@@ -638,10 +682,10 @@ def prepare_jicfs_chunk(
     )
     prepared = selected.loc[
         eligible,
-        ["_user_id", "性別", "年代", "_name"],
+        ["_user_id", "_day", "_name"],
     ].merge(
-        cohort_lookup,
-        on=["_user_id", "性別", "年代"],
+        cohort_day_lookup,
+        on=["_user_id", "_day"],
         how="inner",
         validate="many_to_one",
     )
@@ -655,21 +699,17 @@ def prepare_jicfs_chunk(
 
 def aggregate_jicfs_records(
     dataframes: list[pd.DataFrame],
-    cohorts: pd.DataFrame,
+    cohort_day_lookup: pd.DataFrame,
 ) -> pd.DataFrame:
     if len(dataframes) != 5:
         raise ValueError("JICFS分析用データはdata1～data5の5つが必要です。")
-
-    cohort_lookup = cohorts.loc[
-        :, ["_user_id", "性別", "年代", "属性", "群"]
-    ].copy()
 
     count_tables: list[pd.DataFrame] = []
     for number, data in enumerate(dataframes, start=1):
         prepared = prepare_jicfs_chunk(
             data=data,
             source_name=f"jicfs_data{number}",
-            cohort_lookup=cohort_lookup,
+            cohort_day_lookup=cohort_day_lookup,
         )
         counts = (
             prepared.groupby(
@@ -993,8 +1033,8 @@ def run(
     output_dir = output_dir or project_dir / "Output"
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    print("\n[1/5] 属性別のセブン利用日数を作成します。")
-    usage_days = build_attribute_usage_days(user_dataframes)
+    print("\n[1/5] 属性別のセブン利用日数と日付別属性対応を作成します。")
+    usage_days, user_day_attributes = build_attribute_usage_days(user_dataframes)
     del user_dataframes
     gc.collect()
 
@@ -1003,7 +1043,7 @@ def run(
         product_source_dir
     )
 
-    print("\n[3/5] 12属性それぞれで人数と利用日数を揃えます。")
+    print("\n[3/5] 10属性それぞれで人数と利用日数を揃えます。")
     cohorts = build_all_attribute_cohorts(
         usage_days=usage_days,
         experienced_by_attribute=experienced_by_attribute,
@@ -1011,13 +1051,20 @@ def run(
     del usage_days, experienced_by_attribute
     gc.collect()
 
+    cohort_day_lookup = build_cohort_day_lookup(
+        user_day_attributes=user_day_attributes,
+        cohorts=cohorts,
+    )
+    del user_day_attributes, cohorts
+    gc.collect()
+
     print("\n[4/5] JICFS分析用データを読み込み、食事上の役割を集計します。")
     jicfs_dataframes = jicfs_data_loader()
     role_counts = aggregate_jicfs_records(
         dataframes=jicfs_dataframes,
-        cohorts=cohorts,
+        cohort_day_lookup=cohort_day_lookup,
     )
-    del jicfs_dataframes, cohorts
+    del jicfs_dataframes, cohort_day_lookup
     gc.collect()
 
     print("\n[5/5] 属性別結果、相関分析、散布図を保存します。")

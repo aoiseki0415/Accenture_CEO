@@ -27,7 +27,7 @@ SSDから復元したPythonコードのうち、最終的に実施した本分�
 | No22 | セブンイレブン・栄養バランス・比較群 | 男女40〜50代を対応商品の購買経験の有無で二群に分け、購買経験群を全員残したまま、購買未経験群から同数かつセブン利用日数分布が近いユーザーを抽出 | `No22_balance_usage_days_comparison_group/Input/balance_usage_days_comparison_group.py` |
 | No23 | セブンイレブン・栄養バランス・比較群 | No22で人数・利用日数を揃えた二群について、No20と同じ規則でLv4「惣菜類」を分類し、購買記録数・食事補完型割合を比較。主分析と感度分析を保存 | `No23_compare_complete_meal_role_comparison_group/Input/compare_complete_meal_role_comparison_group.py` |
 | No24 | セブンイレブン・栄養バランス・年齢群比較 | 食事補完型購買記録割合について、購買未経験群と購買経験群の差を若年群・比較群で比較するFigureを作成 | `No24_compare_age_group_gaps/Input/compare_age_group_gaps.py` |
-| No25 | セブンイレブン・栄養バランス・12属性 | 男女×20〜70代の12属性ごとに、購買経験群・購買未経験群の人数と利用日数を揃え、食事補完型購買記録割合の群間差を算出し、対応商品群購買指数との相関を確認 | `No25_attribute_gap_correlation/Script/analyze_attribute_gap_correlation.py` |
+| No25 | セブンイレブン・栄養バランス・10属性 | 男女×20〜60代の10属性ごとに、購買経験群・購買未経験群の人数と利用日数を揃え、食事補完型購買記録割合の群間差を算出し、対応商品群購買指数との相関を確認 | `No25_attribute_gap_correlation/Script/analyze_attribute_gap_correlation.py` |
 
 ## 実行順
 
@@ -46,7 +46,7 @@ SSDから復元したPythonコードのうち、最終的に実施した本分�
 13. No22：比較群（40・50代）を購買経験群・購買未経験群に分け、人数とセブン利用日数を揃える
 14. No23：No22の比較群二群について、No20と同じ分類条件で惣菜類の食事補完型割合を比較
 15. No24：若年群5.4ポイント・比較群3.7ポイントの群間差を同じFigureで比較
-16. No25：12属性の食事補完型割合の群間差と対応商品群購買指数を結合し、属性間の相関と散布図を作成
+16. No25：男女20〜60代の10属性について、食事補完型割合の群間差と対応商品群購買指数を結合し、属性間の相関と散布図を作成
 
 復元済みのNo4〜No24は本リポジトリ上では各Noフォルダの `Input` 内にあります。Code Editor上の現行構成に合わせ、新規のNo25は `Script` 内に置いています。実行時は、参照する前段階のNoフォルダも同じ親フォルダ配下に配置する想定です。
 
