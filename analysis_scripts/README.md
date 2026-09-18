@@ -22,7 +22,7 @@ SSDから復元したPythonコードのうち、最終的に実施した本分�
 | No17 | セブンイレブン・栄養バランス | No16の購買経験群を基準に、購買未経験群から同数かつ利用日数分布が近いユーザーを抽出 | `No17_balance_usage_days/Input/balance_usage_days.py` |
 | No18 | セブンイレブン・栄養バランス | No17で人数・利用日数を揃えた二群について、普段の購買記録を「軽食・補助食型」「食事中心型」に分類し、購買記録数と軽食割合を比較。主分析では対応商品を除外し、含めた結果も感度分析として保存 | `No18_compare_meal_role/Input/compare_meal_role.py` |
 | No19 | セブンイレブン・惣菜類 | JICFS Lv4「惣菜類」の実商品名から「一食完結型」の候補を抽出し、キーワード別集計・要確認商品・未抽出商品・カバー率を保存してキーワードを探索 | `No19_discover_complete_meal_keywords/Input/discover_complete_meal_keywords.py` |
-| No20 | セブンイレブン・栄養バランス | No19で確定したキーワード規則を使い、No17で揃えた二群のLv4「惣菜類」を「一食完結型」「食事補完型」に分類して購買記録数・一食完結型割合を比較 | `No20_compare_complete_meal_role/Input/compare_complete_meal_role.py` |
+| No20 | セブンイレブン・栄養バランス | No19で確定したキーワード規則を使い、No17で揃えた二群のLv4「惣菜類」を「一食完結型」「食事補完型」に分類して購買記録数・一食完結型割合を比較。主分析は対応商品を含み、除外した結果を感度分析として保存 | `No20_compare_complete_meal_role/Input/compare_complete_meal_role.py` |
 
 ## 実行順
 

@@ -30,8 +30,10 @@ No20の ``Output`` に、群別・ユーザー別の集計、商品分類一覧�
 注意
 ----
 * No17で固定した二群を再作成しない。
-* 群分けに使用した「栄養バランスを調整したい」対応商品は主分析から除き、
-  含めた結果を感度分析として別に保存する。
+* 主分析では、群分けに使用した「栄養バランスを調整したい」対応商品を含め、
+  対象ユーザーが購入した惣菜類全体を比較する。
+* 対応商品を除いた場合の結果も感度分析として別に保存し、
+  対応商品の含有によって結論がどの程度変わるかを確認する。
 * receipt_keyは同じレシート内の複数商品で共有されるため、重複排除に使わない。
 * 出力にはユーザーID、商品名、集計結果が含まれる。会社環境内だけで管理し、
   個人PC、Notion、GitHub等へ保存・共有しないこと。
@@ -149,6 +151,9 @@ SUPPLEMENT_OVERRIDE_KEYWORDS = (
     "サンド",
     "パン",
 )
+
+# 割合グラフは原則30%を上限とする。実値が超える場合は自動的に拡張する。
+SHARE_CHART_MIN_Y_MAX = 30.0
 
 REQUIRED_PURCHASE_COLUMNS = {
     DATE_COLUMN,
@@ -678,7 +683,7 @@ def save_complete_share_chart(
         labels = ("Purchase-experienced", "No purchase experience")
         title = "Share of complete-meal purchases"
         if title_suffix:
-            title = f"{title}\n(including target products)"
+            title = f"{title}\n(sensitivity analysis: target products excluded)"
         y_label = "Share of purchase records (%)"
 
     fig, ax = plt.subplots(figsize=(7.2, 5.8))
@@ -694,7 +699,13 @@ def save_complete_share_chart(
     ax.set_xticks(positions)
     ax.set_xticklabels(labels)
     ax.set_xlim(-0.95, 0.95)
-    ax.set_ylim(0, 100)
+    finite_values = values[np.isfinite(values)]
+    observed_max = float(finite_values.max()) if finite_values.size else 0.0
+    y_limit = max(
+        SHARE_CHART_MIN_Y_MAX,
+        np.ceil((observed_max * 1.15) / 5.0) * 5.0,
+    )
+    ax.set_ylim(0, y_limit)
     ax.set_title(title, fontsize=16, fontweight="bold", pad=14)
     ax.set_ylabel(y_label, fontsize=14, fontweight="bold")
     ax.tick_params(axis="x", labelsize=12, width=1.3)
@@ -719,22 +730,24 @@ def save_complete_share_chart(
 
 def save_outputs(
     balanced_users: pd.DataFrame,
-    purchase_data: pd.DataFrame,
-    purchase_data_including_targets: pd.DataFrame,
+    main_purchase_data: pd.DataFrame,
+    sensitivity_purchase_data: pd.DataFrame,
     quality_table: pd.DataFrame,
     output_dir: Path,
 ) -> list[Path]:
     output_dir.mkdir(parents=True, exist_ok=True)
-    user_counts = aggregate_user_counts(purchase_data, balanced_users)
+    user_counts = aggregate_user_counts(main_purchase_data, balanced_users)
     group_summary = summarize_groups(user_counts)
     complete_share = summarize_complete_share(group_summary)
-    product_classification = build_product_classification_table(purchase_data)
+    product_classification = build_product_classification_table(main_purchase_data)
 
-    user_counts_including = aggregate_user_counts(
-        purchase_data_including_targets, balanced_users
+    sensitivity_user_counts = aggregate_user_counts(
+        sensitivity_purchase_data, balanced_users
     )
-    group_summary_including = summarize_groups(user_counts_including)
-    complete_share_including = summarize_complete_share(group_summary_including)
+    sensitivity_group_summary = summarize_groups(sensitivity_user_counts)
+    sensitivity_complete_share = summarize_complete_share(
+        sensitivity_group_summary
+    )
 
     tables = [
         ("01_群別購買記録数.csv", group_summary),
@@ -754,10 +767,13 @@ def save_outputs(
         ),
         ("06_データ品質確認.csv", quality_table),
         ("09_群別一食完結型購買記録割合.csv", complete_share),
-        ("11_感度分析_対応商品を含む群別購買記録数.csv", group_summary_including),
         (
-            "12_感度分析_対応商品を含む一食完結型購買記録割合.csv",
-            complete_share_including,
+            "11_感度分析_対応商品を除外した群別購買記録数.csv",
+            sensitivity_group_summary,
+        ),
+        (
+            "12_感度分析_対応商品を除外した一食完結型購買記録割合.csv",
+            sensitivity_complete_share,
         ),
     ]
     output_paths: list[Path] = []
@@ -780,11 +796,13 @@ def save_outputs(
     if save_complete_share_chart(complete_share, share_chart):
         output_paths.append(share_chart)
 
-    sensitivity_chart = output_dir / "13_感度分析_対応商品を含む一食完結型割合.png"
+    sensitivity_chart = (
+        output_dir / "13_感度分析_対応商品を除外した一食完結型割合.png"
+    )
     if save_complete_share_chart(
-        complete_share_including,
+        sensitivity_complete_share,
         sensitivity_chart,
-        title_suffix="（対応商品を含む感度分析）",
+        title_suffix="（対応商品を除外した感度分析）",
     ):
         output_paths.append(sensitivity_chart)
     return output_paths
@@ -834,7 +852,7 @@ def run(
             f"Lv4惣菜類={len(prepared):,}行"
         )
 
-    purchase_data_including_targets = pd.concat(
+    main_purchase_data = pd.concat(
         prepared_chunks,
         ignore_index=True,
         sort=False,
@@ -844,15 +862,15 @@ def run(
     dataframes.clear()
     gc.collect()
 
-    if purchase_data_including_targets.empty:
+    if main_purchase_data.empty:
         raise ValueError(
             "No17対象ユーザーの分析期間内データに、Lv4「惣菜類」がありません。"
         )
-    purchase_data = purchase_data_including_targets.loc[
-        ~purchase_data_including_targets["対応商品"]
+    sensitivity_purchase_data = main_purchase_data.loc[
+        ~main_purchase_data["対応商品"]
     ].copy()
-    if purchase_data.empty:
-        raise ValueError("対応商品を除外すると主分析対象がありません。")
+    if sensitivity_purchase_data.empty:
+        raise ValueError("対応商品を除外すると感度分析対象がありません。")
 
     overall_quality = pd.DataFrame(
         [
@@ -860,13 +878,13 @@ def run(
             {"入力元": "全体", "確認項目": "対応商品Zaim商品名数", "行数": len(target_names)},
             {
                 "入力元": "全体",
-                "確認項目": "Lv4惣菜類行数（対応商品を含む）",
-                "行数": len(purchase_data_including_targets),
+                "確認項目": "主分析対象行数（対応商品を含む）",
+                "行数": len(main_purchase_data),
             },
             {
                 "入力元": "全体",
-                "確認項目": "主分析対象行数（対応商品を除外）",
-                "行数": len(purchase_data),
+                "確認項目": "感度分析対象行数（対応商品を除外）",
+                "行数": len(sensitivity_purchase_data),
             },
         ]
     )
@@ -875,8 +893,8 @@ def run(
     )
     output_paths = save_outputs(
         balanced_users=balanced_users,
-        purchase_data=purchase_data,
-        purchase_data_including_targets=purchase_data_including_targets,
+        main_purchase_data=main_purchase_data,
+        sensitivity_purchase_data=sensitivity_purchase_data,
         quality_table=quality_table,
         output_dir=output_dir,
     )
