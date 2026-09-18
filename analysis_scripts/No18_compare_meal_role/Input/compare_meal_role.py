@@ -1,9 +1,9 @@
-"""購買経験群と購買未経験群で、普段選ぶ食事形態を比較する。
+"""購買経験群と購買未経験群で、普段購入する食事形態を比較する。
 
 目的
 ----
 No17で人数とセブンイレブン利用日数を揃えた若年層について、
-「軽食・補助食型」と「食事中心型」の選択数を比較する。
+「軽食・補助食型」と「食事中心型」の購買記録数を比較する。
 
 入力
 ----
@@ -17,13 +17,13 @@ No17で人数とセブンイレブン利用日数を揃えた若年層につい�
 ----
 No18の ``Output`` に次のファイルを保存する。
 
-* ``01_群別選択数.csv``
-* ``02_ユーザー別選択数.csv``
+* ``01_群別購買記録数.csv``
+* ``02_ユーザー別購買記録数.csv``
 * ``03_分類対象商品一覧.csv``
 * ``04_その他惣菜_食事中心型振替一覧.csv``
 * ``05_データ品質確認.csv``
-* ``06_購買経験群_選択数.png``（matplotlibがある場合）
-* ``07_購買未経験群_選択数.png``（matplotlibがある場合）
+* ``06_購買経験群_購買記録数.png``（matplotlibがある場合）
+* ``07_購買未経験群_購買記録数.png``（matplotlibがある場合）
 * ``08_感度分析_その他惣菜除外.csv``
 
 注意
@@ -83,6 +83,12 @@ INVALID_RECEIPT_KEYS = frozenset({"0", "-1"})
 LIGHT_ROLE = "軽食・補助食型"
 CENTER_ROLE = "食事中心型"
 ROLE_ORDER = (LIGHT_ROLE, CENTER_ROLE)
+LIGHT_RECORD_COUNT_COLUMN = "軽食・補助食型購買記録数"
+CENTER_RECORD_COUNT_COLUMN = "食事中心型購買記録数"
+ROLE_COUNT_COLUMNS = {
+    LIGHT_ROLE: LIGHT_RECORD_COUNT_COLUMN,
+    CENTER_ROLE: CENTER_RECORD_COUNT_COLUMN,
+}
 
 # JICFS Lv6だけで軽食・補助食型と判定する11カテゴリー。
 LIGHT_CODES = frozenset(
@@ -537,7 +543,7 @@ def aggregate_user_counts(
     purchase_data: pd.DataFrame,
     balanced_users: pd.DataFrame,
 ) -> pd.DataFrame:
-    """ユーザーごとに二つの食事形態の選択数を集計する。"""
+    """ユーザーごとに二つの食事形態の購買記録数を集計する。"""
     counts = (
         purchase_data.groupby([USER_ID_COLUMN, "食事形態"], sort=False)
         .size()
@@ -553,31 +559,40 @@ def aggregate_user_counts(
     )
     for role in ROLE_ORDER:
         result[role] = result[role].fillna(0).astype(int)
+    result = result.rename(columns=ROLE_COUNT_COLUMNS)
 
-    result["食事関連商品選択数"] = result[list(ROLE_ORDER)].sum(axis=1)
-    result["軽食・補助食型選択割合（%）"] = np.where(
-        result["食事関連商品選択数"].gt(0),
-        result[LIGHT_ROLE] / result["食事関連商品選択数"] * 100,
+    result["食事関連商品購買記録数"] = result[
+        [LIGHT_RECORD_COUNT_COLUMN, CENTER_RECORD_COUNT_COLUMN]
+    ].sum(axis=1)
+    result["軽食・補助食型購買記録割合（%）"] = np.where(
+        result["食事関連商品購買記録数"].gt(0),
+        result[LIGHT_RECORD_COUNT_COLUMN]
+        / result["食事関連商品購買記録数"]
+        * 100,
         np.nan,
     )
     return result
 
 
 def summarize_groups(user_counts: pd.DataFrame) -> pd.DataFrame:
-    """二群について、軽食・補助食型と食事中心型の選択数を要約する。"""
+    """二群について、軽食・補助食型と食事中心型の購買記録数を要約する。"""
     rows: list[dict[str, object]] = []
     for group in GROUP_ORDER:
         group_data = user_counts.loc[user_counts[GROUP_COLUMN].eq(group)]
         if group_data.empty:
             raise ValueError(f"{group}のユーザーが存在しません。")
 
-        light_count = int(group_data[LIGHT_ROLE].sum())
-        center_count = int(group_data[CENTER_ROLE].sum())
+        light_count = int(group_data[LIGHT_RECORD_COUNT_COLUMN].sum())
+        center_count = int(group_data[CENTER_RECORD_COUNT_COLUMN].sum())
         total_count = light_count + center_count
-        users_with_records = int(group_data["食事関連商品選択数"].gt(0).sum())
-        valid_share = group_data["軽食・補助食型選択割合（%）"].dropna()
+        users_with_records = int(
+            group_data["食事関連商品購買記録数"].gt(0).sum()
+        )
+        valid_share = group_data[
+            "軽食・補助食型購買記録割合（%）"
+        ].dropna()
 
-        for role, selection_count in (
+        for role, record_count in (
             (LIGHT_ROLE, light_count),
             (CENTER_ROLE, center_count),
         ):
@@ -586,18 +601,19 @@ def summarize_groups(user_counts: pd.DataFrame) -> pd.DataFrame:
                     "群": group,
                     "食事形態": role,
                     "ユーザー数": len(group_data),
-                    "食事関連商品を1回以上選択したユーザー数": users_with_records,
-                    "選択数": selection_count,
+                    "食事関連商品を1回以上購買したユーザー数": users_with_records,
+                    "購買記録数": record_count,
                     "群内構成割合（%）": (
-                        selection_count / total_count * 100
+                        record_count / total_count * 100
                         if total_count > 0
                         else np.nan
                     ),
-                    "1人当たり平均選択数": selection_count / len(group_data),
-                    "ユーザー別軽食選択割合_平均（%）": (
+                    "1人当たり平均購買記録数": record_count
+                    / len(group_data),
+                    "ユーザー別軽食購買記録割合_平均（%）": (
                         valid_share.mean() if not valid_share.empty else np.nan
                     ),
-                    "ユーザー別軽食選択割合_中央値（%）": (
+                    "ユーザー別軽食購買記録割合_中央値（%）": (
                         valid_share.median() if not valid_share.empty else np.nan
                     ),
                 }
@@ -606,7 +622,7 @@ def summarize_groups(user_counts: pd.DataFrame) -> pd.DataFrame:
 
 
 def build_product_classification_table(purchase_data: pd.DataFrame) -> pd.DataFrame:
-    """商品名・JICFS・最終分類ごとの選択数を保存用に集計する。"""
+    """商品名・JICFS・最終分類ごとの購買記録数を保存用に集計する。"""
     return (
         purchase_data.groupby(
             [
@@ -619,9 +635,9 @@ def build_product_classification_table(purchase_data: pd.DataFrame) -> pd.DataFr
             dropna=False,
         )
         .size()
-        .reset_index(name="選択数")
+        .reset_index(name="購買記録数")
         .sort_values(
-            ["食事形態", "選択数", PRODUCT_NAME_COLUMN],
+            ["食事形態", "購買記録数", PRODUCT_NAME_COLUMN],
             ascending=[True, False, True],
         )
         .reset_index(drop=True)
@@ -678,7 +694,7 @@ def save_group_chart(
     output_path: Path,
     y_limit: float,
 ) -> bool:
-    """1群について二つの食事形態の選択数を棒グラフで保存する。"""
+    """1群について二つの食事形態の購買記録数を棒グラフで保存する。"""
     try:
         import matplotlib.pyplot as plt
     except ImportError:
@@ -691,11 +707,11 @@ def save_group_chart(
         .set_index("食事形態")
         .reindex(ROLE_ORDER)
     )
-    values = data["選択数"].astype(float).to_numpy()
+    values = data["購買記録数"].astype(float).to_numpy()
     if use_japanese:
         labels = ROLE_ORDER
         title = group
-        y_label = "選択数（購買記録数）"
+        y_label = "購買記録数（件）"
     else:
         labels = ("Light / supplementary", "Meal-centered")
         title = (
@@ -703,7 +719,7 @@ def save_group_chart(
             if group == EXPERIENCED_GROUP
             else "No purchase experience"
         )
-        y_label = "Selections (purchase records)"
+        y_label = "Purchase records"
 
     fig, ax = plt.subplots(figsize=(7.2, 5.8))
     positions = np.array([-0.30, 0.30])
@@ -759,8 +775,8 @@ def save_outputs(
     sensitivity = build_sensitivity_summary(purchase_data, balanced_users)
 
     output_paths = [
-        output_dir / "01_群別選択数.csv",
-        output_dir / "02_ユーザー別選択数.csv",
+        output_dir / "01_群別購買記録数.csv",
+        output_dir / "02_ユーザー別購買記録数.csv",
         output_dir / "03_分類対象商品一覧.csv",
         output_dir / "04_その他惣菜_食事中心型振替一覧.csv",
         output_dir / "05_データ品質確認.csv",
@@ -781,16 +797,16 @@ def save_outputs(
         output_paths[4], index=False, encoding="utf-8-sig"
     )
 
-    max_count = float(group_summary["選択数"].max())
+    max_count = float(group_summary["購買記録数"].max())
     y_limit = max(1.0, max_count * 1.18)
     chart_specs = [
         (
             EXPERIENCED_GROUP,
-            output_dir / "06_購買経験群_選択数.png",
+            output_dir / "06_購買経験群_購買記録数.png",
         ),
         (
             UNEXPERIENCED_GROUP,
-            output_dir / "07_購買未経験群_選択数.png",
+            output_dir / "07_購買未経験群_購買記録数.png",
         ),
     ]
     for group, path in chart_specs:
@@ -814,7 +830,7 @@ def run(
     product_source_dir: Optional[Path] = None,
     output_dir: Optional[Path] = None,
 ) -> list[Path]:
-    """条件調整済み二群について食事形態の選択数を比較する。"""
+    """条件調整済み二群について食事形態の購買記録数を比較する。"""
     project_dir = Path(__file__).resolve().parents[1]
     workspace_dir = project_dir.parent
 
@@ -935,12 +951,12 @@ def run(
         group_summary = summary.loc[summary["群"].eq(group)]
         light_count = int(
             group_summary.loc[
-                group_summary["食事形態"].eq(LIGHT_ROLE), "選択数"
+                group_summary["食事形態"].eq(LIGHT_ROLE), "購買記録数"
             ].iloc[0]
         )
         center_count = int(
             group_summary.loc[
-                group_summary["食事形態"].eq(CENTER_ROLE), "選択数"
+                group_summary["食事形態"].eq(CENTER_ROLE), "購買記録数"
             ].iloc[0]
         )
         print(
