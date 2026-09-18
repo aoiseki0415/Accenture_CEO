@@ -31,8 +31,8 @@ import math
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
-from matplotlib import font_manager
 
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
@@ -49,28 +49,11 @@ CLASS_COLUMN = "最終分類"
 COMPLETE_ROLE = "一食完結型"
 SUPPLEMENT_ROLE = "食事補完型"
 COMPANY_ORDER = ["セブンイレブン", "ローソン", "ファミリーマート"]
+COMPANY_LABELS_EN = ["Seven-Eleven", "Lawson", "FamilyMart"]
 
-JAPANESE_FONT_CANDIDATES = (
-    "Noto Sans CJK JP",
-    "Noto Sans JP",
-    "IPAexGothic",
-    "IPAGothic",
-    "Yu Gothic",
-    "Hiragino Sans",
-)
-
-
-def set_japanese_font() -> str:
-    """利用可能な日本語フォントを選び、文字化けを避ける。"""
-    installed = {font.name for font in font_manager.fontManager.ttflist}
-    for candidate in JAPANESE_FONT_CANDIDATES:
-        if candidate in installed:
-            plt.rcParams["font.family"] = candidate
-            plt.rcParams["axes.unicode_minus"] = False
-            return candidate
-    plt.rcParams["axes.unicode_minus"] = False
-    print("警告: 日本語フォントが見つかりません。環境側で日本語フォントを追加してください。")
-    return ""
+# 日本語フォントがない環境でも文字化けしないよう、Figure内は英語表記に統一する。
+plt.rcParams["font.family"] = "DejaVu Sans"
+plt.rcParams["axes.unicode_minus"] = False
 
 
 def read_sheet_export(path: Path) -> pd.DataFrame:
@@ -138,20 +121,23 @@ def draw_figure(summary: pd.DataFrame, title: str, output_path: Path, y_max: flo
     numerators = summary["一食完結型商品数"].to_numpy()
     denominators = summary["対象商品数"].to_numpy()
 
-    fig, ax = plt.subplots(figsize=(9, 6.2), dpi=200)
+    # 会社間の比較を一目で追えるよう、通常の0, 1, 2より中心間隔を狭くする。
+    bar_positions = np.array([0.0, 0.72, 1.44])
+    fig, ax = plt.subplots(figsize=(8.2, 6.2), dpi=200)
     bars = ax.bar(
-        range(len(COMPANY_ORDER)),
+        bar_positions,
         values,
-        width=0.58,
+        width=0.50,
         color=["#4F6D8A", "#7C8A96", "#9A8774"],
         edgecolor="#333333",
         linewidth=1.2,
     )
     ax.set_title(title, fontsize=18, fontweight="bold", pad=18)
-    ax.set_ylabel("一食完結型商品の割合（%）", fontsize=15)
-    ax.set_xticks(range(len(COMPANY_ORDER)), COMPANY_ORDER, fontsize=13)
+    ax.set_ylabel("Share of complete-meal products (%)", fontsize=15)
+    ax.set_xticks(bar_positions, COMPANY_LABELS_EN, fontsize=13)
     ax.tick_params(axis="y", labelsize=12)
     ax.set_ylim(0, y_max)
+    ax.set_xlim(-0.48, 1.92)
     ax.grid(axis="y", linestyle="--", linewidth=0.8, color="#B8B8B8", alpha=0.75)
     ax.set_axisbelow(True)
     ax.spines["top"].set_visible(False)
@@ -163,7 +149,7 @@ def draw_figure(summary: pd.DataFrame, title: str, output_path: Path, y_max: flo
         ax.text(
             bar.get_x() + bar.get_width() / 2,
             bar.get_height() + y_max * 0.025,
-            f"{value:.1f}%\n({numerator}/{denominator}商品)",
+            f"{value:.1f}%\n({numerator}/{denominator} products)",
             ha="center",
             va="bottom",
             fontsize=12,
@@ -176,7 +162,6 @@ def draw_figure(summary: pd.DataFrame, title: str, output_path: Path, y_max: flo
 
 def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    set_japanese_font()
 
     summaries: dict[str, pd.DataFrame] = {}
     for analysis_name, input_path in INPUT_FILES.items():
@@ -190,8 +175,8 @@ def main() -> None:
     shared_y_max = min(100.0, max(20.0, math.ceil((max_share + 10.0) / 10.0) * 10.0))
 
     output_specs = [
-        ("主分析_Zaim確認済み", "01_主分析_会社別集計.csv", "02_主分析_一食完結型割合.png", "主分析：Zaim確認済み対応商品"),
-        ("補足分析_全対応商品", "03_補足分析_会社別集計.csv", "04_補足分析_一食完結型割合.png", "補足分析：対応商品すべて"),
+        ("主分析_Zaim確認済み", "01_主分析_会社別集計.csv", "02_主分析_一食完結型割合.png", "Primary analysis: Zaim-matched products"),
+        ("補足分析_全対応商品", "03_補足分析_会社別集計.csv", "04_補足分析_一食完結型割合.png", "Supplementary analysis: All eligible products"),
     ]
     for analysis_name, csv_name, figure_name, title in output_specs:
         summary = summaries[analysis_name]
