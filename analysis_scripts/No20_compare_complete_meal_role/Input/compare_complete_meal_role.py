@@ -155,6 +155,9 @@ SUPPLEMENT_OVERRIDE_KEYWORDS = (
 # 構成割合を示すため、割合グラフの縦軸は0～100%に固定する。
 SHARE_CHART_Y_MAX = 100.0
 
+# 若年群の主分析で用いる色。比較群版（No23）では、同系色の別色へ上書きする。
+SHARE_CHART_COLORS = ("#8064A2", "#D99694")
+
 REQUIRED_PURCHASE_COLUMNS = {
     DATE_COLUMN,
     USER_ID_COLUMN,
@@ -692,7 +695,7 @@ def save_supplement_share_chart(
         positions,
         values,
         width=0.44,
-        color=("#8064A2", "#D99694"),
+        color=SHARE_CHART_COLORS,
         edgecolor="#333333",
         linewidth=1.0,
     )
