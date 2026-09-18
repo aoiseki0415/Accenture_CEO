@@ -736,7 +736,6 @@ def save_stacked_role_share_chart(
     """二群の食事形態構成を100%積み上げ縦棒グラフで保存する。"""
     try:
         import matplotlib.pyplot as plt
-        from matplotlib.patches import Patch
     except ImportError:
         print("matplotlibがないためグラフ出力をスキップします。")
         return False
@@ -752,12 +751,10 @@ def save_stacked_role_share_chart(
 
     if use_japanese:
         group_labels = GROUP_ORDER
-        legend_labels = (SUPPLEMENT_ROLE, COMPLETE_ROLE)
         title = "若年群における食事上の役割別購買割合"
         y_label = "惣菜類の購買記録全体に占める割合（%）"
     else:
         group_labels = ("Purchase-experienced", "No purchase experience")
-        legend_labels = ("Meal supplement", "Complete meal")
         title = "Purchase composition by meal role in the young group"
         y_label = "Share of all deli purchase records (%)"
 
@@ -823,29 +820,6 @@ def save_stacked_role_share_chart(
     ax.spines["bottom"].set_linewidth(1.6)
     ax.grid(axis="y", color="#D0D0D0", linewidth=0.8, alpha=0.75)
     ax.set_axisbelow(True)
-
-    legend_handles = (
-        Patch(
-            facecolor=SUPPLEMENT_STACK_COLOR,
-            edgecolor=SUPPLEMENT_STACK_COLOR,
-            label=legend_labels[0],
-        ),
-        Patch(
-            facecolor=COMPLETE_STACK_COLOR,
-            edgecolor=SUPPLEMENT_STACK_COLOR,
-            label=legend_labels[1],
-        ),
-    )
-    ax.legend(
-        handles=legend_handles,
-        loc="upper center",
-        bbox_to_anchor=(0.5, 1.01),
-        ncol=2,
-        frameon=False,
-        fontsize=13,
-        handlelength=1.4,
-        columnspacing=1.6,
-    )
 
     fig.tight_layout()
     fig.savefig(output_path, dpi=300, bbox_inches="tight")

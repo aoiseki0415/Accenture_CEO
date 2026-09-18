@@ -32,7 +32,6 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from matplotlib.patches import Patch
 
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
@@ -186,29 +185,6 @@ def draw_figure(summary: pd.DataFrame, title: str, output_path: Path) -> None:
             zorder=4,
         )
 
-    # 色相は会社、濃淡は食事上の役割を示す。凡例では濃淡の意味を示す。
-    legend_handles = [
-        Patch(
-            facecolor=SUPPLEMENT_COLORS[0],
-            edgecolor=SUPPLEMENT_COLORS[0],
-            label="Meal supplement",
-        ),
-        Patch(
-            facecolor=COMPLETE_COLORS[0],
-            edgecolor=SUPPLEMENT_COLORS[0],
-            label="Complete meal",
-        ),
-    ]
-    ax.legend(
-        handles=legend_handles,
-        loc="upper center",
-        bbox_to_anchor=(0.5, 1.01),
-        ncol=2,
-        frameon=False,
-        fontsize=12,
-        handlelength=1.4,
-        columnspacing=1.6,
-    )
     fig.tight_layout()
     fig.savefig(output_path, bbox_inches="tight", facecolor="white")
     plt.close(fig)
