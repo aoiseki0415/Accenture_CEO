@@ -30,7 +30,9 @@ No18の ``Output`` に次のファイルを保存する。
 ----
 * No17で固定した二群を再作成しない。
 * 群分けに使用した「栄養バランスを調整したい」対応商品は、
-  receipt_keyまたはZaim商品名により分析対象から除外する。
+  No4の商品別CSVから取得したZaim商品名により分析対象から除外する。
+* receipt_keyは同じレシート内の複数商品で共有されるため、
+  商品の一意識別や重複判定には使用しない。
 * ``111997 その他惣菜`` は原則として軽食・補助食型とし、
   食事中心型の表現を含み、かつ軽食表現を含まない商品だけを
   食事中心型へ振り替える。
@@ -75,10 +77,6 @@ USAGE_DAYS_COLUMN = "利用日数"
 EXPERIENCED_GROUP = "購買経験群"
 UNEXPERIENCED_GROUP = "購買未経験群"
 GROUP_ORDER = (EXPERIENCED_GROUP, UNEXPERIENCED_GROUP)
-
-# 0や-1が欠損の代替値として使われている場合に、無関係な行まで
-# 対応商品として除外しないため、receipt_key照合には使用しない。
-INVALID_RECEIPT_KEYS = frozenset({"0", "-1"})
 
 LIGHT_ROLE = "軽食・補助食型"
 CENTER_ROLE = "食事中心型"
@@ -336,12 +334,11 @@ def read_product_mapping(mapping_path: Path) -> pd.DataFrame:
 
 def collect_target_product_identifiers(
     product_source_dir: Path,
-) -> tuple[set[str], set[str], pd.DataFrame]:
-    """No4の商品別CSVから、除外に使うreceipt_keyとZaim商品名を集める。"""
+) -> tuple[set[str], pd.DataFrame]:
+    """No4の商品別CSVから、除外に使うZaim商品名を集める。"""
     mapping = read_product_mapping(
         product_source_dir / TARGET_PRODUCT_MAPPING_FILENAME
     )
-    receipt_keys: set[str] = set()
     product_names: set[str] = set()
     quality_rows: list[dict[str, object]] = []
 
@@ -361,22 +358,18 @@ def collect_target_product_identifiers(
         )
         require_columns(
             header,
-            {RECEIPT_KEY_COLUMN, PRODUCT_NAME_COLUMN},
+            {PRODUCT_NAME_COLUMN},
             str(product_path),
         )
         product_data = pd.read_csv(
             product_path,
-            usecols=[RECEIPT_KEY_COLUMN, PRODUCT_NAME_COLUMN],
+            usecols=[PRODUCT_NAME_COLUMN],
             dtype="string",
             encoding="utf-8-sig",
             low_memory=False,
         )
 
-        normalized_keys = normalize_identifier(product_data[RECEIPT_KEY_COLUMN])
         normalized_names = normalize_text(product_data[PRODUCT_NAME_COLUMN])
-        valid_keys = normalized_keys.dropna().astype(str)
-        valid_keys = valid_keys.loc[~valid_keys.isin(INVALID_RECEIPT_KEYS)]
-        receipt_keys.update(valid_keys.tolist())
         product_names.update(
             normalized_names.loc[normalized_names.ne("")].astype(str).tolist()
         )
@@ -388,9 +381,9 @@ def collect_target_product_identifiers(
             }
         )
 
-    if not receipt_keys and not product_names:
-        raise ValueError("対応商品を除外する識別情報を取得できませんでした。")
-    return receipt_keys, product_names, pd.DataFrame(quality_rows)
+    if not product_names:
+        raise ValueError("対応商品を除外するZaim商品名を取得できませんでした。")
+    return product_names, pd.DataFrame(quality_rows)
 
 
 def classify_meal_role(
@@ -427,7 +420,6 @@ def prepare_purchase_chunk(
     data: pd.DataFrame,
     source_name: str,
     cohort_user_ids: set[str],
-    target_receipt_keys: set[str],
     target_product_names: set[str],
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """1期間分を対象ユーザーへ絞り、対応商品を除外して分類する。"""
@@ -458,9 +450,8 @@ def prepare_purchase_chunk(
     in_cohort = valid_user & selected["_user_id"].isin(cohort_user_ids)
     expected_code = selected["_jicfs_code"].isin(EXPECTED_ANALYSIS_CODES)
 
-    target_by_receipt = selected["_receipt_key"].isin(target_receipt_keys)
     target_by_name = selected["_name"].isin(target_product_names)
-    target_record = target_by_receipt | target_by_name
+    target_record = target_by_name
 
     eligible = in_period & in_cohort & expected_code & ~target_record
     prepared = selected.loc[
@@ -855,7 +846,7 @@ def run(
     cohort_user_ids = set(
         balanced_users[USER_ID_COLUMN].dropna().astype(str).tolist()
     )
-    target_receipt_keys, target_product_names, target_quality = (
+    target_product_names, target_quality = (
         collect_target_product_identifiers(product_source_dir)
     )
 
@@ -866,7 +857,6 @@ def run(
             data=data,
             source_name=f"data{number}",
             cohort_user_ids=cohort_user_ids,
-            target_receipt_keys=target_receipt_keys,
             target_product_names=target_product_names,
         )
         prepared_chunks.append(prepared)
@@ -889,31 +879,12 @@ def run(
     if purchase_data.empty:
         raise ValueError("条件を満たす食事関連商品の購買記録がありません。")
 
-    valid_receipt_keys = purchase_data[RECEIPT_KEY_COLUMN].notna() & ~(
-        purchase_data[RECEIPT_KEY_COLUMN].isin(INVALID_RECEIPT_KEYS)
-    )
-    duplicate_receipts = pd.Series(False, index=purchase_data.index)
-    duplicate_receipts.loc[valid_receipt_keys] = purchase_data.loc[
-        valid_receipt_keys, RECEIPT_KEY_COLUMN
-    ].duplicated(keep=False)
-    duplicated_count = int(duplicate_receipts.sum())
-    if duplicated_count:
-        raise ValueError(
-            "5期間のデータ間でreceipt_keyが重複しています。"
-            f" 重複対象行={duplicated_count:,}行"
-        )
-
     overall_quality = pd.DataFrame(
         [
             {
                 "入力元": "全体",
                 "確認項目": "No17対象ユーザー数",
                 "行数": len(balanced_users),
-            },
-            {
-                "入力元": "全体",
-                "確認項目": "対応商品除外用receipt_key数",
-                "行数": len(target_receipt_keys),
             },
             {
                 "入力元": "全体",
@@ -924,11 +895,6 @@ def run(
                 "入力元": "全体",
                 "確認項目": "最終分析対象行数",
                 "行数": len(purchase_data),
-            },
-            {
-                "入力元": "全体",
-                "確認項目": "receipt_key重複対象行数",
-                "行数": duplicated_count,
             },
         ]
     )
