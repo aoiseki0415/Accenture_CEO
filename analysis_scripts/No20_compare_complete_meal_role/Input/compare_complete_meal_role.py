@@ -25,7 +25,7 @@ JICFS Lv4「惣菜類」の購買記録を次の2群へ分類して比較する�
 出力
 ----
 No20の ``Output`` に、群別・ユーザー別の集計、商品分類一覧、
-データ品質確認、購買記録数と一食完結型割合のFigureを保存する。
+データ品質確認、購買記録数と食事補完型割合のFigureを保存する。
 
 注意
 ----
@@ -152,8 +152,8 @@ SUPPLEMENT_OVERRIDE_KEYWORDS = (
     "パン",
 )
 
-# 割合グラフは原則30%を上限とする。実値が超える場合は自動的に拡張する。
-SHARE_CHART_MIN_Y_MAX = 30.0
+# 構成割合を示すため、割合グラフの縦軸は0～100%に固定する。
+SHARE_CHART_Y_MAX = 100.0
 
 REQUIRED_PURCHASE_COLUMNS = {
     DATE_COLUMN,
@@ -481,9 +481,9 @@ def aggregate_user_counts(
     result["惣菜類購買記録数"] = result[
         [COMPLETE_COUNT_COLUMN, SUPPLEMENT_COUNT_COLUMN]
     ].sum(axis=1)
-    result["一食完結型購買記録割合（%）"] = np.where(
+    result["食事補完型購買記録割合（%）"] = np.where(
         result["惣菜類購買記録数"].gt(0),
-        result[COMPLETE_COUNT_COLUMN] / result["惣菜類購買記録数"] * 100,
+        result[SUPPLEMENT_COUNT_COLUMN] / result["惣菜類購買記録数"] * 100,
         np.nan,
     )
     return result
@@ -519,7 +519,7 @@ def summarize_groups(user_counts: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def summarize_complete_share(group_summary: pd.DataFrame) -> pd.DataFrame:
+def summarize_supplement_share(group_summary: pd.DataFrame) -> pd.DataFrame:
     rows: list[dict[str, object]] = []
     for group in GROUP_ORDER:
         data = group_summary.loc[group_summary["群"].eq(group)]
@@ -536,8 +536,8 @@ def summarize_complete_share(group_summary: pd.DataFrame) -> pd.DataFrame:
                 COMPLETE_COUNT_COLUMN: complete_count,
                 SUPPLEMENT_COUNT_COLUMN: supplement_count,
                 "惣菜類購買記録数": total_count,
-                "一食完結型購買記録割合（%）": (
-                    complete_count / total_count * 100 if total_count else np.nan
+                "食事補完型購買記録割合（%）": (
+                    supplement_count / total_count * 100 if total_count else np.nan
                 ),
             }
         )
@@ -660,8 +660,8 @@ def save_group_chart(
     return True
 
 
-def save_complete_share_chart(
-    complete_share: pd.DataFrame,
+def save_supplement_share_chart(
+    supplement_share: pd.DataFrame,
     output_path: Path,
     title_suffix: str = "",
 ) -> bool:
@@ -671,17 +671,17 @@ def save_complete_share_chart(
         print("matplotlibがないためグラフ出力をスキップします。")
         return False
     use_japanese = configure_plot_font()
-    data = complete_share.set_index("群").reindex(GROUP_ORDER)
-    values = data["一食完結型購買記録割合（%）"].astype(float).to_numpy()
+    data = supplement_share.set_index("群").reindex(GROUP_ORDER)
+    values = data["食事補完型購買記録割合（%）"].astype(float).to_numpy()
     if use_japanese:
         labels = GROUP_ORDER
-        title = "惣菜類の購買記録に占める一食完結型の割合"
+        title = "惣菜類の購買記録に占める食事補完型の割合"
         if title_suffix:
             title = f"{title}\n{title_suffix}"
-        y_label = "一食完結型購買記録割合（%）"
+        y_label = "食事補完型購買記録割合（%）"
     else:
         labels = ("Purchase-experienced", "No purchase experience")
-        title = "Share of complete-meal purchases"
+        title = "Share of meal-complementing purchases"
         if title_suffix:
             title = f"{title}\n(sensitivity analysis: target products excluded)"
         y_label = "Share of purchase records (%)"
@@ -699,13 +699,7 @@ def save_complete_share_chart(
     ax.set_xticks(positions)
     ax.set_xticklabels(labels)
     ax.set_xlim(-0.95, 0.95)
-    finite_values = values[np.isfinite(values)]
-    observed_max = float(finite_values.max()) if finite_values.size else 0.0
-    y_limit = max(
-        SHARE_CHART_MIN_Y_MAX,
-        np.ceil((observed_max * 1.15) / 5.0) * 5.0,
-    )
-    ax.set_ylim(0, y_limit)
+    ax.set_ylim(0, SHARE_CHART_Y_MAX)
     ax.set_title(title, fontsize=16, fontweight="bold", pad=14)
     ax.set_ylabel(y_label, fontsize=14, fontweight="bold")
     ax.tick_params(axis="x", labelsize=12, width=1.3)
@@ -738,14 +732,14 @@ def save_outputs(
     output_dir.mkdir(parents=True, exist_ok=True)
     user_counts = aggregate_user_counts(main_purchase_data, balanced_users)
     group_summary = summarize_groups(user_counts)
-    complete_share = summarize_complete_share(group_summary)
+    supplement_share = summarize_supplement_share(group_summary)
     product_classification = build_product_classification_table(main_purchase_data)
 
     sensitivity_user_counts = aggregate_user_counts(
         sensitivity_purchase_data, balanced_users
     )
     sensitivity_group_summary = summarize_groups(sensitivity_user_counts)
-    sensitivity_complete_share = summarize_complete_share(
+    sensitivity_supplement_share = summarize_supplement_share(
         sensitivity_group_summary
     )
 
@@ -766,14 +760,14 @@ def save_outputs(
             ],
         ),
         ("06_データ品質確認.csv", quality_table),
-        ("09_群別一食完結型購買記録割合.csv", complete_share),
+        ("09_群別食事補完型購買記録割合.csv", supplement_share),
         (
             "11_感度分析_対応商品を除外した群別購買記録数.csv",
             sensitivity_group_summary,
         ),
         (
-            "12_感度分析_対応商品を除外した一食完結型購買記録割合.csv",
-            sensitivity_complete_share,
+            "12_感度分析_対応商品を除外した食事補完型購買記録割合.csv",
+            sensitivity_supplement_share,
         ),
     ]
     output_paths: list[Path] = []
@@ -792,15 +786,15 @@ def save_outputs(
         if save_group_chart(group_summary, group, path, y_limit):
             output_paths.append(path)
 
-    share_chart = output_dir / "10_群別一食完結型購買記録割合.png"
-    if save_complete_share_chart(complete_share, share_chart):
+    share_chart = output_dir / "10_群別食事補完型購買記録割合.png"
+    if save_supplement_share_chart(supplement_share, share_chart):
         output_paths.append(share_chart)
 
     sensitivity_chart = (
-        output_dir / "13_感度分析_対応商品を除外した一食完結型割合.png"
+        output_dir / "13_感度分析_対応商品を除外した食事補完型割合.png"
     )
-    if save_complete_share_chart(
-        sensitivity_complete_share,
+    if save_supplement_share_chart(
+        sensitivity_supplement_share,
         sensitivity_chart,
         title_suffix="（対応商品を除外した感度分析）",
     ):
@@ -899,10 +893,10 @@ def run(
         output_dir=output_dir,
     )
 
-    summary = pd.read_csv(output_dir / "09_群別一食完結型購買記録割合.csv")
+    summary = pd.read_csv(output_dir / "09_群別食事補完型購買記録割合.csv")
     print("\nNo20の食事形態比較が完了しました。")
     for row in summary.itertuples(index=False):
-        print(f"{row[0]}: 一食完結型割合={float(row[4]):.1f}%")
+        print(f"{row[0]}: 食事補完型割合={float(row[4]):.1f}%")
     print(f"保存先: {output_dir}")
     return output_paths
 

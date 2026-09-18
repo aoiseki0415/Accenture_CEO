@@ -1,4 +1,4 @@
-"""3社の栄養バランス対応商品に占める「一食完結型」の割合を比較する。
+"""3社の栄養バランス対応商品に占める「食事補完型」の割合を比較する。
 
 主分析
 ------
@@ -22,7 +22,7 @@ Googleスプレッドシート「栄養バランス対応商品_一食完結型�
 出力
 ----
 主分析・補足分析のそれぞれについて、会社別集計CSVと、
-一食完結型商品の割合を示す3社比較FigureをOutputへ保存する。
+食事補完型商品の割合を示す3社比較FigureをOutputへ保存する。
 """
 
 from __future__ import annotations
@@ -103,22 +103,22 @@ def summarize(data: pd.DataFrame) -> pd.DataFrame:
         complete_count = int(company_data[CLASS_COLUMN].eq(COMPLETE_ROLE).sum())
         supplement_count = int(company_data[CLASS_COLUMN].eq(SUPPLEMENT_ROLE).sum())
         total_count = complete_count + supplement_count
-        share = complete_count / total_count * 100 if total_count else float("nan")
+        share = supplement_count / total_count * 100 if total_count else float("nan")
         rows.append(
             {
                 "コンビニ": company,
                 "一食完結型商品数": complete_count,
                 "食事補完型商品数": supplement_count,
                 "対象商品数": total_count,
-                "一食完結型割合（%）": share,
+                "食事補完型割合（%）": share,
             }
         )
     return pd.DataFrame(rows)
 
 
 def draw_figure(summary: pd.DataFrame, title: str, output_path: Path, y_max: float) -> None:
-    values = summary["一食完結型割合（%）"].fillna(0).to_numpy()
-    numerators = summary["一食完結型商品数"].to_numpy()
+    values = summary["食事補完型割合（%）"].fillna(0).to_numpy()
+    numerators = summary["食事補完型商品数"].to_numpy()
     denominators = summary["対象商品数"].to_numpy()
 
     # 会社間の比較を一目で追えるよう、通常の0, 1, 2より中心間隔を狭くする。
@@ -133,7 +133,7 @@ def draw_figure(summary: pd.DataFrame, title: str, output_path: Path, y_max: flo
         linewidth=1.2,
     )
     ax.set_title(title, fontsize=18, fontweight="bold", pad=18)
-    ax.set_ylabel("Share of complete-meal products (%)", fontsize=15)
+    ax.set_ylabel("Share of meal-complementing products (%)", fontsize=15)
     ax.set_xticks(bar_positions, COMPANY_LABELS_EN, fontsize=13)
     ax.tick_params(axis="y", labelsize=12)
     ax.set_ylim(0, y_max)
@@ -146,14 +146,16 @@ def draw_figure(summary: pd.DataFrame, title: str, output_path: Path, y_max: flo
     ax.spines["bottom"].set_linewidth(1.4)
 
     for bar, value, numerator, denominator in zip(bars, values, numerators, denominators):
+        near_top = value >= y_max * 0.92
         ax.text(
             bar.get_x() + bar.get_width() / 2,
-            bar.get_height() + y_max * 0.025,
+            bar.get_height() - y_max * 0.035 if near_top else bar.get_height() + y_max * 0.025,
             f"{value:.1f}%\n({numerator}/{denominator} products)",
             ha="center",
-            va="bottom",
+            va="top" if near_top else "bottom",
             fontsize=12,
             fontweight="bold",
+            color="white" if near_top else "black",
         )
     fig.tight_layout()
     fig.savefig(output_path, bbox_inches="tight", facecolor="white")
@@ -169,14 +171,14 @@ def main() -> None:
         summaries[analysis_name] = summarize(data)
 
     max_share = max(
-        float(summary["一食完結型割合（%）"].max())
+        float(summary["食事補完型割合（%）"].max())
         for summary in summaries.values()
     )
     shared_y_max = min(100.0, max(20.0, math.ceil((max_share + 10.0) / 10.0) * 10.0))
 
     output_specs = [
-        ("主分析_Zaim確認済み", "01_主分析_会社別集計.csv", "02_主分析_一食完結型割合.png", "Primary analysis: Zaim-matched products"),
-        ("補足分析_全対応商品", "03_補足分析_会社別集計.csv", "04_補足分析_一食完結型割合.png", "Supplementary analysis: All eligible products"),
+        ("主分析_Zaim確認済み", "01_主分析_会社別集計.csv", "02_主分析_食事補完型割合.png", "Primary analysis: Zaim-matched products"),
+        ("補足分析_全対応商品", "03_補足分析_会社別集計.csv", "04_補足分析_食事補完型割合.png", "Supplementary analysis: All eligible products"),
     ]
     for analysis_name, csv_name, figure_name, title in output_specs:
         summary = summaries[analysis_name]
