@@ -164,6 +164,14 @@ def draw_figure(summary: pd.DataFrame, title: str, output_path: Path, y_max: flo
 
 def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    # 反転前のFigureが結果フォルダに残り、誤読されることを防ぐ。
+    for legacy_filename in (
+        "02_主分析_一食完結型割合.png",
+        "04_補足分析_一食完結型割合.png",
+    ):
+        legacy_path = OUTPUT_DIR / legacy_filename
+        if legacy_path.exists():
+            legacy_path.unlink()
 
     summaries: dict[str, pd.DataFrame] = {}
     for analysis_name, input_path in INPUT_FILES.items():

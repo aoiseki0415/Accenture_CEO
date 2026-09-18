@@ -730,6 +730,17 @@ def save_outputs(
     output_dir: Path,
 ) -> list[Path]:
     output_dir.mkdir(parents=True, exist_ok=True)
+    # 反転前の割合ファイルが結果フォルダに残り、誤読されることを防ぐ。
+    for legacy_filename in (
+        "09_群別一食完結型購買記録割合.csv",
+        "10_群別一食完結型購買記録割合.png",
+        "12_感度分析_対応商品を除外した一食完結型購買記録割合.csv",
+        "13_感度分析_対応商品を除外した一食完結型割合.png",
+    ):
+        legacy_path = output_dir / legacy_filename
+        if legacy_path.exists():
+            legacy_path.unlink()
+
     user_counts = aggregate_user_counts(main_purchase_data, balanced_users)
     group_summary = summarize_groups(user_counts)
     supplement_share = summarize_supplement_share(group_summary)
