@@ -155,8 +155,12 @@ SUPPLEMENT_OVERRIDE_KEYWORDS = (
 # 構成割合を示すため、割合グラフの縦軸は0～100%に固定する。
 SHARE_CHART_Y_MAX = 100.0
 
-# 若年群の主分析で用いる色。比較群版（No23）では、同系色の別色へ上書きする。
+# 既存グラフ用の色。比較群版（No23）では、同系色の別色へ上書きする。
 SHARE_CHART_COLORS = ("#8064A2", "#D99694")
+
+# 100%積み上げ縦棒グラフでは、役割を同系色の濃淡で表現する。
+SUPPLEMENT_STACK_COLOR = "#17365D"
+COMPLETE_STACK_COLOR = "#A9BCD0"
 
 REQUIRED_PURCHASE_COLUMNS = {
     DATE_COLUMN,
@@ -725,6 +729,130 @@ def save_supplement_share_chart(
     return True
 
 
+def save_stacked_role_share_chart(
+    group_summary: pd.DataFrame,
+    output_path: Path,
+) -> bool:
+    """二群の食事形態構成を100%積み上げ縦棒グラフで保存する。"""
+    try:
+        import matplotlib.pyplot as plt
+        from matplotlib.patches import Patch
+    except ImportError:
+        print("matplotlibがないためグラフ出力をスキップします。")
+        return False
+
+    use_japanese = configure_plot_font()
+    pivot = (
+        group_summary.pivot(index="群", columns="食事形態", values="群内構成割合（%）")
+        .reindex(index=GROUP_ORDER, columns=ROLE_ORDER)
+        .astype(float)
+    )
+    complete_values = pivot[COMPLETE_ROLE].to_numpy()
+    supplement_values = pivot[SUPPLEMENT_ROLE].to_numpy()
+
+    if use_japanese:
+        group_labels = GROUP_ORDER
+        legend_labels = (SUPPLEMENT_ROLE, COMPLETE_ROLE)
+        title = "若年群における食事上の役割別購買割合"
+        y_label = "惣菜類の購買記録全体に占める割合（%）"
+    else:
+        group_labels = ("Purchase-experienced", "No purchase experience")
+        legend_labels = ("Meal supplement", "Complete meal")
+        title = "Purchase composition by meal role in the young group"
+        y_label = "Share of all deli purchase records (%)"
+
+    fig, ax = plt.subplots(figsize=(8.2, 6.4))
+    positions = np.array([-0.34, 0.34])
+    bar_width = 0.46
+
+    supplement_bars = ax.bar(
+        positions,
+        supplement_values,
+        width=bar_width,
+        color=SUPPLEMENT_STACK_COLOR,
+        edgecolor=SUPPLEMENT_STACK_COLOR,
+        linewidth=1.0,
+        zorder=3,
+    )
+    ax.bar(
+        positions,
+        complete_values,
+        width=bar_width,
+        bottom=supplement_values,
+        color=COMPLETE_STACK_COLOR,
+        edgecolor=SUPPLEMENT_STACK_COLOR,
+        linewidth=1.0,
+        zorder=3,
+    )
+
+    # 食事補完型の上端を、経験群の右上から未経験群の左上へ結ぶ。
+    ax.plot(
+        [positions[0] + bar_width / 2, positions[1] - bar_width / 2],
+        [supplement_values[0], supplement_values[1]],
+        color=SUPPLEMENT_STACK_COLOR,
+        linewidth=2.2,
+        solid_capstyle="butt",
+        zorder=4,
+    )
+
+    # 比較の中心となる食事補完型の割合だけを、濃紺バー内へ表示する。
+    for bar, value in zip(supplement_bars, supplement_values):
+        ax.text(
+            bar.get_x() + bar.get_width() / 2,
+            value / 2,
+            f"{value:.1f}%",
+            ha="center",
+            va="center",
+            color="white",
+            fontsize=17,
+            fontweight="bold",
+            zorder=5,
+        )
+
+    ax.set_xticks(positions)
+    ax.set_xticklabels(group_labels, fontsize=15, fontweight="bold")
+    ax.set_xlim(-0.92, 0.92)
+    ax.set_ylim(0, 100)
+    ax.set_yticks(np.arange(0, 101, 20))
+    ax.set_title(title, fontsize=18, fontweight="bold", pad=18)
+    ax.set_ylabel(y_label, fontsize=15, fontweight="bold", labelpad=13)
+    ax.tick_params(axis="x", labelsize=15, width=1.5, pad=9)
+    ax.tick_params(axis="y", labelsize=14, width=1.5)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.spines["left"].set_linewidth(1.6)
+    ax.spines["bottom"].set_linewidth(1.6)
+    ax.grid(axis="y", color="#D0D0D0", linewidth=0.8, alpha=0.75)
+    ax.set_axisbelow(True)
+
+    legend_handles = (
+        Patch(
+            facecolor=SUPPLEMENT_STACK_COLOR,
+            edgecolor=SUPPLEMENT_STACK_COLOR,
+            label=legend_labels[0],
+        ),
+        Patch(
+            facecolor=COMPLETE_STACK_COLOR,
+            edgecolor=SUPPLEMENT_STACK_COLOR,
+            label=legend_labels[1],
+        ),
+    )
+    ax.legend(
+        handles=legend_handles,
+        loc="upper center",
+        bbox_to_anchor=(0.5, 1.01),
+        ncol=2,
+        frameon=False,
+        fontsize=13,
+        handlelength=1.4,
+        columnspacing=1.6,
+    )
+
+    fig.tight_layout()
+    fig.savefig(output_path, dpi=300, bbox_inches="tight")
+    plt.close(fig)
+    return True
+
+
 def save_outputs(
     balanced_users: pd.DataFrame,
     main_purchase_data: pd.DataFrame,
@@ -813,6 +941,10 @@ def save_outputs(
         title_suffix="（対応商品を除外した感度分析）",
     ):
         output_paths.append(sensitivity_chart)
+
+    stacked_share_chart = output_dir / "14_群別食事形態構成割合_積み上げ.png"
+    if save_stacked_role_share_chart(group_summary, stacked_share_chart):
+        output_paths.append(stacked_share_chart)
     return output_paths
 
 
