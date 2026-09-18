@@ -27,12 +27,12 @@ Googleスプレッドシート「栄養バランス対応商品_一食完結型�
 
 from __future__ import annotations
 
-import math
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib.patches import Patch
 
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
@@ -50,6 +50,11 @@ COMPLETE_ROLE = "一食完結型"
 SUPPLEMENT_ROLE = "食事補完型"
 COMPANY_ORDER = ["セブンイレブン", "ローソン", "ファミリーマート"]
 COMPANY_LABELS_EN = ["Seven-Eleven", "Lawson", "FamilyMart"]
+
+# セブンイレブンをワインレッド、比較対象2社をグレーで示す。
+# 濃色は食事補完型、淡色は一食完結型を表す。
+SUPPLEMENT_COLORS = ["#762A3A", "#626A73", "#626A73"]
+COMPLETE_COLORS = ["#D8AFB7", "#D3D6DA", "#D3D6DA"]
 
 # 日本語フォントがない環境でも文字化けしないよう、Figure内は英語表記に統一する。
 plt.rcParams["font.family"] = "DejaVu Sans"
@@ -116,47 +121,94 @@ def summarize(data: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def draw_figure(summary: pd.DataFrame, title: str, output_path: Path, y_max: float) -> None:
-    values = summary["食事補完型割合（%）"].fillna(0).to_numpy()
-    numerators = summary["食事補完型商品数"].to_numpy()
-    denominators = summary["対象商品数"].to_numpy()
+def draw_figure(summary: pd.DataFrame, title: str, output_path: Path) -> None:
+    supplement_values = summary["食事補完型割合（%）"].fillna(0).to_numpy()
+    complete_values = 100.0 - supplement_values
 
     # 会社間の比較を一目で追えるよう、通常の0, 1, 2より中心間隔を狭くする。
     bar_positions = np.array([0.0, 0.72, 1.44])
     fig, ax = plt.subplots(figsize=(8.2, 6.2), dpi=200)
-    bars = ax.bar(
+    supplement_bars = ax.bar(
         bar_positions,
-        values,
+        supplement_values,
         width=0.50,
-        color=["#4F6D8A", "#7C8A96", "#9A8774"],
-        edgecolor="#333333",
+        color=SUPPLEMENT_COLORS,
+        edgecolor=SUPPLEMENT_COLORS,
         linewidth=1.2,
+        zorder=3,
     )
-    ax.set_title(title, fontsize=18, fontweight="bold", pad=18)
-    ax.set_ylabel("Share of meal-complementing products (%)", fontsize=15)
+    ax.bar(
+        bar_positions,
+        complete_values,
+        width=0.50,
+        bottom=supplement_values,
+        color=COMPLETE_COLORS,
+        edgecolor=SUPPLEMENT_COLORS,
+        linewidth=1.2,
+        zorder=3,
+    )
+    ax.set_title(
+        f"Meal-role composition of response products\n{title}",
+        fontsize=17,
+        fontweight="bold",
+        pad=18,
+    )
+    ax.set_ylabel(
+        "Share of all response products (%)",
+        fontsize=15,
+        fontweight="bold",
+        labelpad=10,
+    )
     ax.set_xticks(bar_positions, COMPANY_LABELS_EN, fontsize=13)
-    ax.tick_params(axis="y", labelsize=12)
-    ax.set_ylim(0, y_max)
+    ax.tick_params(axis="x", labelsize=13, width=1.4, pad=8)
+    ax.tick_params(axis="y", labelsize=13, width=1.4)
+    ax.set_ylim(0, 100)
+    ax.set_yticks(np.arange(0, 101, 20))
     ax.set_xlim(-0.48, 1.92)
-    ax.grid(axis="y", linestyle="--", linewidth=0.8, color="#B8B8B8", alpha=0.75)
+    ax.grid(axis="y", linewidth=0.8, color="#D0D0D0", alpha=0.75)
     ax.set_axisbelow(True)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
-    ax.spines["left"].set_linewidth(1.4)
-    ax.spines["bottom"].set_linewidth(1.4)
+    ax.spines["left"].set_linewidth(1.6)
+    ax.spines["bottom"].set_linewidth(1.6)
 
-    for bar, value, numerator, denominator in zip(bars, values, numerators, denominators):
-        near_top = value >= y_max * 0.92
+    # 比較対象である食事補完型の割合だけを、濃色バー内へ表示する。
+    for bar, value in zip(supplement_bars, supplement_values):
         ax.text(
             bar.get_x() + bar.get_width() / 2,
-            bar.get_height() - y_max * 0.035 if near_top else bar.get_height() + y_max * 0.025,
-            f"{value:.1f}%\n({numerator}/{denominator} products)",
+            value / 2,
+            f"{value:.1f}%",
             ha="center",
-            va="top" if near_top else "bottom",
-            fontsize=12,
+            va="center",
+            fontsize=16,
             fontweight="bold",
-            color="white" if near_top else "black",
+            color="white",
+            zorder=4,
         )
+
+    # 色相は会社、濃淡は食事上の役割を示す。凡例では濃淡の意味を示す。
+    legend_handles = [
+        Patch(
+            facecolor=SUPPLEMENT_COLORS[0],
+            edgecolor=SUPPLEMENT_COLORS[0],
+            label="Meal supplement",
+        ),
+        Patch(
+            facecolor=COMPLETE_COLORS[0],
+            edgecolor=SUPPLEMENT_COLORS[0],
+            label="Complete meal",
+        ),
+    ]
+    ax.legend(
+        handles=legend_handles,
+        loc="upper center",
+        bbox_to_anchor=(0.5, 1.01),
+        ncol=2,
+        frameon=False,
+        fontsize=12,
+        handlelength=1.4,
+        columnspacing=1.6,
+    )
     fig.tight_layout()
     fig.savefig(output_path, bbox_inches="tight", facecolor="white")
     plt.close(fig)
@@ -178,12 +230,6 @@ def main() -> None:
         data = read_sheet_export(input_path)
         summaries[analysis_name] = summarize(data)
 
-    max_share = max(
-        float(summary["食事補完型割合（%）"].max())
-        for summary in summaries.values()
-    )
-    shared_y_max = min(100.0, max(20.0, math.ceil((max_share + 10.0) / 10.0) * 10.0))
-
     output_specs = [
         ("主分析_Zaim確認済み", "01_主分析_会社別集計.csv", "02_主分析_食事補完型割合.png", "Primary analysis: Zaim-matched products"),
         ("補足分析_全対応商品", "03_補足分析_会社別集計.csv", "04_補足分析_食事補完型割合.png", "Supplementary analysis: All eligible products"),
@@ -191,7 +237,7 @@ def main() -> None:
     for analysis_name, csv_name, figure_name, title in output_specs:
         summary = summaries[analysis_name]
         summary.to_csv(OUTPUT_DIR / csv_name, index=False, encoding="utf-8-sig", float_format="%.1f")
-        draw_figure(summary, title, OUTPUT_DIR / figure_name, shared_y_max)
+        draw_figure(summary, title, OUTPUT_DIR / figure_name)
         print(f"\n{analysis_name}")
         print(summary.to_string(index=False, float_format=lambda x: f"{x:.1f}"))
 
