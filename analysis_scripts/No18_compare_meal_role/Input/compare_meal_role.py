@@ -25,12 +25,19 @@ No18の ``Output`` に次のファイルを保存する。
 * ``06_購買経験群_購買記録数.png``（matplotlibがある場合）
 * ``07_購買未経験群_購買記録数.png``（matplotlibがある場合）
 * ``08_感度分析_その他惣菜除外.csv``
+* ``09_群別軽食購買記録割合.csv``
+* ``10_群別軽食購買記録割合.png``（matplotlibがある場合）
+* ``11_感度分析_対応商品を含む群別購買記録数.csv``
+* ``12_感度分析_対応商品を含む群別軽食購買記録割合.csv``
+* ``13_感度分析_対応商品を含む群別軽食購買記録割合.png``
 
 注意
 ----
 * No17で固定した二群を再作成しない。
 * 群分けに使用した「栄養バランスを調整したい」対応商品は、
-  No4の商品別CSVから取得したZaim商品名により分析対象から除外する。
+  主分析ではNo4の商品別CSVから取得したZaim商品名により除外する。
+  群の定義を結果へ直接持ち込まないためである。
+* 対応商品を含めた場合の結果も感度分析として別に保存する。
 * receipt_keyは同じレシート内の複数商品で共有されるため、
   商品の一意識別や重複判定には使用しない。
 * ``111997 その他惣菜`` は原則として軽食・補助食型とし、
@@ -422,7 +429,7 @@ def prepare_purchase_chunk(
     cohort_user_ids: set[str],
     target_product_names: set[str],
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """1期間分を対象ユーザーへ絞り、対応商品を除外して分類する。"""
+    """1期間分を対象ユーザーへ絞り、対応商品フラグを付けて分類する。"""
     require_columns(data, REQUIRED_PURCHASE_COLUMNS, source_name)
 
     selected = data.loc[:, sorted(REQUIRED_PURCHASE_COLUMNS)].copy()
@@ -453,7 +460,7 @@ def prepare_purchase_chunk(
     target_by_name = selected["_name"].isin(target_product_names)
     target_record = target_by_name
 
-    eligible = in_period & in_cohort & expected_code & ~target_record
+    eligible = in_period & in_cohort & expected_code
     prepared = selected.loc[
         eligible,
         [
@@ -464,6 +471,7 @@ def prepare_purchase_chunk(
             "_jicfs_name",
         ],
     ].copy()
+    prepared["対応商品"] = target_record.loc[eligible].to_numpy(dtype=bool)
     prepared["食事形態"], prepared["その他惣菜_食事中心型振替"] = (
         classify_meal_role(prepared["_jicfs_code"], prepared["_name"])
     )
@@ -500,13 +508,18 @@ def prepare_purchase_chunk(
             },
             {
                 "入力元": source_name,
-                "確認項目": "除外した対応商品行数",
+                "確認項目": "主分析で除外する対応商品行数",
                 "行数": int((in_period & in_cohort & expected_code & target_record).sum()),
             },
             {
                 "入力元": source_name,
-                "確認項目": "最終分析対象行数",
+                "確認項目": "食事関連商品行数（対応商品を含む）",
                 "行数": len(prepared),
+            },
+            {
+                "入力元": source_name,
+                "確認項目": "主分析対象行数（対応商品を除外）",
+                "行数": int((~prepared["対応商品"]).sum()),
             },
             {
                 "入力元": source_name,
@@ -609,6 +622,34 @@ def summarize_groups(user_counts: pd.DataFrame) -> pd.DataFrame:
                     ),
                 }
             )
+    return pd.DataFrame(rows)
+
+
+def summarize_light_share(group_summary: pd.DataFrame) -> pd.DataFrame:
+    """各群の食事関連商品購買記録に占める軽食割合をまとめる。"""
+    rows: list[dict[str, object]] = []
+    for group in GROUP_ORDER:
+        data = group_summary.loc[group_summary["群"].eq(group)]
+        light_count = int(
+            data.loc[data["食事形態"].eq(LIGHT_ROLE), "購買記録数"].iloc[0]
+        )
+        center_count = int(
+            data.loc[data["食事形態"].eq(CENTER_ROLE), "購買記録数"].iloc[0]
+        )
+        total_count = light_count + center_count
+        rows.append(
+            {
+                "群": group,
+                "軽食・補助食型購買記録数": light_count,
+                "食事中心型購買記録数": center_count,
+                "食事関連商品購買記録数": total_count,
+                "軽食・補助食型購買記録割合（%）": (
+                    light_count / total_count * 100
+                    if total_count > 0
+                    else np.nan
+                ),
+            }
+        )
     return pd.DataFrame(rows)
 
 
@@ -748,9 +789,74 @@ def save_group_chart(
     return True
 
 
+def save_light_share_chart(
+    light_share: pd.DataFrame,
+    output_path: Path,
+    title_suffix: str = "",
+) -> bool:
+    """二群の軽食・補助食型購買記録割合を棒グラフで保存する。"""
+    try:
+        import matplotlib.pyplot as plt
+    except ImportError:
+        print("matplotlibがないためグラフ出力をスキップします。")
+        return False
+
+    use_japanese = configure_plot_font()
+    data = light_share.set_index("群").reindex(GROUP_ORDER)
+    values = data["軽食・補助食型購買記録割合（%）"].astype(float).to_numpy()
+    if use_japanese:
+        labels = GROUP_ORDER
+        title = "食事関連商品の購買記録に占める軽食の割合"
+        if title_suffix:
+            title = f"{title}\n{title_suffix}"
+        y_label = "軽食・補助食型購買記録割合（%）"
+    else:
+        labels = ("Purchase-experienced", "No purchase experience")
+        title = "Share of light / supplementary food purchases"
+        if title_suffix:
+            title = f"{title}\n(including target products)"
+        y_label = "Share of purchase records (%)"
+
+    fig, ax = plt.subplots(figsize=(7.2, 5.8))
+    positions = np.array([-0.30, 0.30])
+    bars = ax.bar(
+        positions,
+        values,
+        width=0.44,
+        color=("#8064A2", "#D99694"),
+        edgecolor="#333333",
+        linewidth=1.0,
+    )
+    ax.set_xticks(positions)
+    ax.set_xticklabels(labels)
+    ax.set_xlim(-0.95, 0.95)
+    ax.set_ylim(0, 100)
+    ax.set_title(title, fontsize=16, fontweight="bold", pad=14)
+    ax.set_ylabel(y_label, fontsize=14, fontweight="bold")
+    ax.tick_params(axis="x", labelsize=12, width=1.3)
+    ax.tick_params(axis="y", labelsize=12, width=1.3)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.spines["left"].set_linewidth(1.4)
+    ax.spines["bottom"].set_linewidth(1.4)
+    ax.grid(axis="y", color="#D0D0D0", linewidth=0.8, alpha=0.75)
+    ax.set_axisbelow(True)
+    ax.bar_label(
+        bars,
+        labels=[f"{value:.1f}%" for value in values],
+        padding=4,
+        fontsize=12,
+        fontweight="bold",
+    )
+    fig.tight_layout()
+    fig.savefig(output_path, dpi=300, bbox_inches="tight")
+    plt.close(fig)
+    return True
+
+
 def save_outputs(
     balanced_users: pd.DataFrame,
     purchase_data: pd.DataFrame,
+    purchase_data_including_targets: pd.DataFrame,
     quality_table: pd.DataFrame,
     output_dir: Path,
 ) -> list[Path]:
@@ -759,11 +865,22 @@ def save_outputs(
 
     user_counts = aggregate_user_counts(purchase_data, balanced_users)
     group_summary = summarize_groups(user_counts)
+    light_share = summarize_light_share(group_summary)
     product_classification = build_product_classification_table(purchase_data)
     moved_other_deli = product_classification.loc[
         product_classification["その他惣菜_食事中心型振替"].eq(True)
     ].copy()
     sensitivity = build_sensitivity_summary(purchase_data, balanced_users)
+    user_counts_including_targets = aggregate_user_counts(
+        purchase_data_including_targets,
+        balanced_users,
+    )
+    group_summary_including_targets = summarize_groups(
+        user_counts_including_targets
+    )
+    light_share_including_targets = summarize_light_share(
+        group_summary_including_targets
+    )
 
     output_paths = [
         output_dir / "01_群別購買記録数.csv",
@@ -812,6 +929,51 @@ def save_outputs(
         float_format="%.6f",
     )
     output_paths.append(sensitivity_path)
+
+    light_share_path = output_dir / "09_群別軽食購買記録割合.csv"
+    light_share.to_csv(
+        light_share_path,
+        index=False,
+        encoding="utf-8-sig",
+        float_format="%.6f",
+    )
+    output_paths.append(light_share_path)
+
+    light_share_chart_path = output_dir / "10_群別軽食購買記録割合.png"
+    if save_light_share_chart(light_share, light_share_chart_path):
+        output_paths.append(light_share_chart_path)
+
+    included_summary_path = (
+        output_dir / "11_感度分析_対応商品を含む群別購買記録数.csv"
+    )
+    group_summary_including_targets.to_csv(
+        included_summary_path,
+        index=False,
+        encoding="utf-8-sig",
+        float_format="%.6f",
+    )
+    output_paths.append(included_summary_path)
+
+    included_share_path = (
+        output_dir / "12_感度分析_対応商品を含む群別軽食購買記録割合.csv"
+    )
+    light_share_including_targets.to_csv(
+        included_share_path,
+        index=False,
+        encoding="utf-8-sig",
+        float_format="%.6f",
+    )
+    output_paths.append(included_share_path)
+
+    included_share_chart_path = (
+        output_dir / "13_感度分析_対応商品を含む群別軽食購買記録割合.png"
+    )
+    if save_light_share_chart(
+        light_share_including_targets,
+        included_share_chart_path,
+        title_suffix="（対応商品を含む感度分析）",
+    ):
+        output_paths.append(included_share_chart_path)
     return output_paths
 
 
@@ -866,7 +1028,7 @@ def run(
             f"最終分析対象={len(prepared):,}行"
         )
 
-    purchase_data = pd.concat(
+    purchase_data_including_targets = pd.concat(
         prepared_chunks,
         ignore_index=True,
         sort=False,
@@ -876,8 +1038,16 @@ def run(
     dataframes.clear()
     gc.collect()
 
-    if purchase_data.empty:
+    if purchase_data_including_targets.empty:
         raise ValueError("条件を満たす食事関連商品の購買記録がありません。")
+
+    purchase_data = purchase_data_including_targets.loc[
+        ~purchase_data_including_targets["対応商品"]
+    ].copy()
+    if purchase_data.empty:
+        raise ValueError(
+            "対応商品を除外すると、主分析に使える購買記録がありません。"
+        )
 
     overall_quality = pd.DataFrame(
         [
@@ -893,7 +1063,12 @@ def run(
             },
             {
                 "入力元": "全体",
-                "確認項目": "最終分析対象行数",
+                "確認項目": "食事関連商品行数（対応商品を含む）",
+                "行数": len(purchase_data_including_targets),
+            },
+            {
+                "入力元": "全体",
+                "確認項目": "主分析対象行数（対応商品を除外）",
                 "行数": len(purchase_data),
             },
         ]
@@ -907,6 +1082,7 @@ def run(
     output_paths = save_outputs(
         balanced_users=balanced_users,
         purchase_data=purchase_data,
+        purchase_data_including_targets=purchase_data_including_targets,
         quality_table=quality_table,
         output_dir=output_dir,
     )

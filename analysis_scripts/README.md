@@ -20,7 +20,7 @@ SSDから復元したPythonコードのうち、最終的に実施した本分�
 | No15 | セブンイレブン・栄養バランス | No14の商品×属性集計を用い、若年群（20・30代）と比較群（40・50代）のプール集計、二群比較、シャープレイ分解を全体・男女別に実施 | `No15_pooled_metrics_and_shapley/Input/calculate_pooled_metrics_and_shapley.py` |
 | No16 | セブンイレブン・栄養バランス | 男女20〜30代を対象商品の購買経験の有無で二群に分け、ユニークユーザー数とユーザー別のセブン利用日数を比較 | `No16_compare_seven_usage_days/Input/compare_seven_usage_days.py` |
 | No17 | セブンイレブン・栄養バランス | No16の購買経験群を基準に、購買未経験群から同数かつ利用日数分布が近いユーザーを抽出 | `No17_balance_usage_days/Input/balance_usage_days.py` |
-| No18 | セブンイレブン・栄養バランス | No17で人数・利用日数を揃えた二群について、対応商品を除外した普段の購買記録を「軽食・補助食型」「食事中心型」に分類し、購買記録数を比較 | `No18_compare_meal_role/Input/compare_meal_role.py` |
+| No18 | セブンイレブン・栄養バランス | No17で人数・利用日数を揃えた二群について、普段の購買記録を「軽食・補助食型」「食事中心型」に分類し、購買記録数と軽食割合を比較。主分析では対応商品を除外し、含めた結果も感度分析として保存 | `No18_compare_meal_role/Input/compare_meal_role.py` |
 
 ## 実行順
 
