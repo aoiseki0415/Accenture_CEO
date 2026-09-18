@@ -39,7 +39,8 @@ No25のOutputへ、必要な3ファイルだけを保存する。
 
 * 01_属性別分析結果.csv
 * 02_相関分析結果.csv
-* 03_属性間相関_散布図.png
+* 03_属性間傾向_散布図_統計なし.png
+* 04_属性間相関_散布図_統計あり.png
 
 注意
 ----
@@ -891,6 +892,7 @@ def save_scatter_plot(
     result_table: pd.DataFrame,
     correlation_table: pd.DataFrame,
     output_path: Path,
+    show_statistics: bool,
 ) -> None:
     try:
         import matplotlib.pyplot as plt
@@ -916,7 +918,7 @@ def save_scatter_plot(
         ax.scatter(
             data[x_column],
             data[y_column],
-            s=90,
+            s=180,
             color=colors[gender],
             edgecolor="#333333",
             linewidth=0.8,
@@ -933,11 +935,13 @@ def save_scatter_plot(
             ax.annotate(
                 label,
                 (float(row[x_column]), float(row[y_column])),
-                xytext=(5, 5),
+                xytext=(7, 7),
                 textcoords="offset points",
-                fontsize=10,
+                fontsize=14,
+                fontweight="bold",
             )
 
+    regression_text = ""
     if valid[x_column].nunique() >= 2:
         slope, intercept = np.polyfit(
             valid[x_column].astype(float),
@@ -957,22 +961,33 @@ def save_scatter_plot(
             linewidth=1.4,
             zorder=2,
         )
+        sign = "+" if intercept >= 0 else "−"
+        regression_text = (
+            f"y = {slope:.3f}x {sign} {abs(intercept):.3f}"
+        )
 
-    spearman = correlation_table.loc[
-        correlation_table["相関手法"].eq("スピアマンの順位相関")
-    ].iloc[0]
-    rho_text = f"Spearman ρ = {float(spearman['相関係数']):.3f}"
-    if pd.notna(spearman["p値"]):
-        rho_text += f"\np = {float(spearman['p値']):.3f}"
-    rho_text += f"\nn = {int(spearman['属性数'])}"
+    annotation_lines: list[str] = []
+    if show_statistics:
+        spearman = correlation_table.loc[
+            correlation_table["相関手法"].eq("スピアマンの順位相関")
+        ].iloc[0]
+        annotation_lines.append(
+            f"Spearman ρ = {float(spearman['相関係数']):.3f}"
+        )
+        if pd.notna(spearman["p値"]):
+            annotation_lines.append(f"p = {float(spearman['p値']):.3f}")
+    if regression_text:
+        equation_label = "回帰式" if use_japanese else "Linear fit"
+        annotation_lines.append(f"{equation_label}: {regression_text}")
+
     ax.text(
         0.03,
         0.97,
-        rho_text,
+        "\n".join(annotation_lines),
         transform=ax.transAxes,
         ha="left",
         va="top",
-        fontsize=12,
+        fontsize=13,
         bbox={
             "boxstyle": "round,pad=0.4",
             "facecolor": "white",
@@ -993,13 +1008,13 @@ def save_scatter_plot(
     ax.set_title(title, fontsize=17, fontweight="bold", pad=16)
     ax.set_xlabel(x_label, fontsize=13, fontweight="bold")
     ax.set_ylabel(y_label, fontsize=13, fontweight="bold")
-    ax.tick_params(axis="both", labelsize=11, width=1.2)
+    ax.set_xlim(1.5, 11.5)
+    ax.tick_params(axis="both", labelsize=15, width=1.4)
     ax.spines[["top", "right"]].set_visible(False)
     ax.spines["left"].set_linewidth(1.3)
     ax.spines["bottom"].set_linewidth(1.3)
-    ax.axvline(0, color="#AAAAAA", linewidth=0.9, linestyle=":")
     ax.grid(color="#D8D8D8", linewidth=0.8, alpha=0.65)
-    ax.legend(frameon=False, fontsize=11)
+    ax.legend(frameon=False, fontsize=13)
     fig.tight_layout()
     fig.savefig(output_path, dpi=300, bbox_inches="tight", facecolor="white")
     plt.close(fig)
@@ -1015,7 +1030,7 @@ def run(
     product_source_dir: Optional[Path] = None,
     purchase_index_path: Optional[Path] = None,
     output_dir: Optional[Path] = None,
-) -> tuple[Path, Path, Path]:
+) -> tuple[Path, Path, Path, Path]:
     project_dir = Path(__file__).resolve().parents[1]
     workspace_dir = project_dir.parent
     product_source_dir = product_source_dir or (
@@ -1074,7 +1089,12 @@ def run(
 
     result_path = output_dir / "01_属性別分析結果.csv"
     correlation_path = output_dir / "02_相関分析結果.csv"
-    figure_path = output_dir / "03_属性間相関_散布図.png"
+    figure_without_statistics_path = (
+        output_dir / "03_属性間傾向_散布図_統計なし.png"
+    )
+    figure_with_statistics_path = (
+        output_dir / "04_属性間相関_散布図_統計あり.png"
+    )
 
     result_table.to_csv(
         result_path,
@@ -1088,13 +1108,30 @@ def run(
         encoding="utf-8-sig",
         float_format="%.6f",
     )
-    save_scatter_plot(result_table, correlation_table, figure_path)
+    save_scatter_plot(
+        result_table,
+        correlation_table,
+        figure_without_statistics_path,
+        show_statistics=False,
+    )
+    save_scatter_plot(
+        result_table,
+        correlation_table,
+        figure_with_statistics_path,
+        show_statistics=True,
+    )
 
     print("\nNo25の属性横断相関分析が完了しました。")
     print(f"属性別結果: {result_path}")
     print(f"相関結果:   {correlation_path}")
-    print(f"散布図:     {figure_path}")
-    return result_path, correlation_path, figure_path
+    print(f"散布図（統計なし）: {figure_without_statistics_path}")
+    print(f"散布図（統計あり）: {figure_with_statistics_path}")
+    return (
+        result_path,
+        correlation_path,
+        figure_without_statistics_path,
+        figure_with_statistics_path,
+    )
 
 
 def main() -> None:
