@@ -1,0 +1,823 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/jetc3ut0",
+    "id": "jetc3ut0",
+    "slide": 11,
+    "layoutId": "/ppt/slideLayouts/slideLayout73.xml",
+    "layoutName": "16_ユーザー設定レイアウト",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster4.xml",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "紫",
+    "colors": {
+      "accent1": "#AD84C6",
+      "accent2": "#8784C7",
+      "accent3": "#5D739A",
+      "accent4": "#6997AF",
+      "accent5": "#84ACB6",
+      "accent6": "#6F8183",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#373545",
+      "lt2": "#DCD8DC",
+      "hlink": "#69A020",
+      "folHlink": "#8C8C8C"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "游ゴシック Light"
+      },
+      "minorFont": {
+        "latinTypeface": "游ゴシック"
+      }
+    },
+    "typefaces": [
+      "游ゴシック",
+      "游ゴシック Light",
+      "源ノ角ゴシック JP"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout73.xml",
+      "name": "16_ユーザー設定レイアウト",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster4.xml",
+      "backgroundColor": "rgba(245, 237, 233, 0.04)",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout73.xml/6",
+          "id": "6",
+          "name": "テキスト ボックス 5",
+          "bbox": [
+            12.24,
+            10.95,
+            270.91,
+            26.66
+          ],
+          "geometry": "rect",
+          "text": "問題特定｜まとめ",
+          "textPreview": "問題特定｜まとめ",
+          "resolvedTextStyle": {
+            "wrap": "square",
+            "autoFit": "resizeShapeToFitText"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "問題特定｜まとめ",
+              "lineSpacingPercent": 100000,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "問題特定｜まとめ",
+                  "fontSize": 14,
+                  "typeface": "源ノ角ゴシック JP"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout73.xml/2",
+          "id": "2",
+          "name": "テキスト ボックス 1",
+          "bbox": [
+            1220.08,
+            686.17,
+            59.92,
+            27.47
+          ],
+          "geometry": "rect",
+          "text": "11",
+          "textPreview": "11",
+          "resolvedTextStyle": {
+            "wrap": "square",
+            "autoFit": "resizeShapeToFitText"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "11",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "11",
+                  "fontSize": 14.67
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster4.xml",
+      "type": "master",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster4.xml/2",
+          "id": "2",
+          "name": "Title Placeholder 1",
+          "bbox": [
+            88,
+            38.33,
+            1104,
+            139.17
+          ],
+          "geometry": "rect",
+          "text": "マスター タイトルの書式設定",
+          "textPreview": "マスター タイトルの書式設定",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "マスター タイトルの書式設定",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "マスター タイトルの書式設定"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster4.xml/3",
+          "id": "3",
+          "name": "Text Placeholder 2",
+          "bbox": [
+            88,
+            191.67,
+            1104,
+            456.83
+          ],
+          "geometry": "rect",
+          "text": "マスター テキストの書式設定\n第 2 レベル\n第 3 レベル\n第 4 レベル\n第 5 レベル",
+          "textPreview": "マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル",
+          "resolvedTextStyle": {
+            "vertical": 1,
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "マスター テキストの書式設定",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "マスター テキストの書式設定"
+                }
+              ]
+            },
+            {
+              "index": 2,
+              "text": "第 2 レベル",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "第 "
+                },
+                {
+                  "index": 2,
+                  "text": "2 "
+                },
+                {
+                  "index": 3,
+                  "text": "レベル"
+                }
+              ]
+            },
+            {
+              "index": 3,
+              "text": "第 3 レベル",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "第 "
+                },
+                {
+                  "index": 2,
+                  "text": "3 "
+                },
+                {
+                  "index": 3,
+                  "text": "レベル"
+                }
+              ]
+            },
+            {
+              "index": 4,
+              "text": "第 4 レベル",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "第 "
+                },
+                {
+                  "index": 2,
+                  "text": "4 "
+                },
+                {
+                  "index": 3,
+                  "text": "レベル"
+                }
+              ]
+            },
+            {
+              "index": 5,
+              "text": "第 5 レベル",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "第 "
+                },
+                {
+                  "index": 2,
+                  "text": "5 "
+                },
+                {
+                  "index": 3,
+                  "text": "レベル"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster4.xml/4",
+          "id": "4",
+          "name": "Date Placeholder 3",
+          "bbox": [
+            88,
+            667.33,
+            288,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "2026/9/22",
+          "textPreview": "2026/9/22",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "2026/9/22",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "2026/9/22"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster4.xml/5",
+          "id": "5",
+          "name": "Footer Placeholder 4",
+          "bbox": [
+            424,
+            667.33,
+            432,
+            38.33
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          }
+        },
+        {
+          "order": 5,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster4.xml/6",
+          "id": "6",
+          "name": "Slide Number Placeholder 5",
+          "bbox": [
+            904,
+            667.33,
+            288,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "‹#›",
+          "textPreview": "‹#›",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "‹#›",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "‹#›"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xcryxg7y",
+      "id": "2",
+      "name": "テキスト ボックス 1",
+      "bbox": [
+        23.5,
+        50.93,
+        1115.48,
+        53.29
+      ],
+      "geometry": "rect",
+      "text": "健康ニーズに対するセブンイレブンの「対応」について３つの問題が特定された",
+      "textPreview": "健康ニーズに対するセブンイレブンの「対応」について３つの問題が特定された",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "vertical": 1,
+        "rotation": 0,
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 8.79,
+          "right": 8.79,
+          "bottom": 8.79,
+          "left": 8.79
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "健康ニーズに対するセブンイレブンの「対応」について３つの問題が特定された"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "健康ニーズに対するセブンイレブンの「対応」について３つの問題が特定された",
+          "runs": [
+            {
+              "index": 1,
+              "text": "健康ニーズに対するセブンイレブンの「対応」について３つの問題が特定された",
+              "fontSize": 29.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#42557A",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 2.67
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/250zy18b",
+      "id": "5",
+      "name": "テキスト ボックス 4",
+      "bbox": [
+        135.09,
+        360,
+        1009.83,
+        45.77
+      ],
+      "geometry": "rect",
+      "text": "・若年男性において「エネルギーを減らしたい」ニーズに対する「対応」の適切さが低い",
+      "textPreview": "・若年男性において「エネルギーを減らしたい」ニーズに対する「対応」の適切さが低い",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "・若年男性において「エネルギーを減らしたい」ニーズに対する「対応」の適切さが低い"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "・若年男性において「エネルギーを減らしたい」ニーズに対する「対応」の適切さが低い",
+          "runs": [
+            {
+              "index": 1,
+              "text": "・若年男性において「エネルギーを",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 2,
+              "text": "減らしたい",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#CE4D44"
+            },
+            {
+              "index": 3,
+              "text": "」ニーズに対する「対応」の",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 4,
+              "text": "適切さが低い",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/98rytw72",
+      "id": "6",
+      "name": "テキスト ボックス 5",
+      "bbox": [
+        135.09,
+        595.5,
+        1009.83,
+        45.77
+      ],
+      "geometry": "rect",
+      "text": "・属性を問わず「脂質を減らしたい」ニーズに対する「対応」の実施量が不十分である",
+      "textPreview": "・属性を問わず「脂質を減らしたい」ニーズに対する「対応」の実施量が不十分である",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "・属性を問わず「脂質を減らしたい」ニーズに対する「対応」の実施量が不十分である"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "・属性を問わず「脂質を減らしたい」ニーズに対する「対応」の実施量が不十分である",
+          "runs": [
+            {
+              "index": 1,
+              "text": "・属性を問わず「脂質を",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 2,
+              "text": "減らしたい",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#CE4D44"
+            },
+            {
+              "index": 3,
+              "text": "」ニーズに対する「対応」の",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 4,
+              "text": "実施量が不十分である",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/n69grmpw",
+      "id": "4",
+      "name": "テキスト ボックス 3",
+      "bbox": [
+        135.09,
+        124.5,
+        1009.83,
+        45.77
+      ],
+      "geometry": "rect",
+      "text": "・若年層を中心に「栄養バランスを調整したい」ニーズに対する「対応」の適切さが低い",
+      "textPreview": "・若年層を中心に「栄養バランスを調整したい」ニーズに対する「対応」の適切さが低い",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "・若年層を中心に「栄養バランスを調整したい」ニーズに対する「対応」の適切さが低い"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "・若年層を中心に「栄養バランスを調整したい」ニーズに対する「対応」の適切さが低い",
+          "runs": [
+            {
+              "index": 1,
+              "text": "・若年層を中心に「栄養バランスを",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 2,
+              "text": "調整したい",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#599975"
+            },
+            {
+              "index": 3,
+              "text": "」ニーズに対する「対応」の",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 4,
+              "text": "適切さが低い",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/o7ih0r6h",
+      "id": "7",
+      "name": "テキスト ボックス 6",
+      "bbox": [
+        160.4,
+        181.1,
+        657.47,
+        38.7
+      ],
+      "geometry": "rect",
+      "text": "一方で、他社では若年層に対する「対応」の適切さが高い",
+      "textPreview": "一方で、他社では若年層に対する「対応」の適切さが高い",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "一方で、他社では若年層に対する「対応」の適切さが高い"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "一方で、他社では若年層に対する「対応」の適切さが高い",
+          "runs": [
+            {
+              "index": 1,
+              "text": "一方で、他社では若年層に対する「対応」の適切さが高い",
+              "typeface": "源ノ角ゴシック JP",
+              "color": {
+                "type": "theme",
+                "value": "tx1",
+                "transform": {
+                  "lighten": 0.25
+                }
+              }
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/72t03qp0",
+      "id": "8",
+      "name": "テキスト ボックス 7",
+      "bbox": [
+        160.88,
+        232.26,
+        834.22,
+        38.7
+      ],
+      "geometry": "rect",
+      "text": "→ 「対応」の適切さを改善し、他社と同程度の水準に追いつく必要がある",
+      "textPreview": "→ 「対応」の適切さを改善し、他社と同程度の水準に追いつく必要がある",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "→ 「対応」の適切さを改善し、他社と同程度の水準に追いつく必要がある"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "→ 「対応」の適切さを改善し、他社と同程度の水準に追いつく必要がある",
+          "runs": [
+            {
+              "index": 1,
+              "text": "→",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#C00000"
+            },
+            {
+              "index": 2,
+              "text": " ",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#C00000"
+            },
+            {
+              "index": 3,
+              "text": "「対応」の適切さを改善し、",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#C00000"
+            },
+            {
+              "index": 4,
+              "text": "他社と同程度の水準に追いつく必要がある",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#C00000"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    }
+  ],
+  "composeRuns": []
+}

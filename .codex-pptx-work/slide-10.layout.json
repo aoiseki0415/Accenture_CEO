@@ -1,0 +1,2219 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/m90b6t0r",
+    "id": "m90b6t0r",
+    "slide": 10,
+    "layoutId": "/ppt/slideLayouts/slideLayout72.xml",
+    "layoutName": "15_ユーザー設定レイアウト",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster4.xml",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "紫",
+    "colors": {
+      "accent1": "#AD84C6",
+      "accent2": "#8784C7",
+      "accent3": "#5D739A",
+      "accent4": "#6997AF",
+      "accent5": "#84ACB6",
+      "accent6": "#6F8183",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#373545",
+      "lt2": "#DCD8DC",
+      "hlink": "#69A020",
+      "folHlink": "#8C8C8C"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "游ゴシック Light"
+      },
+      "minorFont": {
+        "latinTypeface": "游ゴシック"
+      }
+    },
+    "typefaces": [
+      "Source Han Sans JP",
+      "游ゴシック",
+      "游ゴシック Light",
+      "源ノ角ゴシック JP"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout72.xml",
+      "name": "15_ユーザー設定レイアウト",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster4.xml",
+      "backgroundColor": "rgba(245, 237, 233, 0.04)",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout72.xml/6",
+          "id": "6",
+          "name": "テキスト ボックス 5",
+          "bbox": [
+            12.24,
+            10.95,
+            270.91,
+            26.66
+          ],
+          "geometry": "rect",
+          "text": "問題特定｜適切さの評価",
+          "textPreview": "問題特定｜適切さの評価",
+          "resolvedTextStyle": {
+            "wrap": "square",
+            "autoFit": "resizeShapeToFitText"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "問題特定｜適切さの評価",
+              "lineSpacingPercent": 100000,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "問題特定｜適切さの評価",
+                  "fontSize": 14,
+                  "typeface": "源ノ角ゴシック JP"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout72.xml/2",
+          "id": "2",
+          "name": "テキスト ボックス 1",
+          "bbox": [
+            1220.08,
+            686.17,
+            59.92,
+            27.47
+          ],
+          "geometry": "rect",
+          "text": "10",
+          "textPreview": "10",
+          "resolvedTextStyle": {
+            "wrap": "square",
+            "autoFit": "resizeShapeToFitText"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "10",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "10",
+                  "fontSize": 14.67
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster4.xml",
+      "type": "master",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster4.xml/2",
+          "id": "2",
+          "name": "Title Placeholder 1",
+          "bbox": [
+            88,
+            38.33,
+            1104,
+            139.17
+          ],
+          "geometry": "rect",
+          "text": "マスター タイトルの書式設定",
+          "textPreview": "マスター タイトルの書式設定",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "マスター タイトルの書式設定",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "マスター タイトルの書式設定"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster4.xml/3",
+          "id": "3",
+          "name": "Text Placeholder 2",
+          "bbox": [
+            88,
+            191.67,
+            1104,
+            456.83
+          ],
+          "geometry": "rect",
+          "text": "マスター テキストの書式設定\n第 2 レベル\n第 3 レベル\n第 4 レベル\n第 5 レベル",
+          "textPreview": "マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル",
+          "resolvedTextStyle": {
+            "vertical": 1,
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "マスター テキストの書式設定",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "マスター テキストの書式設定"
+                }
+              ]
+            },
+            {
+              "index": 2,
+              "text": "第 2 レベル",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "第 "
+                },
+                {
+                  "index": 2,
+                  "text": "2 "
+                },
+                {
+                  "index": 3,
+                  "text": "レベル"
+                }
+              ]
+            },
+            {
+              "index": 3,
+              "text": "第 3 レベル",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "第 "
+                },
+                {
+                  "index": 2,
+                  "text": "3 "
+                },
+                {
+                  "index": 3,
+                  "text": "レベル"
+                }
+              ]
+            },
+            {
+              "index": 4,
+              "text": "第 4 レベル",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "第 "
+                },
+                {
+                  "index": 2,
+                  "text": "4 "
+                },
+                {
+                  "index": 3,
+                  "text": "レベル"
+                }
+              ]
+            },
+            {
+              "index": 5,
+              "text": "第 5 レベル",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "第 "
+                },
+                {
+                  "index": 2,
+                  "text": "5 "
+                },
+                {
+                  "index": 3,
+                  "text": "レベル"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster4.xml/4",
+          "id": "4",
+          "name": "Date Placeholder 3",
+          "bbox": [
+            88,
+            667.33,
+            288,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "2026/9/22",
+          "textPreview": "2026/9/22",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "2026/9/22",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "2026/9/22"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster4.xml/5",
+          "id": "5",
+          "name": "Footer Placeholder 4",
+          "bbox": [
+            424,
+            667.33,
+            432,
+            38.33
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          }
+        },
+        {
+          "order": 5,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster4.xml/6",
+          "id": "6",
+          "name": "Slide Number Placeholder 5",
+          "bbox": [
+            904,
+            667.33,
+            288,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "‹#›",
+          "textPreview": "‹#›",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "‹#›",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "‹#›"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xc3mho32",
+      "id": "2",
+      "name": "テキスト ボックス 1",
+      "bbox": [
+        23.5,
+        50.37,
+        892.84,
+        93.15
+      ],
+      "geometry": "rect",
+      "text": "セブンイレブンでは、若年男性においてエネルギーへの「対応」の\n適切さが低い",
+      "textPreview": "セブンイレブンでは、若年男性においてエネルギーへの「対応」の | 適切さが低い",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "vertical": 1,
+        "rotation": 0,
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 8.79,
+          "right": 8.79,
+          "bottom": 8.79,
+          "left": 8.79
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "セブンイレブンでは、若年男性においてエネルギーへの「対応」の"
+          },
+          {
+            "index": 2,
+            "text": "適切さが低い"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "セブンイレブンでは、若年男性においてエネルギーへの「対応」の",
+          "runs": [
+            {
+              "index": 1,
+              "text": "セブンイレブンでは、若年男性においてエネルギーへの「対応」の",
+              "fontSize": 28,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#42557A",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "適切さが低い",
+          "runs": [
+            {
+              "index": 1,
+              "text": "適切さが低い",
+              "fontSize": 28,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#42557A",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 2.67
+    },
+    {
+      "order": 2,
+      "kind": "table",
+      "scope": "slide",
+      "aid": "tb/rq1cj65s",
+      "id": "32",
+      "name": "表 6",
+      "bbox": [
+        44.15,
+        305.66,
+        839.06,
+        124.73
+      ],
+      "text": "健康ニーズ | 男性20代 | 男性30代 | 男性40代 | 男性50代 | 男性60代 | 男性70代\nエネルギーを\n減らしたい | 記録数：0.48\n低い | 記録数：0.90\n低い | 記録数：2.29\n中程度 | 記録数：2.01\n中程度 | 記録数：1.61\n中程度 | 記録数：3.22\n高い",
+      "textPreview": "健康ニーズ | 男性20代 | 男性30代 | 男性40代 | 男性50代 | 男性60代 | 男性70代 | エネルギーを | 減らしたい | 記録数：0.48 | 低い | 記録数：0.90 | 低い | 記録数：2.29 | 中程度 | 記録数：2.01 | 中程度 ...",
+      "rows": 2,
+      "cols": 7,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "bbox": [
+            44.15,
+            305.66,
+            136.06,
+            49.13
+          ],
+          "text": "健康ニーズ",
+          "textPreview": "健康ニーズ",
+          "fillColor": "#F5EDE9",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "健康ニーズ",
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "健康ニーズ",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "bbox": [
+            180.21,
+            305.66,
+            117.17,
+            49.13
+          ],
+          "text": "男性20代",
+          "textPreview": "男性20代",
+          "fillColor": "#F5EDE9",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "男性20代",
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "男性",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                },
+                {
+                  "index": 2,
+                  "text": "20",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                },
+                {
+                  "index": 3,
+                  "text": "代",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "row": 1,
+          "column": 3,
+          "bbox": [
+            297.38,
+            305.66,
+            117.17,
+            49.13
+          ],
+          "text": "男性30代",
+          "textPreview": "男性30代",
+          "fillColor": "#F5EDE9",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "男性30代",
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "男性",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                },
+                {
+                  "index": 2,
+                  "text": "30",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                },
+                {
+                  "index": 3,
+                  "text": "代",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "row": 1,
+          "column": 4,
+          "bbox": [
+            414.54,
+            305.66,
+            117.17,
+            49.13
+          ],
+          "text": "男性40代",
+          "textPreview": "男性40代",
+          "fillColor": "#F5EDE9",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "男性40代",
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "男性",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                },
+                {
+                  "index": 2,
+                  "text": "40",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                },
+                {
+                  "index": 3,
+                  "text": "代",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "row": 1,
+          "column": 5,
+          "bbox": [
+            531.71,
+            305.66,
+            117.17,
+            49.13
+          ],
+          "text": "男性50代",
+          "textPreview": "男性50代",
+          "fillColor": "#F5EDE9",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "男性50代",
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "男性",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                },
+                {
+                  "index": 2,
+                  "text": "50",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                },
+                {
+                  "index": 3,
+                  "text": "代",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "row": 1,
+          "column": 6,
+          "bbox": [
+            648.87,
+            305.66,
+            117.17,
+            49.13
+          ],
+          "text": "男性60代",
+          "textPreview": "男性60代",
+          "fillColor": "#F5EDE9",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "男性60代",
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "男性",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                },
+                {
+                  "index": 2,
+                  "text": "60",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                },
+                {
+                  "index": 3,
+                  "text": "代",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "row": 1,
+          "column": 7,
+          "bbox": [
+            766.04,
+            305.66,
+            117.17,
+            49.13
+          ],
+          "text": "男性70代",
+          "textPreview": "男性70代",
+          "fillColor": "#F5EDE9",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "男性70代",
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "男性",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                },
+                {
+                  "index": 2,
+                  "text": "70",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                },
+                {
+                  "index": 3,
+                  "text": "代",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.15
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "row": 2,
+          "column": 1,
+          "bbox": [
+            44.15,
+            354.8,
+            136.06,
+            75.59
+          ],
+          "text": "エネルギーを\n減らしたい",
+          "textPreview": "エネルギーを | 減らしたい",
+          "fillColor": "#F5EDE9",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "エネルギーを",
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "エネルギーを",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.25
+                    }
+                  },
+                  "textTransform": "none"
+                }
+              ]
+            },
+            {
+              "index": 2,
+              "text": "減らしたい",
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "減らしたい",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": {
+                    "type": "theme",
+                    "value": "tx1",
+                    "transform": {
+                      "lighten": 0.25
+                    }
+                  },
+                  "textTransform": "none"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "row": 2,
+          "column": 2,
+          "bbox": [
+            180.21,
+            354.8,
+            117.17,
+            75.59
+          ],
+          "text": "記録数：0.48\n低い",
+          "textPreview": "記録数：0.48 | 低い",
+          "fillColor": "rgba(206, 77, 68, 0.15)",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "記録数：0.48\n低い",
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "記録数：",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#CE4D44",
+                  "textTransform": "none"
+                },
+                {
+                  "index": 2,
+                  "text": "0.48",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#CE4D44",
+                  "textTransform": "none"
+                },
+                {
+                  "index": 3,
+                  "text": "\n",
+                  "alignment": "left"
+                },
+                {
+                  "index": 4,
+                  "text": "低い",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#CE4D44",
+                  "textTransform": "none"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "row": 2,
+          "column": 3,
+          "bbox": [
+            297.38,
+            354.8,
+            117.17,
+            75.59
+          ],
+          "text": "記録数：0.90\n低い",
+          "textPreview": "記録数：0.90 | 低い",
+          "fillColor": "rgba(206, 77, 68, 0.15)",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "記録数：0.90\n低い",
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "記録数：",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#CE4D44",
+                  "textTransform": "none"
+                },
+                {
+                  "index": 2,
+                  "text": "0.90",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#CE4D44",
+                  "textTransform": "none"
+                },
+                {
+                  "index": 3,
+                  "text": "\n",
+                  "alignment": "left"
+                },
+                {
+                  "index": 4,
+                  "text": "低い",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#CE4D44",
+                  "textTransform": "none"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "row": 2,
+          "column": 4,
+          "bbox": [
+            414.54,
+            354.8,
+            117.17,
+            75.59
+          ],
+          "text": "記録数：2.29\n中程度",
+          "textPreview": "記録数：2.29 | 中程度",
+          "fillColor": "#FFFFFF",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "記録数：2.29\n中程度",
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "記録数：",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#E27A1C",
+                  "textTransform": "none"
+                },
+                {
+                  "index": 2,
+                  "text": "2.29",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#E27A1C",
+                  "textTransform": "none"
+                },
+                {
+                  "index": 3,
+                  "text": "\n",
+                  "alignment": "left"
+                },
+                {
+                  "index": 4,
+                  "text": "中程度",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#E27A1C",
+                  "textTransform": "none"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "row": 2,
+          "column": 5,
+          "bbox": [
+            531.71,
+            354.8,
+            117.17,
+            75.59
+          ],
+          "text": "記録数：2.01\n中程度",
+          "textPreview": "記録数：2.01 | 中程度",
+          "fillColor": "#FFFFFF",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "記録数：2.01\n中程度",
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "記録数：",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#E27A1C",
+                  "textTransform": "none"
+                },
+                {
+                  "index": 2,
+                  "text": "2.01",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#E27A1C",
+                  "textTransform": "none"
+                },
+                {
+                  "index": 3,
+                  "text": "\n",
+                  "alignment": "left"
+                },
+                {
+                  "index": 4,
+                  "text": "中程度",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#E27A1C",
+                  "textTransform": "none"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 13,
+          "row": 2,
+          "column": 6,
+          "bbox": [
+            648.87,
+            354.8,
+            117.17,
+            75.59
+          ],
+          "text": "記録数：1.61\n中程度",
+          "textPreview": "記録数：1.61 | 中程度",
+          "fillColor": "#FFFFFF",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "記録数：1.61\n中程度",
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "記録数：",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#E27A1C",
+                  "textTransform": "none"
+                },
+                {
+                  "index": 2,
+                  "text": "1.61",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#E27A1C",
+                  "textTransform": "none"
+                },
+                {
+                  "index": 3,
+                  "text": "\n",
+                  "alignment": "left"
+                },
+                {
+                  "index": 4,
+                  "text": "中程度",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#E27A1C",
+                  "textTransform": "none"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 14,
+          "row": 2,
+          "column": 7,
+          "bbox": [
+            766.04,
+            354.8,
+            117.17,
+            75.59
+          ],
+          "text": "記録数：3.22\n高い",
+          "textPreview": "記録数：3.22 | 高い",
+          "fillColor": "#FFFFFF",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "記録数：3.22\n高い",
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "記録数：",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#599975",
+                  "textTransform": "none"
+                },
+                {
+                  "index": 2,
+                  "text": "3.22",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#599975",
+                  "textTransform": "none"
+                },
+                {
+                  "index": 3,
+                  "text": "\n",
+                  "alignment": "left"
+                },
+                {
+                  "index": 4,
+                  "text": "高い",
+                  "fontSize": 16,
+                  "typeface": "Source Han Sans JP",
+                  "color": "#599975",
+                  "textTransform": "none"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s7yt4b21",
+      "id": "10",
+      "name": "正方形/長方形 9",
+      "bbox": [
+        44.15,
+        159.91,
+        433.57,
+        88.44
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": {
+        "type": "theme",
+        "value": "bg1",
+        "transform": {
+          "opacity": 0.3,
+          "darken": 0.05
+        }
+      },
+      "lineColor": {
+        "type": "theme",
+        "value": "tx1",
+        "transform": {
+          "lighten": 0.35
+        }
+      },
+      "lineWidth": 1.33
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/d87uxg3m",
+      "id": "11",
+      "name": "テキスト ボックス 10",
+      "bbox": [
+        51.5,
+        172.23,
+        415.42,
+        31.5
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "購買記録数（件 / 1000人）：",
+      "textPreview": "購買記録数（件 / 1000人）：",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "購買記録数（件 / 1000人）："
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "購買記録数（件 / 1000人）：",
+          "runs": [
+            {
+              "index": 1,
+              "text": "購買記録数（件",
+              "fontSize": 18,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 2,
+              "text": " / 1000",
+              "fontSize": 18,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 3,
+              "text": "人）：",
+              "fontSize": 18,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q5gb21kb",
+      "id": "12",
+      "name": "テキスト ボックス 11",
+      "bbox": [
+        51.5,
+        207.08,
+        399.82,
+        31.5
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "適切さの評価：高い / 中程度 / 低い ",
+      "textPreview": "適切さの評価：高い / 中程度 / 低い",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "適切さの評価：高い / 中程度 / 低い"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "適切さの評価：高い / 中程度 / 低い ",
+          "runs": [
+            {
+              "index": 1,
+              "text": "適切さの評価：",
+              "fontSize": 18,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 2,
+              "text": "高い",
+              "fontSize": 18,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#599975"
+            },
+            {
+              "index": 3,
+              "text": " / ",
+              "fontSize": 18,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 4,
+              "text": "中程度",
+              "fontSize": 18,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#E27A1C"
+            },
+            {
+              "index": 5,
+              "text": " ",
+              "fontSize": 18,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#E27A1C"
+            },
+            {
+              "index": 6,
+              "text": "/ ",
+              "fontSize": 18,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 7,
+              "text": "低い",
+              "fontSize": 18,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#CE4D44"
+            },
+            {
+              "index": 8,
+              "text": " ",
+              "fontSize": 18,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0bit8b2d",
+      "id": "14",
+      "name": "テキスト ボックス 13",
+      "bbox": [
+        905.69,
+        294.77,
+        347.37,
+        73.26
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "購買記録数に基づき、適切さを\n（ 高い / 中程度 / 低い ）で評価した",
+      "textPreview": "購買記録数に基づき、適切さを | （ 高い / 中程度 / 低い ）で評価した",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "購買記録数に基づき、適切さを"
+          },
+          {
+            "index": 2,
+            "text": "（ 高い / 中程度 / 低い ）で評価した"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "購買記録数に基づき、適切さを\n（ 高い / 中程度 / 低い ）で評価した",
+          "runs": [
+            {
+              "index": 1,
+              "text": "購買記録数に基づき、適切さを",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 2,
+              "text": "\n"
+            },
+            {
+              "index": 3,
+              "text": "（",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 4,
+              "text": " ",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 5,
+              "text": "高い",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#599975"
+            },
+            {
+              "index": 6,
+              "text": " / ",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 7,
+              "text": "中程度",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#E27A1C"
+            },
+            {
+              "index": 8,
+              "text": " ",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#E27A1C"
+            },
+            {
+              "index": 9,
+              "text": "/ ",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 10,
+              "text": "低い",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#CE4D44"
+            },
+            {
+              "index": 11,
+              "text": " ",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 12,
+              "text": "）で評価した",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1cru1g3y",
+      "id": "15",
+      "name": "テキスト ボックス 14",
+      "bbox": [
+        916.53,
+        388.5,
+        230.59,
+        110.62
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "高い：3.01以上\n中程度：1.04–3.00\n低い：0–1.03",
+      "textPreview": "高い：3.01以上 | 中程度：1.04–3.00 | 低い：0–1.03",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "高い：3.01以上"
+          },
+          {
+            "index": 2,
+            "text": "中程度：1.04–3.00"
+          },
+          {
+            "index": 3,
+            "text": "低い：0–1.03"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "高い：3.01以上",
+          "runs": [
+            {
+              "index": 1,
+              "text": "高い",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#599975"
+            },
+            {
+              "index": 2,
+              "text": "：",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 3,
+              "text": "3.01",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 4,
+              "text": "以上",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "中程度：1.04–3.00",
+          "runs": [
+            {
+              "index": 1,
+              "text": "中程度",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#E27A1C"
+            },
+            {
+              "index": 2,
+              "text": "：",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 3,
+              "text": "1.04–3.00",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "低い：0–1.03",
+          "runs": [
+            {
+              "index": 1,
+              "text": "低い",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#CE4D44"
+            },
+            {
+              "index": 2,
+              "text": "：",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 3,
+              "text": "0–1.03",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fapcz6ls",
+      "id": "17",
+      "name": "テキスト ボックス 16",
+      "bbox": [
+        39.22,
+        266.07,
+        60.67,
+        39.6
+      ],
+      "geometry": "rect",
+      "text": "男性",
+      "textPreview": "男性",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "男性"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "男性",
+          "runs": [
+            {
+              "index": 1,
+              "text": "男性",
+              "fontSize": 19.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jypcrqd4",
+      "id": "26",
+      "name": "テキスト ボックス 25",
+      "bbox": [
+        222.53,
+        643.83,
+        834.93,
+        40.72
+      ],
+      "geometry": "rect",
+      "text": "若年男性において適切さが低いという問題は、他社においても確認された",
+      "textPreview": "若年男性において適切さが低いという問題は、他社においても確認された",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "若年男性において適切さが低いという問題は、他社においても確認された"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "若年男性において適切さが低いという問題は、他社においても確認された",
+          "runs": [
+            {
+              "index": 1,
+              "text": "若年男性において適切さが低いという問題は、他社においても確認された",
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#C00000"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kjytkvup",
+      "id": "25",
+      "name": "テキスト ボックス 24",
+      "bbox": [
+        498.81,
+        263.61,
+        396,
+        38.1
+      ],
+      "geometry": "rect",
+      "text": "※ 属性ごとに、商品間で購買記録数を平均した",
+      "textPreview": "※ 属性ごとに、商品間で購買記録数を平均した",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "※ 属性ごとに、商品間で購買記録数を平均した"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "※ 属性ごとに、商品間で購買記録数を平均した",
+          "runs": [
+            {
+              "index": 1,
+              "text": "※",
+              "fontSize": 17.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 2,
+              "text": " 属性ごとに、商品間で購買記録数を平均した",
+              "fontSize": 17.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1o3ahwvq",
+      "id": "28",
+      "name": "角丸四角形 27",
+      "bbox": [
+        960.35,
+        84.9,
+        278.93,
+        102.15
+      ],
+      "rotation": 0,
+      "geometry": "roundRect",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "rgba(206, 77, 68, 0.15)",
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q9srixs3",
+      "id": "30",
+      "name": "テキスト ボックス 29",
+      "bbox": [
+        952.37,
+        50.93,
+        271.57,
+        34.39
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "特定された問題",
+      "textPreview": "特定された問題",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "特定された問題"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "特定された問題",
+          "runs": [
+            {
+              "index": 1,
+              "text": "特定された問題",
+              "fontSize": 16.67,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#CE4D44"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ru18r2to",
+      "id": "31",
+      "name": "テキスト ボックス 30",
+      "bbox": [
+        971.02,
+        90.5,
+        259.42,
+        87.44
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "・栄養バランスへの対応について\n・エネルギーへの対応について\n・脂質への対応について",
+      "textPreview": "・栄養バランスへの対応について | ・エネルギーへの対応について | ・脂質への対応について",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "・栄養バランスへの対応について"
+          },
+          {
+            "index": 2,
+            "text": "・エネルギーへの対応について"
+          },
+          {
+            "index": 3,
+            "text": "・脂質への対応について"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "・栄養バランスへの対応について",
+          "runs": [
+            {
+              "index": 1,
+              "text": "・栄養バランスへの対応について",
+              "fontSize": 15.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": {
+                "type": "theme",
+                "value": "tx1",
+                "transform": {
+                  "opacity": 0.6,
+                  "lighten": 0.35
+                }
+              }
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "・エネルギーへの対応について",
+          "runs": [
+            {
+              "index": 1,
+              "text": "・エネルギーへの対応について",
+              "fontSize": 15.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": {
+                "type": "theme",
+                "value": "tx1",
+                "transform": {
+                  "lighten": 0.25
+                }
+              },
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "・脂質への対応について",
+          "runs": [
+            {
+              "index": 1,
+              "text": "・脂質への対応について",
+              "fontSize": 15.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": {
+                "type": "theme",
+                "value": "tx1",
+                "transform": {
+                  "opacity": 0.6,
+                  "lighten": 0.35
+                }
+              }
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    }
+  ],
+  "composeRuns": []
+}

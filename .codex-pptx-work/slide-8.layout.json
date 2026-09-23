@@ -1,0 +1,1476 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/fu1gfa1s",
+    "id": "fu1gfa1s",
+    "slide": 8,
+    "layoutId": "/ppt/slideLayouts/slideLayout72.xml",
+    "layoutName": "15_ユーザー設定レイアウト",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster4.xml",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "紫",
+    "colors": {
+      "accent1": "#AD84C6",
+      "accent2": "#8784C7",
+      "accent3": "#5D739A",
+      "accent4": "#6997AF",
+      "accent5": "#84ACB6",
+      "accent6": "#6F8183",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#373545",
+      "lt2": "#DCD8DC",
+      "hlink": "#69A020",
+      "folHlink": "#8C8C8C"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "游ゴシック Light"
+      },
+      "minorFont": {
+        "latinTypeface": "游ゴシック"
+      }
+    },
+    "typefaces": [
+      "游ゴシック",
+      "游ゴシック Light",
+      "源ノ角ゴシック JP"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout72.xml",
+      "name": "15_ユーザー設定レイアウト",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster4.xml",
+      "backgroundColor": "rgba(245, 237, 233, 0.04)",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout72.xml/6",
+          "id": "6",
+          "name": "テキスト ボックス 5",
+          "bbox": [
+            12.24,
+            10.95,
+            270.91,
+            26.66
+          ],
+          "geometry": "rect",
+          "text": "問題特定｜適切さの評価",
+          "textPreview": "問題特定｜適切さの評価",
+          "resolvedTextStyle": {
+            "wrap": "square",
+            "autoFit": "resizeShapeToFitText"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "問題特定｜適切さの評価",
+              "lineSpacingPercent": 100000,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "問題特定｜適切さの評価",
+                  "fontSize": 14,
+                  "typeface": "源ノ角ゴシック JP"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout72.xml/2",
+          "id": "2",
+          "name": "テキスト ボックス 1",
+          "bbox": [
+            1220.08,
+            686.17,
+            59.92,
+            27.47
+          ],
+          "geometry": "rect",
+          "text": "8",
+          "textPreview": "8",
+          "resolvedTextStyle": {
+            "wrap": "square",
+            "autoFit": "resizeShapeToFitText"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "8",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "8",
+                  "fontSize": 14.67
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster4.xml",
+      "type": "master",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster4.xml/2",
+          "id": "2",
+          "name": "Title Placeholder 1",
+          "bbox": [
+            88,
+            38.33,
+            1104,
+            139.17
+          ],
+          "geometry": "rect",
+          "text": "マスター タイトルの書式設定",
+          "textPreview": "マスター タイトルの書式設定",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "マスター タイトルの書式設定",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "マスター タイトルの書式設定"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster4.xml/3",
+          "id": "3",
+          "name": "Text Placeholder 2",
+          "bbox": [
+            88,
+            191.67,
+            1104,
+            456.83
+          ],
+          "geometry": "rect",
+          "text": "マスター テキストの書式設定\n第 2 レベル\n第 3 レベル\n第 4 レベル\n第 5 レベル",
+          "textPreview": "マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル",
+          "resolvedTextStyle": {
+            "vertical": 1,
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "マスター テキストの書式設定",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "マスター テキストの書式設定"
+                }
+              ]
+            },
+            {
+              "index": 2,
+              "text": "第 2 レベル",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "第 "
+                },
+                {
+                  "index": 2,
+                  "text": "2 "
+                },
+                {
+                  "index": 3,
+                  "text": "レベル"
+                }
+              ]
+            },
+            {
+              "index": 3,
+              "text": "第 3 レベル",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "第 "
+                },
+                {
+                  "index": 2,
+                  "text": "3 "
+                },
+                {
+                  "index": 3,
+                  "text": "レベル"
+                }
+              ]
+            },
+            {
+              "index": 4,
+              "text": "第 4 レベル",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "第 "
+                },
+                {
+                  "index": 2,
+                  "text": "4 "
+                },
+                {
+                  "index": 3,
+                  "text": "レベル"
+                }
+              ]
+            },
+            {
+              "index": 5,
+              "text": "第 5 レベル",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "第 "
+                },
+                {
+                  "index": 2,
+                  "text": "5 "
+                },
+                {
+                  "index": 3,
+                  "text": "レベル"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster4.xml/4",
+          "id": "4",
+          "name": "Date Placeholder 3",
+          "bbox": [
+            88,
+            667.33,
+            288,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "2026/9/22",
+          "textPreview": "2026/9/22",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "2026/9/22",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "2026/9/22"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster4.xml/5",
+          "id": "5",
+          "name": "Footer Placeholder 4",
+          "bbox": [
+            424,
+            667.33,
+            432,
+            38.33
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          }
+        },
+        {
+          "order": 5,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster4.xml/6",
+          "id": "6",
+          "name": "Slide Number Placeholder 5",
+          "bbox": [
+            904,
+            667.33,
+            288,
+            38.33
+          ],
+          "geometry": "rect",
+          "text": "‹#›",
+          "textPreview": "‹#›",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "‹#›",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "‹#›"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/18byd4zy",
+      "id": "2",
+      "name": "テキスト ボックス 1",
+      "bbox": [
+        23.5,
+        50.93,
+        959.3,
+        53.29
+      ],
+      "geometry": "rect",
+      "text": "「対応」に該当する商品の購買記録数を算出する",
+      "textPreview": "「対応」に該当する商品の購買記録数を算出する",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "vertical": 1,
+        "rotation": 0,
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 8.79,
+          "right": 8.79,
+          "bottom": 8.79,
+          "left": 8.79
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "「対応」に該当する商品の購買記録数を算出する"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "「対応」に該当する商品の購買記録数を算出する",
+          "runs": [
+            {
+              "index": 1,
+              "text": "「対応」に該当する商品の購買記録数を算出する",
+              "fontSize": 29.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#42557A",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 2.67
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sjix0zy1",
+      "id": "7",
+      "name": "テキスト ボックス 6",
+      "bbox": [
+        73.88,
+        121.14,
+        762.45,
+        39.06
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "「対応」に該当する商品がどのくらい多く購入されたかを定量的に確認する",
+      "textPreview": "「対応」に該当する商品がどのくらい多く購入されたかを定量的に確認する",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "「対応」に該当する商品がどのくらい多く購入されたかを定量的に確認する"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "「対応」に該当する商品がどのくらい多く購入されたかを定量的に確認する",
+          "runs": [
+            {
+              "index": 1,
+              "text": "「対応」に該当する商品がどのくらい多く購入されたかを定量的に確認する",
+              "fontSize": 21.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/m5gvmhwn",
+      "id": "12",
+      "name": "テキスト ボックス 11",
+      "bbox": [
+        93.49,
+        160.13,
+        462.6,
+        39.06
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "→ 購買記録数というオリジナル指標を用いる",
+      "textPreview": "→ 購買記録数というオリジナル指標を用いる",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "→ 購買記録数というオリジナル指標を用いる"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "→ 購買記録数というオリジナル指標を用いる",
+          "runs": [
+            {
+              "index": 1,
+              "text": "→ 購買記録数というオリジナル指標を用いる",
+              "fontSize": 21.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0jydkreh",
+      "id": "14",
+      "name": "テキスト ボックス 13",
+      "bbox": [
+        138.81,
+        377.27,
+        377.54,
+        36.96
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "購買記録数（件 / 1000人）",
+      "textPreview": "購買記録数（件 / 1000人）",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "購買記録数（件 / 1000人）"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "購買記録数（件 / 1000人）",
+          "runs": [
+            {
+              "index": 1,
+              "text": "購買記録数（件",
+              "fontSize": 29.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": {
+                "type": "theme",
+                "value": "tx1",
+                "transform": {
+                  "lighten": 0.35
+                }
+              },
+              "bold": true
+            },
+            {
+              "index": 2,
+              "text": " / 1000",
+              "fontSize": 29.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": {
+                "type": "theme",
+                "value": "tx1",
+                "transform": {
+                  "lighten": 0.35
+                }
+              },
+              "bold": true
+            },
+            {
+              "index": 3,
+              "text": "人）",
+              "fontSize": 29.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": {
+                "type": "theme",
+                "value": "tx1",
+                "transform": {
+                  "lighten": 0.35
+                }
+              },
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/id0fu50z",
+      "id": "9",
+      "name": "テキスト ボックス 8",
+      "bbox": [
+        586.06,
+        344.68,
+        368.23,
+        36.62
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "商品の購買記録の総数（件）",
+      "textPreview": "商品の購買記録の総数（件）",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "商品の購買記録の総数（件）"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "商品の購買記録の総数（件）",
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "商品の購買記録の総数（件）",
+              "fontSize": 26.67,
+              "typeface": "源ノ角ゴシック JP",
+              "color": {
+                "type": "theme",
+                "value": "tx1",
+                "transform": {
+                  "lighten": 0.35
+                }
+              },
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/na1sb2lg",
+      "id": "31",
+      "name": "テキスト ボックス 30",
+      "bbox": [
+        560.8,
+        411.8,
+        424.93,
+        36.62
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "対象属性のセブン利用者数（人）",
+      "textPreview": "対象属性のセブン利用者数（人）",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "対象属性のセブン利用者数（人）"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "対象属性のセブン利用者数（人）",
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "対象属性のセブン利用者数（人）",
+              "fontSize": 26.67,
+              "typeface": "源ノ角ゴシック JP",
+              "color": {
+                "type": "theme",
+                "value": "tx1",
+                "transform": {
+                  "lighten": 0.35
+                }
+              },
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8bat47ml",
+      "id": "32",
+      "name": "テキスト ボックス 31",
+      "bbox": [
+        503.5,
+        379.92,
+        47.41,
+        37.92
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "=",
+      "textPreview": "=",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "="
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "=",
+          "runs": [
+            {
+              "index": 1,
+              "text": "=",
+              "fontSize": 29.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": {
+                "type": "theme",
+                "value": "tx1",
+                "transform": {
+                  "lighten": 0.35
+                }
+              },
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/y5sbed4j",
+      "id": "34",
+      "name": "直線コネクタ 33",
+      "bbox": [
+        554.48,
+        392.14,
+        423.64,
+        0
+      ],
+      "rotation": 0,
+      "geometry": "line",
+      "lineColor": {
+        "type": "theme",
+        "value": "tx1",
+        "transform": {
+          "lighten": 0.35
+        }
+      },
+      "lineWidth": 4
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/07atgnmp",
+      "id": "36",
+      "name": "テキスト ボックス 35",
+      "bbox": [
+        989.78,
+        380.24,
+        47.41,
+        37.92
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "×",
+      "textPreview": "×",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "×"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "×",
+          "runs": [
+            {
+              "index": 1,
+              "text": "×",
+              "fontSize": 29.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": {
+                "type": "theme",
+                "value": "tx1",
+                "transform": {
+                  "lighten": 0.35
+                }
+              },
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/l8ja9s3a",
+      "id": "37",
+      "name": "テキスト ボックス 36",
+      "bbox": [
+        1036.22,
+        378.37,
+        104.97,
+        37.92
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "1000",
+      "textPreview": "1000",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "1000"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "1000",
+          "runs": [
+            {
+              "index": 1,
+              "text": "1000",
+              "fontSize": 29.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": {
+                "type": "theme",
+                "value": "tx1",
+                "transform": {
+                  "lighten": 0.35
+                }
+              },
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/b2hs3il8",
+      "id": "39",
+      "name": "テキスト ボックス 38",
+      "bbox": [
+        90.39,
+        262.76,
+        394.22,
+        39.06
+      ],
+      "geometry": "rect",
+      "text": "※ 性別 × 年代 の属性ごとに算出する",
+      "textPreview": "※ 性別 × 年代 の属性ごとに算出する",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "※ 性別 × 年代 の属性ごとに算出する"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "※ 性別 × 年代 の属性ごとに算出する",
+          "runs": [
+            {
+              "index": 1,
+              "text": "※",
+              "fontSize": 21.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 2,
+              "text": " 性別",
+              "fontSize": 21.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 3,
+              "text": " × ",
+              "fontSize": 21.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 4,
+              "text": "年代",
+              "fontSize": 21.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 5,
+              "text": " ",
+              "fontSize": 21.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            },
+            {
+              "index": 6,
+              "text": "の属性ごとに算出する",
+              "fontSize": 21.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3u18fepo",
+      "id": "40",
+      "name": "テキスト ボックス 39",
+      "bbox": [
+        132.63,
+        511.58,
+        1014.74,
+        86.48
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "購買記録数は、\n対象属性のセブンイレブン利用者1000人あたり、その商品が何回購買されたかを示す",
+      "textPreview": "購買記録数は、 | 対象属性のセブンイレブン利用者1000人あたり、その商品が何回購買されたかを示す",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "購買記録数は、"
+          },
+          {
+            "index": 2,
+            "text": "対象属性のセブンイレブン利用者1000人あたり、その商品が何回購買されたかを示す"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "購買記録数は、",
+          "runs": [
+            {
+              "index": 1,
+              "text": "購買記録数は、",
+              "fontSize": 25.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#C00000"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "対象属性のセブンイレブン利用者1000人あたり、その商品が何回購買されたかを示す",
+          "runs": [
+            {
+              "index": 1,
+              "text": "対象属性のセブンイレブン利用者",
+              "fontSize": 25.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#C00000"
+            },
+            {
+              "index": 2,
+              "text": "1000",
+              "fontSize": 25.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#C00000"
+            },
+            {
+              "index": 3,
+              "text": "人あたり、その商品が何回購買されたかを示す",
+              "fontSize": 25.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#C00000"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2ts769o3",
+      "id": "41",
+      "name": "テキスト ボックス 40",
+      "bbox": [
+        135.73,
+        620.62,
+        753.06,
+        40.03
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "→ その値が大きいほど、「対応」の適切さが高いと評価される",
+      "textPreview": "→ その値が大きいほど、「対応」の適切さが高いと評価される",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "→ その値が大きいほど、「対応」の適切さが高いと評価される"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "→ その値が大きいほど、「対応」の適切さが高いと評価される",
+          "runs": [
+            {
+              "index": 1,
+              "text": "→ その値が大きいほど、「対応」の適切さが高いと評価される",
+              "fontSize": 25.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": {
+                "type": "theme",
+                "value": "tx1",
+                "transform": {
+                  "lighten": 0.25
+                }
+              }
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xwvelwj2",
+      "id": "51",
+      "name": "角丸四角形 50",
+      "bbox": [
+        960.35,
+        84.9,
+        278.93,
+        102.15
+      ],
+      "rotation": 0,
+      "geometry": "roundRect",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "rgba(206, 77, 68, 0.15)",
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/budwj61c",
+      "id": "53",
+      "name": "テキスト ボックス 52",
+      "bbox": [
+        952.37,
+        50.93,
+        271.57,
+        34.39
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "特定された問題",
+      "textPreview": "特定された問題",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "特定された問題"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "特定された問題",
+          "runs": [
+            {
+              "index": 1,
+              "text": "特定された問題",
+              "fontSize": 16.67,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#CE4D44"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kjmdwbit",
+      "id": "54",
+      "name": "テキスト ボックス 53",
+      "bbox": [
+        971.02,
+        90.5,
+        259.42,
+        87.44
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "・栄養バランスへの対応について\n・エネルギーへの対応について\n・脂質への対応について",
+      "textPreview": "・栄養バランスへの対応について | ・エネルギーへの対応について | ・脂質への対応について",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "游ゴシック",
+        "color": "tx1",
+        "alignment": "left",
+        "wrap": "square",
+        "autoFit": "resizeShapeToFitText",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "・栄養バランスへの対応について"
+          },
+          {
+            "index": 2,
+            "text": "・エネルギーへの対応について"
+          },
+          {
+            "index": 3,
+            "text": "・脂質への対応について"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "・栄養バランスへの対応について",
+          "runs": [
+            {
+              "index": 1,
+              "text": "・栄養バランスへの対応について",
+              "fontSize": 15.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "・エネルギーへの対応について",
+          "runs": [
+            {
+              "index": 1,
+              "text": "・エネルギーへの対応について",
+              "fontSize": 15.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": "#393439"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "・脂質への対応について",
+          "runs": [
+            {
+              "index": 1,
+              "text": "・脂質への対応について",
+              "fontSize": 15.33,
+              "typeface": "源ノ角ゴシック JP",
+              "color": {
+                "type": "theme",
+                "value": "tx1",
+                "transform": {
+                  "opacity": 0.6,
+                  "lighten": 0.35
+                }
+              }
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    }
+  ],
+  "composeRuns": []
+}

@@ -1,0 +1,245 @@
+{"kind":"deck","id":"pr/bju6r7","name":"Deck"}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"","type":"master","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"タイトル スライド","type":"title","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"subtitle","type":"subtitle","textPreview":"マスター サブタイトルの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout2.xml","name":"タイトルとコンテンツ","placeholders":[{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout3.xml","name":"セクション見出し","type":"secHead","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout4.xml","name":"2 つのコンテンツ","type":"twoObj","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"3","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout5.xml","name":"比較","type":"twoTxTwoObj","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"3","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"5","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout6.xml","name":"タイトルのみ","type":"titleOnly","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout7.xml","name":"白紙","type":"blank","placeholders":[{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout8.xml","name":"タイトル付きのコンテンツ","type":"objTx","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout9.xml","name":"タイトル付きの図","type":"picTx","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"picture","type":"picture"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout10.xml","name":"タイトルと縦書きテキスト","type":"vertTx","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout11.xml","name":"縦書きタイトルと\n縦書きテキスト","type":"vertTitleAndTx","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster2.xml","name":"","type":"master","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout12.xml","name":"タイトル スライド","type":"title","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"subtitle","type":"subtitle","textPreview":"マスター サブタイトルの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout13.xml","name":"タイトルとコンテンツ","placeholders":[{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout14.xml","name":"セクション見出し","type":"secHead","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout15.xml","name":"2 つのコンテンツ","type":"twoObj","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"3","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout16.xml","name":"比較","type":"twoTxTwoObj","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"3","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"5","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout17.xml","name":"タイトルのみ","type":"titleOnly","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout18.xml","name":"白紙","type":"blank","placeholders":[{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout19.xml","name":"タイトル付きのコンテンツ","type":"objTx","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout20.xml","name":"タイトル付きの図","type":"picTx","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"picture","type":"picture"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout21.xml","name":"タイトルと縦書きテキスト","type":"vertTx","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout22.xml","name":"縦書きタイトルと\n縦書きテキスト","type":"vertTitleAndTx","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout23.xml","name":"1_タイトルとコンテンツ","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout24.xml","name":"2_タイトルとコンテンツ","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout25.xml","name":"3_タイトルとコンテンツ","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout26.xml","name":"4_タイトルとコンテンツ","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout27.xml","name":"1_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout28.xml","name":"2_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout29.xml","name":"3_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout30.xml","name":"6_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout31.xml","name":"4_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout32.xml","name":"5_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster3.xml","name":"","type":"master","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout33.xml","name":"タイトル スライド","type":"title","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"subtitle","type":"subtitle","textPreview":"マスター サブタイトルの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout34.xml","name":"タイトルとコンテンツ","placeholders":[{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout35.xml","name":"セクション見出し","type":"secHead","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout36.xml","name":"2 つのコンテンツ","type":"twoObj","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"3","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout37.xml","name":"比較","type":"twoTxTwoObj","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"3","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"5","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout38.xml","name":"タイトルのみ","type":"titleOnly","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout39.xml","name":"白紙","type":"blank","placeholders":[{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout40.xml","name":"タイトル付きのコンテンツ","type":"objTx","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout41.xml","name":"タイトル付きの図","type":"picTx","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"picture","type":"picture"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout42.xml","name":"タイトルと縦書きテキスト","type":"vertTx","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout43.xml","name":"縦書きタイトルと\n縦書きテキスト","type":"vertTitleAndTx","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout44.xml","name":"1_タイトルとコンテンツ","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout45.xml","name":"2_タイトルとコンテンツ","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout46.xml","name":"3_タイトルとコンテンツ","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout47.xml","name":"4_タイトルとコンテンツ","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout48.xml","name":"7_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout49.xml","name":"8_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout50.xml","name":"1_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout51.xml","name":"2_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout52.xml","name":"3_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout53.xml","name":"6_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout54.xml","name":"4_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout55.xml","name":"5_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster4.xml","name":"","type":"master","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout56.xml","name":"タイトル スライド","type":"title","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"subtitle","type":"subtitle","textPreview":"マスター サブタイトルの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout57.xml","name":"タイトルとコンテンツ","type":"obj","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"content placeholder 2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout58.xml","name":"セクション見出し","type":"secHead","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout59.xml","name":"2 つのコンテンツ","type":"twoObj","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"content placeholder 2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"content placeholder 3","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout60.xml","name":"比較","type":"twoTxTwoObj","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"content placeholder 3","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"content placeholder 5","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout61.xml","name":"タイトルのみ","type":"titleOnly","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout62.xml","name":"白紙","type":"blank","placeholders":[{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout63.xml","name":"タイトル付きのコンテンツ","type":"objTx","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"content placeholder 2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout64.xml","name":"タイトル付きの図","type":"picTx","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"picture","type":"picture","textPreview":"アイコンをクリックして図を追加"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout65.xml","name":"タイトルと縦書きテキスト","type":"vertTx","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout66.xml","name":"縦書きタイトルと\n縦書きテキスト","type":"vertTitleAndTx","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"body","type":"body","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"},{"name":"dateTime","type":"dateTime","textPreview":"2026/9/22"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout67.xml","name":"7_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout68.xml","name":"8_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout69.xml","name":"13_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout70.xml","name":"19_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout71.xml","name":"14_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout72.xml","name":"15_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout73.xml","name":"16_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout74.xml","name":"17_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout75.xml","name":"18_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout76.xml","name":"12_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout77.xml","name":"20_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout78.xml","name":"1_タイトルとコンテンツ","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout79.xml","name":"2_タイトルとコンテンツ","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout80.xml","name":"3_タイトルとコンテンツ","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout81.xml","name":"4_タイトルとコンテンツ","placeholders":[{"name":"title","type":"title","textPreview":"マスター タイトルの書式設定"},{"name":"2","textPreview":"マスター テキストの書式設定 | 第 2 レベル | 第 3 レベル | 第 4 レベル | 第 5 レベル"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout82.xml","name":"ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout83.xml","name":"1_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout84.xml","name":"2_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout85.xml","name":"3_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout86.xml","name":"6_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout87.xml","name":"4_ユーザー設定レイアウト"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout88.xml","name":"5_ユーザー設定レイアウト"}
+{"kind":"slide","id":"sl/y90nupkv","slide":1,"title":"健康ニーズに対する","textShapes":5}
+{"kind":"textbox","id":"sh/k3yl0zql","slide":1,"textChars":32,"textLines":2}
+{"kind":"textbox","id":"sh/wn6dc7eh","slide":1,"textChars":11,"textLines":1}
+{"kind":"textbox","id":"sh/4r6dg7et","slide":1,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/vmdcj2xw","slide":1,"textChars":15,"textLines":2}
+{"kind":"textbox","id":"sh/ipovexwn","slide":1,"textChars":27,"textLines":2}
+{"kind":"notes","id":"nt/y90nupkv","slide":1,"text":""}
+{"kind":"slide","id":"sl/hwbqtkby","slide":2,"title":"本プロジェクトの目的","textShapes":1}
+{"kind":"textbox","id":"sh/a10jqpsj","slide":2,"textChars":10,"textLines":1}
+{"kind":"notes","id":"nt/hwbqtkby","slide":2,"text":""}
+{"kind":"slide","id":"sl/ofy9wn61","slide":3,"title":"現在のニーズが大きく、過去から増加した健康ニーズに対象を絞った","textShapes":6}
+{"kind":"textbox","id":"sh/298ryl4v","slide":3,"textChars":31,"textLines":1}
+{"kind":"shape","id":"sh/m5cra54z","slide":3,"name":"正方形/長方形 7","bbox":[50.08,106.99,433.57,88.44]}
+{"kind":"textbox","id":"sh/obq90bml","slide":3,"textChars":28,"textLines":1}
+{"kind":"textbox","id":"sh/pcjqtg36","slide":3,"textChars":22,"textLines":1}
+{"kind":"textbox","id":"sh/n2l4fq98","slide":3,"textChars":35,"textLines":1}
+{"kind":"textbox","id":"sh/m1c3mlsn","slide":3,"textChars":31,"textLines":1}
+{"kind":"textbox","id":"sh/943mhgre","slide":3,"textChars":203,"textLines":2}
+{"kind":"table","id":"tb/nmtcz2t8","slide":3,"name":"表 2","rows":10,"cols":13,"preview":"健康ニーズ | 男性20代 | 男性30代 | 男性40代 | 男性50代 | 男性60代 | 男性70代 | 女性20代 | 女性30代 | 女性40代 | 女性50代 | 女性60代 | 女性70代","bbox":[50.37,209.98,1179.21,443.67]}
+{"kind":"notes","id":"nt/ofy9wn61","slide":3,"text":"（文献調査により）得られた結果だけを伝える |  | 伝えないといけないのは、 | ・詳細ニーズ×属性の全体感 | ・文献調査によるという点 | ・本プロ..."}
+{"kind":"slide","id":"sl/jyx0ra1s","slide":4,"title":"現在のニーズが大きく、過去から増加した健康ニーズに対象を絞った","textShapes":15}
+{"kind":"textbox","id":"sh/0ba143al","slide":4,"textChars":31,"textLines":1}
+{"kind":"textbox","id":"sh/gv29g7q5","slide":4,"textChars":16,"textLines":1}
+{"kind":"textbox","id":"sh/fu9sn2p0","slide":4,"textChars":47,"textLines":2}
+{"kind":"textbox","id":"sh/sna103ap","slide":4,"textChars":23,"textLines":1}
+{"kind":"textbox","id":"sh/et0reh8f","slide":4,"textChars":24,"textLines":1}
+{"kind":"textbox","id":"sh/tsrqlc7u","slide":4,"textChars":34,"textLines":2}
+{"kind":"textbox","id":"sh/rm1k7yt4","slide":4,"textChars":27,"textLines":1}
+{"kind":"textbox","id":"sh/ih8ju9sn","slide":4,"textChars":22,"textLines":1}
+{"kind":"textbox","id":"sh/axcf29kj","slide":4,"textChars":15,"textLines":1}
+{"kind":"textbox","id":"sh/i94r6xgz","slide":4,"textChars":71,"textLines":3}
+{"kind":"textbox","id":"sh/w72947yt","slide":4,"textChars":17,"textLines":1}
+{"kind":"textbox","id":"sh/a5kr2xg3","slide":4,"textChars":34,"textLines":1}
+{"kind":"textbox","id":"sh/v6tsv2xo","slide":4,"textChars":16,"textLines":1}
+{"kind":"textbox","id":"sh/oz29krqh","slide":4,"textChars":30,"textLines":1}
+{"kind":"shape","id":"sh/1wbapc7q","slide":4,"name":"円/楕円 23","bbox":[970.52,137.42,59.63,23.61]}
+{"kind":"textbox","id":"sh/mtcfypkn","slide":4,"textChars":32,"textLines":1}
+{"kind":"image","id":"im/wvut43ml","slide":4,"name":"図 22","bbox":[728.25,131.49,295.27,82.57]}
+{"kind":"image","id":"im/0r2dcb6t","slide":4,"name":"図 30","bbox":[725.51,258.24,295.11,201.4]}
+{"kind":"image","id":"im/lsbelgne","slide":4,"name":"図 34","bbox":[725.51,490.75,295.11,180.27]}
+{"kind":"notes","id":"nt/jyx0ra1s","slide":4,"text":"ここは、ひとつまえの補足 | 特に、ニーズの大きさと変化の算出方法、ならびに判定基準について"}
+{"kind":"slide","id":"sl/i107q5of","slide":5,"title":"・「栄養バランスを調整したい」ニーズ","textShapes":13}
+{"kind":"shape","id":"sh/cf2tcr61","slide":5,"name":"角丸四角形 2","bbox":[151.16,154.19,405.46,147.49]}
+{"kind":"textbox","id":"sh/yhkbe1o7","slide":5,"textChars":51,"textLines":3}
+{"kind":"textbox","id":"sh/n6dcr65o","slide":5,"textChars":10,"textLines":1}
+{"kind":"textbox","id":"sh/4ji5kbid","slide":5,"textChars":32,"textLines":1}
+{"kind":"textbox","id":"sh/2h0ni107","slide":5,"textChars":7,"textLines":1}
+{"kind":"textbox","id":"sh/5o7mhcju","slide":5,"textChars":42,"textLines":2}
+{"kind":"textbox","id":"sh/i54fmlc7","slide":5,"textChars":9,"textLines":1}
+{"kind":"textbox","id":"sh/j6dwfqds","slide":5,"textChars":9,"textLines":1}
+{"kind":"textbox","id":"sh/kny587i9","slide":5,"textChars":8,"textLines":1}
+{"kind":"textbox","id":"sh/m5kbi1oj","slide":5,"textChars":4,"textLines":1}
+{"kind":"shape","id":"sh/v2twb6dw","slide":5,"name":"角丸四角形 12","bbox":[650.18,191.78,224.42,105.26]}
+{"kind":"textbox","id":"sh/w32dkbuh","slide":5,"textChars":15,"textLines":2}
+{"kind":"textbox","id":"sh/z2tcnm5s","slide":5,"textChars":15,"textLines":1}
+{"kind":"textbox","id":"sh/sb6xsvu9","slide":5,"textChars":7,"textLines":1}
+{"kind":"shape","id":"sh/58vehgvy","slide":5,"name":"角丸四角形 14","bbox":[151.16,514.2,986.83,160.62]}
+{"kind":"textbox","id":"sh/032tgr6d","slide":5,"textChars":133,"textLines":3}
+{"kind":"notes","id":"nt/i107q5of","slide":5,"text":"セブンイレブンに重きをおいて、このタイミングで特定された問題を伝える |  | 伝えないといけないのは、 | ・注力する健康ニーズをまとめる | ・セブン..."}
+{"kind":"slide","id":"sl/x8f69ofe","slide":6,"title":"セブンイレブンでは、脂質への「対応」の実施量が不十分である","textShapes":8}
+{"kind":"textbox","id":"sh/87ipkzal","slide":6,"textChars":29,"textLines":1}
+{"kind":"textbox","id":"sh/zi98nu94","slide":6,"textChars":47,"textLines":2}
+{"kind":"textbox","id":"sh/5svutgni","slide":6,"textChars":31,"textLines":3}
+{"kind":"textbox","id":"sh/0fy5k3id","slide":6,"textChars":24,"textLines":1}
+{"kind":"textbox","id":"sh/lg76d8zy","slide":6,"textChars":39,"textLines":1}
+{"kind":"shape","id":"sh/idk7ehkr","slide":6,"name":"角丸四角形 30","bbox":[960.35,84.9,278.93,102.15]}
+{"kind":"textbox","id":"sh/gju58ji9","slide":6,"textChars":7,"textLines":1}
+{"kind":"textbox","id":"sh/jet8nm1c","slide":6,"textChars":42,"textLines":3}
+{"kind":"textbox","id":"sh/4f2pgr2h","slide":6,"textChars":38,"textLines":1}
+{"kind":"table","id":"tb/sj658ru9","slide":6,"name":"表 21","rows":3,"cols":3,"preview":"栄養バランスを調整したい | エネルギーを減らしたい | 脂質を減らしたい","bbox":[52.72,158.25,733.23,495.12]}
+{"kind":"notes","id":"nt/x8f69ofe","slide":6,"text":"「対応」に該当する商品を抽出した | （文献調査により）得られた結果のみを伝える |  | その商品数に基づき、実施量を評価した |  | 伝えないといけ..."}
+{"kind":"slide","id":"sl/gnmp4jqx","slide":7,"title":"セブンイレブンでは、脂質への「対応」の実施量が不十分である","textShapes":6}
+{"kind":"textbox","id":"sh/ydkbm5sv","slide":7,"textChars":29,"textLines":1}
+{"kind":"textbox","id":"sh/kzmdova1","slide":7,"textChars":16,"textLines":1}
+{"kind":"textbox","id":"sh/id4ju1oz","slide":7,"textChars":43,"textLines":1}
+{"kind":"textbox","id":"sh/jedkn654","slide":7,"textChars":44,"textLines":1}
+{"kind":"textbox","id":"sh/baxkjqlk","slide":7,"textChars":79,"textLines":2}
+{"kind":"textbox","id":"sh/cbq1sv25","slide":7,"textChars":34,"textLines":1}
+{"kind":"image","id":"im/vat4ne5o","slide":7,"name":"図 22","bbox":[538.76,342.94,670.27,330.18]}
+{"kind":"image","id":"im/u9knu9o3","slide":7,"name":"図 23","bbox":[66.03,342.94,435.64,185.4]}
+{"kind":"notes","id":"nt/gnmp4jqx","slide":7,"text":"ここは一つ前の補足 | 「対応」に該当する商品を抽出する方法について | 判定基準も含めて"}
+{"kind":"slide","id":"sl/fu1gfa1s","slide":8,"title":"「対応」に該当する商品の購買記録数を算出する","textShapes":14}
+{"kind":"textbox","id":"sh/18byd4zy","slide":8,"textChars":22,"textLines":1}
+{"kind":"textbox","id":"sh/sjix0zy1","slide":8,"textChars":34,"textLines":1}
+{"kind":"textbox","id":"sh/m5gvmhwn","slide":8,"textChars":21,"textLines":1}
+{"kind":"textbox","id":"sh/0jydkreh","slide":8,"textChars":16,"textLines":1}
+{"kind":"textbox","id":"sh/id0fu50z","slide":8,"textChars":13,"textLines":1}
+{"kind":"textbox","id":"sh/na1sb2lg","slide":8,"textChars":15,"textLines":1}
+{"kind":"textbox","id":"sh/8bat47ml","slide":8,"textChars":1,"textLines":1}
+{"kind":"shape","id":"sh/y5sbed4j","slide":8,"name":"直線コネクタ 33","bbox":[554.48,392.14,423.64,0]}
+{"kind":"textbox","id":"sh/07atgnmp","slide":8,"textChars":1,"textLines":1}
+{"kind":"textbox","id":"sh/l8ja9s3a","slide":8,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/b2hs3il8","slide":8,"textChars":20,"textLines":1}
+{"kind":"textbox","id":"sh/3u18fepo","slide":8,"textChars":48,"textLines":2}
+{"kind":"textbox","id":"sh/2ts769o3","slide":8,"textChars":29,"textLines":1}
+{"kind":"shape","id":"sh/xwvelwj2","slide":8,"name":"角丸四角形 50","bbox":[960.35,84.9,278.93,102.15]}
+{"kind":"textbox","id":"sh/budwj61c","slide":8,"textChars":7,"textLines":1}
+{"kind":"textbox","id":"sh/kjmdwbit","slide":8,"textChars":42,"textLines":3}
+{"kind":"notes","id":"nt/fu1gfa1s","slide":8,"text":"購買記録数の概念を導入する | （ここでは、二つの要素については話さない） |  | 伝えないといけないこと、 | ・ここからは、zaimのデータ分析であること"}
+{"kind":"slide","id":"sl/udsvah03","slide":9,"title":"セブンイレブンでは、若年層を中心に栄養バランスへの「対応」の","textShapes":11}
+{"kind":"textbox","id":"sh/1cfmhgne","slide":9,"textChars":37,"textLines":2}
+{"kind":"shape","id":"sh/oza1gfyh","slide":9,"name":"正方形/長方形 9","bbox":[44.15,159.91,433.57,88.44]}
+{"kind":"textbox","id":"sh/p0ji9kf2","slide":9,"textChars":17,"textLines":1}
+{"kind":"textbox","id":"sh/2xsjepgb","slide":9,"textChars":21,"textLines":1}
+{"kind":"textbox","id":"sh/cnu1kzyd","slide":9,"textChars":37,"textLines":2}
+{"kind":"textbox","id":"sh/do3id4fy","slide":9,"textChars":33,"textLines":3}
+{"kind":"textbox","id":"sh/qlcjipgn","slide":9,"textChars":22,"textLines":1}
+{"kind":"textbox","id":"sh/bml0buxs","slide":9,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/0ru1ozyp","slide":9,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/va103ep4","slide":9,"textChars":29,"textLines":1}
+{"kind":"shape","id":"sh/xgzitk76","slide":9,"name":"角丸四角形 27","bbox":[960.35,84.9,278.93,102.15]}
+{"kind":"textbox","id":"sh/2l4faloj","slide":9,"textChars":7,"textLines":1}
+{"kind":"textbox","id":"sh/nmdg3q54","slide":9,"textChars":42,"textLines":3}
+{"kind":"table","id":"tb/fex83qd0","slide":9,"name":"表 6","rows":2,"cols":7,"preview":"健康ニーズ | 男性20代 | 男性30代 | 男性40代 | 男性50代 | 男性60代 | 男性70代","bbox":[44.15,305.66,839.06,124.72]}
+{"kind":"table","id":"tb/edoralwf","slide":9,"name":"表 7","rows":2,"cols":7,"preview":"健康ニーズ | 女性20代 | 女性30代 | 女性40代 | 女性50代 | 女性60代 | 女性70代","bbox":[44.15,487.71,839.06,124.72]}
+{"kind":"notes","id":"nt/udsvah03","slide":9,"text":"購買記録数の値と、それに基づく適切さの評価について |  | 伝えないといけないこと | ・表の読み方 | ・若年層の問題について | ・他社では違う傾向..."}
+{"kind":"slide","id":"sl/m90b6t0r","slide":10,"title":"セブンイレブンでは、若年男性においてエネルギーへの「対応」の","textShapes":10}
+{"kind":"textbox","id":"sh/xc3mho32","slide":10,"textChars":37,"textLines":2}
+{"kind":"shape","id":"sh/s7yt4b21","slide":10,"name":"正方形/長方形 9","bbox":[44.15,159.91,433.57,88.44]}
+{"kind":"textbox","id":"sh/d87uxg3m","slide":10,"textChars":17,"textLines":1}
+{"kind":"textbox","id":"sh/q5gb21kb","slide":10,"textChars":21,"textLines":1}
+{"kind":"textbox","id":"sh/0bit8b2d","slide":10,"textChars":37,"textLines":2}
+{"kind":"textbox","id":"sh/1cru1g3y","slide":10,"textChars":33,"textLines":3}
+{"kind":"textbox","id":"sh/fapcz6ls","slide":10,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/jypcrqd4","slide":10,"textChars":33,"textLines":1}
+{"kind":"textbox","id":"sh/kjytkvup","slide":10,"textChars":22,"textLines":1}
+{"kind":"shape","id":"sh/1o3ahwvq","slide":10,"name":"角丸四角形 27","bbox":[960.35,84.9,278.93,102.15]}
+{"kind":"textbox","id":"sh/q9srixs3","slide":10,"textChars":7,"textLines":1}
+{"kind":"textbox","id":"sh/ru18r2to","slide":10,"textChars":42,"textLines":3}
+{"kind":"table","id":"tb/rq1cj65s","slide":10,"name":"表 6","rows":2,"cols":7,"preview":"健康ニーズ | 男性20代 | 男性30代 | 男性40代 | 男性50代 | 男性60代 | 男性70代","bbox":[44.15,305.66,839.06,124.72]}
+{"kind":"notes","id":"nt/m90b6t0r","slide":10,"text":"購買記録数の値と、それに基づく適切さの評価について |  | 伝えないといけないこと | ・若年層の問題について | ・他社でも同様の傾向であること |"}
+{"kind":"slide","id":"sl/jetc3ut0","slide":11,"title":"健康ニーズに対するセブンイレブンの「対応」について３つの問題が特定された","textShapes":6}
+{"kind":"textbox","id":"sh/xcryxg7y","slide":11,"textChars":36,"textLines":1}
+{"kind":"textbox","id":"sh/250zy18b","slide":11,"textChars":40,"textLines":1}
+{"kind":"textbox","id":"sh/98rytw72","slide":11,"textChars":39,"textLines":1}
+{"kind":"textbox","id":"sh/n69grmpw","slide":11,"textChars":40,"textLines":1}
+{"kind":"textbox","id":"sh/o7ih0r6h","slide":11,"textChars":26,"textLines":1}
+{"kind":"textbox","id":"sh/72t03qp0","slide":11,"textChars":34,"textLines":1}
+{"kind":"notes","id":"nt/jetc3ut0","slide":11,"text":"ここは軽くまとめるだけ | 原因分析は、１点目について行うことをのべる"}
+{"kind":"slide","id":"sl/8f2psfyx","slide":12,"title":"[1] 厚生労働省．『平成22年国民健康・栄養調査報告』．2012．https://www.mhlw.go.jp/stf/seisakunitsuite/...","textShapes":1}
+{"kind":"textbox","id":"sh/1gbm9s3a","slide":12,"textChars":1581,"textLines":27}
+{"kind":"notes","id":"nt/8f2psfyx","slide":12,"text":""}
+{"kind":"slide","id":"sl/hgzapcr6","slide":13,"title":"[12] 株式会社セブン‐イレブン・ジャパン．『「カラダへの想いこの手から」“1日に必要な野菜の2分の1がとれる”等「関ジャニ∞」監修のおむすび・弁当・冷...","textShapes":1}
+{"kind":"textbox","id":"sh/q50nydsj","slide":13,"textChars":1773,"textLines":22}
+{"kind":"notes","id":"nt/hgzapcr6","slide":13,"text":""}
+{"kind":"slide","id":"sl/6lsnupw7","slide":14,"title":"[23] 株式会社セブン＆アイ・ホールディングス．『ゼロサイダートリプル 500ml』．発行年不明．https://7premium.jp/product...","textShapes":1}
+{"kind":"textbox","id":"sh/xc7eds76","slide":14,"textChars":1630,"textLines":24}
+{"kind":"notes","id":"nt/6lsnupw7","slide":14,"text":""}
+{"kind":"slide","id":"sl/vaxsvy10","slide":15,"title":"[35] 株式会社セブン‐イレブン・ジャパン．『「セブンプレミアム」人気飲料トリプルゼロシリーズの新商品「セブンプレミアム アクエリアス エスボディ 50...","textShapes":1}
+{"kind":"textbox","id":"sh/547mhg3m","slide":15,"textChars":575,"textLines":7}
+{"kind":"notes","id":"nt/vaxsvy10","slide":15,"text":""}
+{"kind":"notice","message":"Truncated: omitted 0 lines. Increase maxChars or narrow target."}
